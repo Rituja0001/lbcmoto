@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import {
   Search,
   Heart,
-  ShoppingBag,
   User,
   ChevronDown,
   ChevronRight,
@@ -22,8 +21,6 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [isScrolled, setIsScrolled] = useState(false)
-  const [cartCount, setCartCount] = useState(2)
-  const [wishlistCount, setWishlistCount] = useState(3)
 
   const dropdownRef = useRef(null)
   const timeoutRef = useRef(null)
@@ -63,9 +60,9 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Utility / Announcement Bar (No harsh divider line) */}
-      <div className="bg-[#121212] text-white/80 text-[11px] sm:text-xs py-2 px-4 select-none">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+      {/* Top Utility / Announcement Bar (Full Width) */}
+      <div className="bg-[#121212] text-white/80 text-[11px] sm:text-xs py-2 select-none w-full">
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FECD08] animate-pulse" />
             <span className="font-sora font-medium text-white/90">
@@ -91,21 +88,21 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Sticky Navbar (Lines removed for seamless dark aesthetic) */}
+      {/* Main Sticky Navbar (Full Width Container) */}
       <nav
         ref={dropdownRef}
         onMouseLeave={handleMouseLeave}
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`sticky top-0 z-50 transition-all duration-300 w-full ${
           isScrolled
             ? 'bg-[#181818]/98 backdrop-blur-md shadow-2xl'
             : 'bg-[#181818]'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="h-20 flex items-center justify-between gap-2 sm:gap-4">
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+          <div className="h-20 flex items-center justify-between gap-4">
             
             {/* Logo */}
-            <a href="/" className="flex items-center shrink-0 group mr-2 2xl:mr-4">
+            <a href="/" className="flex items-center shrink-0 group mr-2 2xl:mr-6">
               <div className="relative h-12 flex items-center justify-center">
                 <img
                   src={logoImg}
@@ -126,8 +123,8 @@ export default function Navbar() {
               </div>
             </a>
 
-            {/* Desktop Navigation Links (Proper single-line whitespace-nowrap) */}
-            <div className="hidden xl:flex items-center space-x-1 lg:space-x-1.5 2xl:space-x-3 shrink-0">
+            {/* Desktop Navigation Links (Full Width Balanced Spacing, Single-line) */}
+            <div className="hidden xl:flex items-center space-x-1 lg:space-x-2 2xl:space-x-4 shrink-0">
               {navigationData.map((item) => {
                 const hasSubs = item.subcategories && item.subcategories.length > 0
                 const isActive = activeDropdown === item.id
@@ -140,17 +137,17 @@ export default function Navbar() {
                   >
                     <a
                       href={item.href}
-                      className={`flex items-center gap-1 px-2 2xl:px-3 py-1.5 font-rajdhani font-bold text-[13px] 2xl:text-sm tracking-wider uppercase whitespace-nowrap transition-colors duration-150 cursor-pointer ${
+                      className={`flex items-center gap-1 px-2.5 2xl:px-3.5 py-1.5 font-rajdhani font-bold text-[13px] 2xl:text-sm tracking-wider uppercase whitespace-nowrap transition-colors duration-150 cursor-pointer ${
                         isActive
                           ? 'text-[#FECD08]'
-                          : 'text-white/90 hover:text-[#FECD08]'
+                          : 'text-white hover:text-[#FECD08]'
                       }`}
                     >
                       <span className="whitespace-nowrap">{item.title}</span>
                       {hasSubs && (
                         <ChevronDown
                           className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
-                            isActive ? 'rotate-180 text-[#FECD08]' : 'text-white/40'
+                            isActive ? 'rotate-180 text-[#FECD08]' : 'text-white/60'
                           }`}
                         />
                       )}
@@ -160,56 +157,56 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* Right Action Icons (Search, Wishlist, Cart, Login) */}
-            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
-              {/* Search Button */}
+            {/* Right Action Items (Matching reference screenshot exactly) */}
+            <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+              
+              {/* 1. Circular Dark Search Button */}
               <button
                 onClick={() => setSearchOpen(true)}
                 aria-label="Search"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white/80 hover:text-[#FECD08] hover:bg-white/5 transition-colors cursor-pointer"
+                className="w-11 h-11 rounded-full bg-[#212121] hover:bg-[#2a2a2a] flex items-center justify-center text-white transition-all cursor-pointer group"
               >
-                <Search className="w-5 h-5" />
+                <Search className="w-5 h-5 text-white group-hover:scale-105 transition-transform stroke-[2.2]" />
               </button>
 
-              {/* Wishlist Button */}
+              {/* 2. Circular Dark Wishlist Button */}
               <button
                 aria-label="Wishlist"
-                className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white/80 hover:text-[#FECD08] hover:bg-white/5 transition-colors cursor-pointer"
+                className="w-11 h-11 rounded-full bg-[#212121] hover:bg-[#2a2a2a] flex items-center justify-center text-white transition-all cursor-pointer group"
               >
-                <Heart className="w-5 h-5" />
-                {wishlistCount > 0 && (
-                  <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#FECD08] text-[#212121] text-[10px] font-bold font-rajdhani flex items-center justify-center shadow-sm">
-                    {wishlistCount}
-                  </span>
-                )}
+                <Heart className="w-5 h-5 text-white group-hover:scale-105 transition-transform stroke-[2]" />
               </button>
 
-              {/* Shopping Cart Button */}
+              {/* 3. Circular Dark Cart Button (Filled bag matching screenshot) */}
               <button
                 aria-label="Shopping Cart"
-                className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white/80 hover:text-[#FECD08] hover:bg-white/5 transition-colors cursor-pointer"
+                className="w-11 h-11 rounded-full bg-[#212121] hover:bg-[#2a2a2a] flex items-center justify-center text-white transition-all cursor-pointer group"
               >
-                <ShoppingBag className="w-5 h-5" />
-                {cartCount > 0 && (
-                  <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#FECD08] text-[#212121] text-[10px] font-bold font-rajdhani flex items-center justify-center shadow-sm">
-                    {cartCount}
-                  </span>
-                )}
+                <svg
+                  className="w-5 h-5 text-white fill-current group-hover:scale-105 transition-transform"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.5 6a4.5 4.5 0 1 1 9 0h1.75A2.75 2.75 0 0 1 21 8.75v9.5A2.75 2.75 0 0 1 18.25 21H5.75A2.75 2.75 0 0 1 3 18.25v-9.5A2.75 2.75 0 0 1 5.75 6H7.5Zm1.5 0a3 3 0 1 1 6 0H9Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
               </button>
 
-              {/* Login Button (Pill shaped, matching reference screenshot) */}
-              <button className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#212121] hover:bg-[#282828] text-white hover:text-[#FECD08] font-rajdhani font-bold text-sm tracking-wider uppercase transition-all duration-200 shadow-sm cursor-pointer group">
-                <User className="w-4 h-4 text-[#FECD08] group-hover:scale-110 transition-transform" />
-                <span>Login</span>
+              {/* 4. Rounded Dark LOGIN Pill Button (Matching screenshot) */}
+              <button className="hidden sm:inline-flex items-center gap-2.5 h-11 px-5 rounded-full bg-[#212121] hover:bg-[#2a2a2a] text-white font-rajdhani font-bold text-sm tracking-wider uppercase transition-all duration-200 cursor-pointer group">
+                <User className="w-[18px] h-[18px] text-white stroke-[2.2] group-hover:scale-110 transition-transform" />
+                <span className="font-rajdhani font-bold tracking-wider text-white">LOGIN</span>
               </button>
 
               {/* Mobile Menu Hamburger */}
               <button
                 onClick={() => setMobileMenuOpen(true)}
                 aria-label="Toggle Menu"
-                className="xl:hidden w-10 h-10 rounded-lg flex items-center justify-center text-white hover:text-[#FECD08] hover:bg-white/5 transition-colors ml-1 cursor-pointer"
+                className="xl:hidden w-11 h-11 rounded-full bg-[#212121] hover:bg-[#2a2a2a] flex items-center justify-center text-white transition-colors cursor-pointer"
               >
-                <Menu className="w-6 h-6" />
+                <Menu className="w-5 h-5" />
               </button>
             </div>
 
@@ -217,7 +214,7 @@ export default function Navbar() {
         </div>
 
         {/* =========================================================================
-            DESKTOP MEGA MENU DROPDOWN PANEL (WITHOUT DIVIDING LINES)
+            DESKTOP MEGA MENU DROPDOWN PANEL (FULL WIDTH, NO DIVIDER LINES)
            ========================================================================= */}
         {activeDropdown && activeCategoryData && activeCategoryData.subcategories && (
           <div
@@ -227,13 +224,13 @@ export default function Navbar() {
             onMouseLeave={handleMouseLeave}
             className="absolute top-full left-0 right-0 w-full bg-[#181818]/98 backdrop-blur-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] z-40 transition-all duration-200 animate-in fade-in slide-in-from-top-1"
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-7">
+            <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-8">
               
-              {/* Mega Menu Top Header (Line removed as requested!) */}
+              {/* Mega Menu Top Header (Line-free) */}
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2.5">
-                  <span className="w-2 h-2 rounded-full bg-[#FECD08]" />
-                  <h3 className="font-rajdhani font-bold text-xl uppercase tracking-wider text-white">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#FECD08]" />
+                  <h3 className="font-rajdhani font-bold text-2xl uppercase tracking-wider text-white">
                     {activeCategoryData.title}
                   </h3>
                   <span className="text-xs font-sora text-white/50 hidden sm:inline">
@@ -250,14 +247,14 @@ export default function Navbar() {
                 </a>
               </div>
 
-              {/* Mega Menu Grid of Cards (Visual Card Layout without dividing borders) */}
+              {/* Mega Menu Grid of Cards */}
               {activeCategoryData.isMegaMenu ? (
                 <div
                   className={`grid gap-5 ${
                     activeCategoryData.subcategories.length === 2
-                      ? 'grid-cols-1 sm:grid-cols-2 max-w-3xl'
+                      ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl'
                       : activeCategoryData.subcategories.length === 3
-                      ? 'grid-cols-1 sm:grid-cols-3 max-w-5xl'
+                      ? 'grid-cols-1 sm:grid-cols-3 max-w-6xl'
                       : activeCategoryData.subcategories.length === 4
                       ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
                       : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-5'
@@ -267,7 +264,7 @@ export default function Navbar() {
                     <a
                       key={idx}
                       href={sub.href}
-                      className="group block rounded-2xl p-3 bg-[#222222] hover:bg-[#282828] transition-all duration-300 hover:shadow-xl hover:shadow-[#FECD08]/10 hover:-translate-y-1"
+                      className="group block rounded-2xl p-3.5 bg-[#222222] hover:bg-[#282828] transition-all duration-300 hover:shadow-xl hover:shadow-[#FECD08]/10 hover:-translate-y-1"
                     >
                       {/* Image Thumbnail Container */}
                       <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-3 bg-[#141414]">
@@ -277,10 +274,8 @@ export default function Navbar() {
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"
                         />
-                        {/* Gradient Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-[#141414]/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
 
-                        {/* Top Badge */}
                         {sub.badge && (
                           <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#181818]/90 backdrop-blur-md text-[#FECD08] font-semibold shadow-sm">
                             {sub.badge}
