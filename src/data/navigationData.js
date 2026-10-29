@@ -1,13 +1,8 @@
 export const navigationData = [
   {
-    id: 'home',
-    title: 'HOME',
-    href: '/',
-  },
-  {
     id: 'nav-tech',
-    title: 'NAVIGATION & TECH',
-    href: '/category/navigation-tech',
+    title: 'LBC Categories',
+    href: '/category',
     isMegaMenu: true,
     viewAllHref: '/category/navigation-tech',
     featuredBadge: 'HOT TECH',
@@ -164,3 +159,4 @@ export const navigationData = [
     href: '/contact',
   },
 ]
+

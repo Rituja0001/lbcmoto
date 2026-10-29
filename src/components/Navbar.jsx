@@ -11,7 +11,6 @@ import {
   ArrowRight,
   PhoneCall,
   Truck,
-  Sparkles,
 } from 'lucide-react'
 import { navigationData } from '../data/navigationData'
 import logoImg from '../assets/images/lbcmoto-logo.png'
@@ -64,8 +63,8 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Utility / Announcement Bar */}
-      <div className="bg-[#121212] text-white/80 text-[11px] sm:text-xs border-b border-white/5 py-2 px-4 select-none">
+      {/* Top Utility / Announcement Bar (No harsh divider line) */}
+      <div className="bg-[#121212] text-white/80 text-[11px] sm:text-xs py-2 px-4 select-none">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FECD08] animate-pulse" />
@@ -92,28 +91,27 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Sticky Navbar */}
+      {/* Main Sticky Navbar (Lines removed for seamless dark aesthetic) */}
       <nav
         ref={dropdownRef}
         onMouseLeave={handleMouseLeave}
         className={`sticky top-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#181818]/95 backdrop-blur-md shadow-2xl border-b border-white/10'
-            : 'bg-[#181818] border-b border-white/10'
+            ? 'bg-[#181818]/98 backdrop-blur-md shadow-2xl'
+            : 'bg-[#181818]'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="h-20 flex items-center justify-between gap-4">
+          <div className="h-20 flex items-center justify-between gap-2 sm:gap-4">
             
             {/* Logo */}
-            <a href="/" className="flex items-center gap-3 shrink-0 group">
+            <a href="/" className="flex items-center shrink-0 group mr-2 2xl:mr-4">
               <div className="relative h-12 flex items-center justify-center">
                 <img
                   src={logoImg}
                   alt="LBC MOTO"
-                  className="h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                   onError={(e) => {
-                    // Fallback to text logo if image fails
                     e.target.style.display = 'none'
                     const fallback = e.target.nextElementSibling
                     if (fallback) fallback.style.display = 'flex'
@@ -121,15 +119,15 @@ export default function Navbar() {
                 />
                 <div
                   style={{ display: 'none' }}
-                  className="h-11 px-3 rounded-lg bg-[#FECD08] text-[#212121] items-center justify-center font-rajdhani font-black text-2xl tracking-tighter shadow-md"
+                  className="h-10 px-3 rounded-lg bg-[#FECD08] text-[#212121] items-center justify-center font-rajdhani font-black text-2xl tracking-tighter"
                 >
                   LBC MOTO
                 </div>
               </div>
             </a>
 
-            {/* Desktop Navigation Links */}
-            <div className="hidden xl:flex items-center space-x-1 2xl:space-x-2">
+            {/* Desktop Navigation Links (Proper single-line whitespace-nowrap) */}
+            <div className="hidden xl:flex items-center space-x-1 lg:space-x-1.5 2xl:space-x-3 shrink-0">
               {navigationData.map((item) => {
                 const hasSubs = item.subcategories && item.subcategories.length > 0
                 const isActive = activeDropdown === item.id
@@ -137,43 +135,38 @@ export default function Navbar() {
                 return (
                   <div
                     key={item.id}
-                    className="relative py-7"
+                    className="relative py-7 shrink-0"
                     onMouseEnter={() => (hasSubs ? handleMouseEnter(item.id) : handleMouseEnter(null))}
                   >
                     <a
                       href={item.href}
-                      className={`flex items-center gap-1 px-2.5 2xl:px-3 py-1.5 rounded-md font-rajdhani font-bold text-sm tracking-wider uppercase transition-all duration-150 cursor-pointer ${
+                      className={`flex items-center gap-1 px-2 2xl:px-3 py-1.5 font-rajdhani font-bold text-[13px] 2xl:text-sm tracking-wider uppercase whitespace-nowrap transition-colors duration-150 cursor-pointer ${
                         isActive
                           ? 'text-[#FECD08]'
                           : 'text-white/90 hover:text-[#FECD08]'
                       }`}
                     >
-                      <span>{item.title}</span>
+                      <span className="whitespace-nowrap">{item.title}</span>
                       {hasSubs && (
                         <ChevronDown
-                          className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                          className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
                             isActive ? 'rotate-180 text-[#FECD08]' : 'text-white/40'
                           }`}
                         />
                       )}
                     </a>
-
-                    {/* Active Underline Pill */}
-                    {isActive && (
-                      <span className="absolute bottom-4 left-3 right-3 h-[2px] bg-[#FECD08] rounded-full animate-in fade-in" />
-                    )}
                   </div>
                 )
               })}
             </div>
 
             {/* Right Action Icons (Search, Wishlist, Cart, Login) */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
               {/* Search Button */}
               <button
                 onClick={() => setSearchOpen(true)}
                 aria-label="Search"
-                className="w-10 h-10 rounded-full flex items-center justify-center text-white/80 hover:text-[#FECD08] hover:bg-white/5 transition-colors cursor-pointer"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white/80 hover:text-[#FECD08] hover:bg-white/5 transition-colors cursor-pointer"
               >
                 <Search className="w-5 h-5" />
               </button>
@@ -181,11 +174,11 @@ export default function Navbar() {
               {/* Wishlist Button */}
               <button
                 aria-label="Wishlist"
-                className="relative w-10 h-10 rounded-full flex items-center justify-center text-white/80 hover:text-[#FECD08] hover:bg-white/5 transition-colors cursor-pointer"
+                className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white/80 hover:text-[#FECD08] hover:bg-white/5 transition-colors cursor-pointer"
               >
                 <Heart className="w-5 h-5" />
                 {wishlistCount > 0 && (
-                  <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#FECD08] text-[#212121] text-[10px] font-bold font-rajdhani flex items-center justify-center">
+                  <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#FECD08] text-[#212121] text-[10px] font-bold font-rajdhani flex items-center justify-center shadow-sm">
                     {wishlistCount}
                   </span>
                 )}
@@ -194,18 +187,18 @@ export default function Navbar() {
               {/* Shopping Cart Button */}
               <button
                 aria-label="Shopping Cart"
-                className="relative w-10 h-10 rounded-full flex items-center justify-center text-white/80 hover:text-[#FECD08] hover:bg-white/5 transition-colors cursor-pointer"
+                className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white/80 hover:text-[#FECD08] hover:bg-white/5 transition-colors cursor-pointer"
               >
                 <ShoppingBag className="w-5 h-5" />
                 {cartCount > 0 && (
-                  <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#FECD08] text-[#212121] text-[10px] font-bold font-rajdhani flex items-center justify-center">
+                  <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#FECD08] text-[#212121] text-[10px] font-bold font-rajdhani flex items-center justify-center shadow-sm">
                     {cartCount}
                   </span>
                 )}
               </button>
 
               {/* Login Button (Pill shaped, matching reference screenshot) */}
-              <button className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#212121] hover:bg-[#282828] text-white border border-white/20 hover:border-[#FECD08] font-rajdhani font-bold text-sm tracking-wider uppercase transition-all duration-200 shadow-sm cursor-pointer group">
+              <button className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#212121] hover:bg-[#282828] text-white hover:text-[#FECD08] font-rajdhani font-bold text-sm tracking-wider uppercase transition-all duration-200 shadow-sm cursor-pointer group">
                 <User className="w-4 h-4 text-[#FECD08] group-hover:scale-110 transition-transform" />
                 <span>Login</span>
               </button>
@@ -224,7 +217,7 @@ export default function Navbar() {
         </div>
 
         {/* =========================================================================
-            DESKTOP MEGA MENU DROPDOWN PANEL (MATCHING SCREENSHOT #2 DESIGN)
+            DESKTOP MEGA MENU DROPDOWN PANEL (WITHOUT DIVIDING LINES)
            ========================================================================= */}
         {activeDropdown && activeCategoryData && activeCategoryData.subcategories && (
           <div
@@ -232,15 +225,15 @@ export default function Navbar() {
               if (timeoutRef.current) clearTimeout(timeoutRef.current)
             }}
             onMouseLeave={handleMouseLeave}
-            className="absolute top-full left-0 right-0 w-full bg-[#181818]/98 backdrop-blur-xl border-t border-b border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.85)] z-40 transition-all duration-200 animate-in fade-in slide-in-from-top-2"
+            className="absolute top-full left-0 right-0 w-full bg-[#181818]/98 backdrop-blur-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] z-40 transition-all duration-200 animate-in fade-in slide-in-from-top-1"
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-7">
               
-              {/* Mega Menu Top Header */}
-              <div className="flex items-center justify-between pb-6 mb-6 border-b border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="w-2.5 h-2.5 bg-[#FECD08] rounded-sm rotate-45" />
-                  <h3 className="font-rajdhani font-bold text-2xl uppercase tracking-wider text-white">
+              {/* Mega Menu Top Header (Line removed as requested!) */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#FECD08]" />
+                  <h3 className="font-rajdhani font-bold text-xl uppercase tracking-wider text-white">
                     {activeCategoryData.title}
                   </h3>
                   <span className="text-xs font-sora text-white/50 hidden sm:inline">
@@ -257,10 +250,10 @@ export default function Navbar() {
                 </a>
               </div>
 
-              {/* Mega Menu Grid of Cards (Visual Card Layout like Screenshot #2) */}
+              {/* Mega Menu Grid of Cards (Visual Card Layout without dividing borders) */}
               {activeCategoryData.isMegaMenu ? (
                 <div
-                  className={`grid gap-6 ${
+                  className={`grid gap-5 ${
                     activeCategoryData.subcategories.length === 2
                       ? 'grid-cols-1 sm:grid-cols-2 max-w-3xl'
                       : activeCategoryData.subcategories.length === 3
@@ -274,10 +267,10 @@ export default function Navbar() {
                     <a
                       key={idx}
                       href={sub.href}
-                      className="group block rounded-2xl p-3 bg-[#212121]/80 border border-white/10 hover:border-[#FECD08] transition-all duration-300 hover:shadow-xl hover:shadow-[#FECD08]/10 hover:-translate-y-1"
+                      className="group block rounded-2xl p-3 bg-[#222222] hover:bg-[#282828] transition-all duration-300 hover:shadow-xl hover:shadow-[#FECD08]/10 hover:-translate-y-1"
                     >
                       {/* Image Thumbnail Container */}
-                      <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-3.5 bg-[#141414] border border-white/5">
+                      <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-3 bg-[#141414]">
                         <img
                           src={sub.image}
                           alt={sub.title}
@@ -289,7 +282,7 @@ export default function Navbar() {
 
                         {/* Top Badge */}
                         {sub.badge && (
-                          <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#212121]/90 backdrop-blur-md text-[#FECD08] border border-[#FECD08]/40 font-semibold shadow-sm">
+                          <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#181818]/90 backdrop-blur-md text-[#FECD08] font-semibold shadow-sm">
                             {sub.badge}
                           </div>
                         )}
@@ -314,7 +307,7 @@ export default function Navbar() {
                     <a
                       key={idx}
                       href={sub.href}
-                      className="flex items-center justify-between p-4 rounded-xl bg-[#212121] border border-white/10 hover:border-[#FECD08] group transition-all"
+                      className="flex items-center justify-between p-4 rounded-xl bg-[#222222] hover:bg-[#282828] group transition-all"
                     >
                       <div>
                         <div className="font-rajdhani font-bold text-lg text-white group-hover:text-[#FECD08] transition-colors">
@@ -329,17 +322,6 @@ export default function Navbar() {
                   ))}
                 </div>
               )}
-
-              {/* Bottom Quick Feature bar */}
-              <div className="mt-8 pt-4 border-t border-white/5 flex flex-wrap items-center justify-between text-xs text-white/40 font-sora">
-                <div className="flex items-center gap-2">
-                  <Sparkles className="w-3.5 h-3.5 text-[#FECD08]" />
-                  <span>All tech equipment comes with 2-Year Replacement Warranty & Free Firmware Updates</span>
-                </div>
-                <div className="text-[#FECD08] font-rajdhani font-semibold tracking-wider uppercase">
-                  LBC MOTO ENGINEERED
-                </div>
-              </div>
 
             </div>
           </div>
@@ -358,9 +340,9 @@ export default function Navbar() {
           />
 
           {/* Drawer Content */}
-          <div className="fixed inset-y-0 left-0 w-full max-w-sm bg-[#181818] border-r border-white/10 flex flex-col z-10 overflow-hidden shadow-2xl animate-in slide-in-from-left duration-300">
+          <div className="fixed inset-y-0 left-0 w-full max-w-sm bg-[#181818] flex flex-col z-10 overflow-hidden shadow-2xl animate-in slide-in-from-left duration-300">
             {/* Drawer Header */}
-            <div className="p-5 border-b border-white/10 flex items-center justify-between bg-[#141414]">
+            <div className="p-5 flex items-center justify-between bg-[#141414]">
               <a href="/" className="flex items-center gap-2.5">
                 <img
                   src={logoImg}
@@ -383,7 +365,7 @@ export default function Navbar() {
             </div>
 
             {/* User Quick Login bar */}
-            <div className="p-4 bg-[#212121] border-b border-white/10 flex items-center justify-between">
+            <div className="p-4 bg-[#212121] flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-[#FECD08]">
                   <User className="w-5 h-5" />
@@ -405,12 +387,12 @@ export default function Navbar() {
                 const isExpanded = mobileExpandedCat === item.id
 
                 return (
-                  <div key={item.id} className="border-b border-white/5 last:border-none">
+                  <div key={item.id} className="py-1">
                     {hasSubs ? (
                       <div>
                         <button
                           onClick={() => setMobileExpandedCat(isExpanded ? null : item.id)}
-                          className="w-full py-3.5 flex items-center justify-between text-left font-rajdhani font-bold text-lg uppercase tracking-wider text-white hover:text-[#FECD08] transition-colors"
+                          className="w-full py-3 flex items-center justify-between text-left font-rajdhani font-bold text-lg uppercase tracking-wider text-white hover:text-[#FECD08] transition-colors"
                         >
                           <span>{item.title}</span>
                           <ChevronDown
@@ -422,7 +404,7 @@ export default function Navbar() {
 
                         {/* Subcategories Accordion */}
                         {isExpanded && (
-                          <div className="pl-3 pb-3 space-y-2 border-l-2 border-[#FECD08]/40 my-1">
+                          <div className="pl-4 pb-3 space-y-2 border-l-2 border-[#FECD08] my-1">
                             {item.subcategories.map((sub, sIdx) => (
                               <a
                                 key={sIdx}
@@ -454,7 +436,7 @@ export default function Navbar() {
                       <a
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block py-3.5 font-rajdhani font-bold text-lg uppercase tracking-wider text-white hover:text-[#FECD08] transition-colors"
+                        className="block py-3 font-rajdhani font-bold text-lg uppercase tracking-wider text-white hover:text-[#FECD08] transition-colors"
                       >
                         {item.title}
                       </a>
@@ -465,7 +447,7 @@ export default function Navbar() {
             </div>
 
             {/* Drawer Footer */}
-            <div className="p-4 bg-[#141414] border-t border-white/10 text-xs text-white/50 text-center font-sora">
+            <div className="p-4 bg-[#141414] text-xs text-white/50 text-center font-sora">
               <span>LBC MOTO &copy; {new Date().getFullYear()}</span>
             </div>
           </div>
@@ -482,8 +464,8 @@ export default function Navbar() {
             className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity"
           />
 
-          <div className="relative w-full max-w-2xl bg-[#1e1e1e] rounded-2xl border border-white/15 shadow-2xl p-6 z-10 animate-in fade-in zoom-in-95">
-            <div className="flex items-center justify-between pb-4 border-b border-white/10">
+          <div className="relative w-full max-w-2xl bg-[#1e1e1e] rounded-2xl shadow-2xl p-6 z-10 animate-in fade-in zoom-in-95">
+            <div className="flex items-center justify-between pb-4">
               <div className="flex items-center gap-3 flex-1 mr-4">
                 <Search className="w-5 h-5 text-[#FECD08]" />
                 <input
@@ -521,7 +503,7 @@ export default function Navbar() {
                   <button
                     key={tag}
                     onClick={() => setSearchQuery(tag)}
-                    className="px-3 py-1.5 rounded-lg bg-[#282828] hover:bg-[#FECD08] text-white hover:text-[#212121] text-xs font-sora transition-colors cursor-pointer border border-white/5 hover:border-[#FECD08]"
+                    className="px-3 py-1.5 rounded-lg bg-[#282828] hover:bg-[#FECD08] text-white hover:text-[#212121] text-xs font-sora transition-colors cursor-pointer"
                   >
                     {tag}
                   </button>
