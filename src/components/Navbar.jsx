@@ -62,19 +62,19 @@ export default function Navbar() {
     <>
       {/* Top Utility / Announcement Bar (Full Width) */}
       <div className="bg-[#121212] text-white/80 text-[11px] sm:text-xs py-2 select-none w-full">
-        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 flex items-center justify-between">
+        <div className="w-full px-4 sm:px-6 xl:px-8 2xl:px-12 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FECD08] animate-pulse" />
-            <span className="font-sora font-medium text-white/90">
+            <span className="font-sora font-medium text-white/90 text-xs">
               The Leader in Integrated Riding Tech
             </span>
             <span className="hidden md:inline text-white/40">•</span>
-            <span className="hidden md:inline text-[#FECD08] font-medium flex items-center gap-1">
+            <span className="hidden md:inline text-[#FECD08] font-medium flex items-center gap-1 text-xs">
               <Truck className="w-3.5 h-3.5" /> Free Express Shipping Over ₹2,999
             </span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-5 text-white/60 font-sora">
+          <div className="hidden sm:flex items-center gap-5 text-white/60 font-sora text-xs">
             <a
               href="#support"
               className="hover:text-[#FECD08] transition-colors flex items-center gap-1.5"
@@ -88,7 +88,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Sticky Navbar (Full Width Container) */}
+      {/* Main Sticky Navbar (Full Width Container, Perfectly Scaled) */}
       <nav
         ref={dropdownRef}
         onMouseLeave={handleMouseLeave}
@@ -98,16 +98,16 @@ export default function Navbar() {
             : 'bg-[#181818]'
         }`}
       >
-        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-          <div className="h-20 flex items-center justify-between gap-4">
+        <div className="w-full px-3 sm:px-5 lg:px-6 xl:px-8 2xl:px-12">
+          <div className="h-20 flex items-center justify-between gap-2 lg:gap-3 2xl:gap-4">
             
             {/* Logo */}
-            <a href="/" className="flex items-center shrink-0 group mr-2 2xl:mr-6">
-              <div className="relative h-12 flex items-center justify-center">
+            <a href="/" className="flex items-center shrink-0 group mr-1 2xl:mr-4">
+              <div className="relative h-11 flex items-center justify-center">
                 <img
                   src={logoImg}
                   alt="LBC MOTO"
-                  className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  className="h-8 sm:h-9 2xl:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                   onError={(e) => {
                     e.target.style.display = 'none'
                     const fallback = e.target.nextElementSibling
@@ -116,15 +116,15 @@ export default function Navbar() {
                 />
                 <div
                   style={{ display: 'none' }}
-                  className="h-10 px-3 rounded-lg bg-[#FECD08] text-[#212121] items-center justify-center font-rajdhani font-black text-2xl tracking-tighter"
+                  className="h-9 px-3 rounded-lg bg-[#FECD08] text-[#212121] items-center justify-center font-rajdhani font-black text-xl tracking-tighter"
                 >
                   LBC MOTO
                 </div>
               </div>
             </a>
 
-            {/* Desktop Navigation Links (Full Width Balanced Spacing, Single-line) */}
-            <div className="hidden xl:flex items-center space-x-1 lg:space-x-2 2xl:space-x-4 shrink-0">
+            {/* Desktop Navigation Links (Compact & Responsive for all widths) */}
+            <div className="hidden xl:flex items-center gap-0.5 xl:gap-1 2xl:gap-2.5 shrink">
               {navigationData.map((item) => {
                 const hasSubs = item.subcategories && item.subcategories.length > 0
                 const isActive = activeDropdown === item.id
@@ -137,7 +137,7 @@ export default function Navbar() {
                   >
                     <a
                       href={item.href}
-                      className={`flex items-center gap-1 px-2.5 2xl:px-3.5 py-1.5 font-rajdhani font-bold text-[13px] 2xl:text-sm tracking-wider uppercase whitespace-nowrap transition-colors duration-150 cursor-pointer ${
+                      className={`flex items-center gap-1 px-1.5 xl:px-2 2xl:px-3 py-1.5 font-rajdhani font-bold text-[12px] xl:text-[12.5px] 2xl:text-[13.5px] tracking-wider uppercase whitespace-nowrap transition-colors duration-150 cursor-pointer ${
                         isActive
                           ? 'text-[#FECD08]'
                           : 'text-white hover:text-[#FECD08]'
@@ -146,8 +146,8 @@ export default function Navbar() {
                       <span className="whitespace-nowrap">{item.title}</span>
                       {hasSubs && (
                         <ChevronDown
-                          className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
-                            isActive ? 'rotate-180 text-[#FECD08]' : 'text-white/60'
+                          className={`w-3 h-3 shrink-0 transition-transform duration-200 ${
+                            isActive ? 'rotate-180 text-[#FECD08]' : 'text-white/50'
                           }`}
                         />
                       )}
@@ -157,33 +157,33 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* Right Action Items (Matching reference screenshot exactly) */}
-            <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            {/* Right Action Items (Search, Wishlist, Cart, Login - Always Fully Visible) */}
+            <div className="flex items-center gap-1.5 sm:gap-2 2xl:gap-3 shrink-0">
               
               {/* 1. Circular Dark Search Button */}
               <button
                 onClick={() => setSearchOpen(true)}
                 aria-label="Search"
-                className="w-11 h-11 rounded-full bg-[#212121] hover:bg-[#2a2a2a] flex items-center justify-center text-white transition-all cursor-pointer group"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#212121] hover:bg-[#2a2a2a] flex items-center justify-center text-white transition-all cursor-pointer group shrink-0"
               >
-                <Search className="w-5 h-5 text-white group-hover:scale-105 transition-transform stroke-[2.2]" />
+                <Search className="w-4 h-4 sm:w-[18px] sm:h-[18px] text-white group-hover:scale-105 transition-transform stroke-[2.2]" />
               </button>
 
               {/* 2. Circular Dark Wishlist Button */}
               <button
                 aria-label="Wishlist"
-                className="w-11 h-11 rounded-full bg-[#212121] hover:bg-[#2a2a2a] flex items-center justify-center text-white transition-all cursor-pointer group"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#212121] hover:bg-[#2a2a2a] flex items-center justify-center text-white transition-all cursor-pointer group shrink-0"
               >
-                <Heart className="w-5 h-5 text-white group-hover:scale-105 transition-transform stroke-[2]" />
+                <Heart className="w-4 h-4 sm:w-[18px] sm:h-[18px] text-white group-hover:scale-105 transition-transform stroke-[2]" />
               </button>
 
-              {/* 3. Circular Dark Cart Button (Filled bag matching screenshot) */}
+              {/* 3. Circular Dark Cart Button */}
               <button
                 aria-label="Shopping Cart"
-                className="w-11 h-11 rounded-full bg-[#212121] hover:bg-[#2a2a2a] flex items-center justify-center text-white transition-all cursor-pointer group"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#212121] hover:bg-[#2a2a2a] flex items-center justify-center text-white transition-all cursor-pointer group shrink-0"
               >
                 <svg
-                  className="w-5 h-5 text-white fill-current group-hover:scale-105 transition-transform"
+                  className="w-4 h-4 sm:w-[18px] sm:h-[18px] text-white fill-current group-hover:scale-105 transition-transform"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -194,17 +194,17 @@ export default function Navbar() {
                 </svg>
               </button>
 
-              {/* 4. Rounded Dark LOGIN Pill Button (Matching screenshot) */}
-              <button className="hidden sm:inline-flex items-center gap-2.5 h-11 px-5 rounded-full bg-[#212121] hover:bg-[#2a2a2a] text-white font-rajdhani font-bold text-sm tracking-wider uppercase transition-all duration-200 cursor-pointer group">
-                <User className="w-[18px] h-[18px] text-white stroke-[2.2] group-hover:scale-110 transition-transform" />
-                <span className="font-rajdhani font-bold tracking-wider text-white">LOGIN</span>
+              {/* 4. Rounded Dark LOGIN Pill Button */}
+              <button className="inline-flex items-center gap-2 h-9 sm:h-10 px-3.5 sm:px-4 2xl:px-5 rounded-full bg-[#212121] hover:bg-[#2a2a2a] text-white font-rajdhani font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-200 cursor-pointer group shrink-0">
+                <User className="w-4 h-4 text-white stroke-[2.2] group-hover:scale-110 transition-transform shrink-0" />
+                <span className="font-rajdhani font-bold tracking-wider text-white whitespace-nowrap">LOGIN</span>
               </button>
 
               {/* Mobile Menu Hamburger */}
               <button
                 onClick={() => setMobileMenuOpen(true)}
                 aria-label="Toggle Menu"
-                className="xl:hidden w-11 h-11 rounded-full bg-[#212121] hover:bg-[#2a2a2a] flex items-center justify-center text-white transition-colors cursor-pointer"
+                className="xl:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#212121] hover:bg-[#2a2a2a] flex items-center justify-center text-white transition-colors cursor-pointer shrink-0"
               >
                 <Menu className="w-5 h-5" />
               </button>
@@ -224,13 +224,13 @@ export default function Navbar() {
             onMouseLeave={handleMouseLeave}
             className="absolute top-full left-0 right-0 w-full bg-[#181818]/98 backdrop-blur-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] z-40 transition-all duration-200 animate-in fade-in slide-in-from-top-1"
           >
-            <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-8">
+            <div className="w-full px-4 sm:px-6 xl:px-8 2xl:px-12 py-8">
               
               {/* Mega Menu Top Header (Line-free) */}
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#FECD08]" />
-                  <h3 className="font-rajdhani font-bold text-2xl uppercase tracking-wider text-white">
+                  <h3 className="font-rajdhani font-bold text-xl sm:text-2xl uppercase tracking-wider text-white">
                     {activeCategoryData.title}
                   </h3>
                   <span className="text-xs font-sora text-white/50 hidden sm:inline">
