@@ -1,121 +1,58 @@
-import { ArrowRight, Navigation, Map, ShieldCheck, Route, Volume2, SunMedium } from 'lucide-react'
+import { ArrowRight, Navigation, Map, ShieldCheck, Route } from 'lucide-react'
+import aoocciNavBg from '../assets/images/AOOCCI-Navigation.webp'
 
 export default function TechFeatureBentoSection() {
   return (
     <section className="w-full bg-[#121212] select-none border-t border-white/10">
       
       {/* =========================================================================
-          BLOCK 02: NAVIGATION (FULL-WIDTH TOP HERO BANNER)
+          BLOCK 02: NAVIGATION (FULL-WIDTH TOP HERO BANNER WITH AOOCCI IMAGE)
          ========================================================================= */}
-      <div className="relative min-h-[480px] lg:min-h-[560px] w-full overflow-hidden flex flex-col justify-between border-b border-white/10 group">
+      <div className="relative min-h-[460px] lg:min-h-[520px] w-full overflow-hidden flex flex-col justify-between border-b border-white/10 group">
         
-        {/* Background Image: Motorcycle Cockpit & Mountain Road at Dusk */}
+        {/* Background Image: AOOCCI-Navigation.webp */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
-            src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=2000&q=85"
-            alt="Motorcycle Navigation Cockpit"
-            className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-1000 ease-out"
+            src={aoocciNavBg}
+            alt="AOOCCI Motorcycle Navigation"
+            className="w-full h-full object-cover object-center lg:object-right group-hover:scale-102 transition-transform duration-1000 ease-out"
           />
-          {/* Cinematic Vignette Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/50" />
+          {/* Subtle directional vignette gradient so left text is punchy and readable */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/40" />
         </div>
 
         {/* Top & Middle Content Grid */}
-        <div className="relative z-10 w-full px-4 sm:px-8 xl:px-12 2xl:px-16 pt-10 sm:pt-14 pb-8 flex-1 flex flex-col justify-center">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="relative z-10 w-full px-4 sm:px-8 xl:px-12 2xl:px-16 pt-12 sm:pt-16 pb-8 flex-1 flex flex-col justify-center">
+          <div className="max-w-2xl space-y-4 text-left">
             
-            {/* Left Column: Heading, Subtitle & Button */}
-            <div className="lg:col-span-7 xl:col-span-6 space-y-4 text-left">
-              
-              {/* Badge: 02 / NAVIGATION */}
-              <div className="flex items-center gap-2">
-                <span className="font-rajdhani font-black text-xs sm:text-sm tracking-widest text-[#FECD08] uppercase">
-                  02 / NAVIGATION
-                </span>
-              </div>
-
-              {/* Title: NEVER LOSE YOUR WAY */}
-              <h2 className="font-rajdhani font-black text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-white leading-[0.92] drop-shadow-md">
-                <span className="block">NEVER LOSE</span>
-                <span className="block">YOUR WAY</span>
-              </h2>
-
-              {/* Subtitle */}
-              <p className="font-sora text-sm sm:text-base text-white/80 max-w-lg leading-relaxed pt-1 drop-shadow">
-                Go further with advanced navigation systems designed for real-world riders.
-              </p>
-
-              {/* CTA Button */}
-              <div className="pt-2">
-                <a
-                  href="/category/navigation"
-                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-sm sm:text-base uppercase tracking-wider transition-all duration-200 shadow-xl shadow-[#FECD08]/20 cursor-pointer group/btn"
-                >
-                  <span>SHOP NAVIGATION</span>
-                  <ArrowRight className="w-4 h-4 text-[#212121] group-hover/btn:translate-x-1 transition-transform" />
-                </a>
-              </div>
-
+            {/* Badge: 02 / NAVIGATION */}
+            <div className="flex items-center gap-2">
+              <span className="font-rajdhani font-black text-xs sm:text-sm tracking-widest text-[#FECD08] uppercase">
+                02 / NAVIGATION
+              </span>
             </div>
 
-            {/* Right Column: Realistic Motorcycle GPS Display Unit Mockup */}
-            <div className="lg:col-span-5 xl:col-span-6 flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-md rounded-3xl p-3 bg-gradient-to-b from-[#2a2a2a] to-[#161616] border-2 border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-md">
-                
-                {/* Sun Hood / Bezel Header */}
-                <div className="flex items-center justify-between px-3 py-1.5 text-[10px] font-mono text-white/50 border-b border-white/10 mb-2">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>GPS FIXED • LBC APEX v3</span>
-                  </div>
-                  <span>10:42 AM • 98%</span>
-                </div>
+            {/* Title: NEVER LOSE YOUR WAY */}
+            <h2 className="font-rajdhani font-black text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-white leading-[0.92] drop-shadow-md">
+              <span className="block">NEVER LOSE</span>
+              <span className="block">YOUR WAY</span>
+            </h2>
 
-                {/* Display Screen */}
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#181d24] border border-white/10 p-3 sm:p-4 flex flex-col justify-between">
-                  
-                  {/* Stylized SVG Mountain Map Contours & Route */}
-                  <svg className="absolute inset-0 w-full h-full opacity-40 pointer-events-none" viewBox="0 0 400 250">
-                    <path d="M 0,180 Q 80,120 160,160 T 320,100 T 400,140" fill="none" stroke="#334155" strokeWidth="2" />
-                    <path d="M 0,90 Q 120,40 240,80 T 400,60" fill="none" stroke="#334155" strokeWidth="1.5" />
-                    <path d="M 40,240 C 90,190 120,130 180,140 S 260,80 320,40" fill="none" stroke="#06b6d4" strokeWidth="6" strokeLinecap="round" />
-                    <circle cx="180" cy="140" r="7" fill="#FECD08" stroke="#ffffff" strokeWidth="2" />
-                  </svg>
+            {/* Subtitle */}
+            <p className="font-sora text-sm sm:text-base text-white/85 max-w-lg leading-relaxed pt-1 drop-shadow">
+              Go further with advanced navigation systems designed for real-world riders.
+            </p>
 
-                  {/* Top Turn Banner */}
-                  <div className="relative z-10 bg-[#0f172a]/90 backdrop-blur-md border border-cyan-500/30 rounded-xl p-2.5 flex items-center justify-between shadow-lg">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-lg bg-cyan-500 flex items-center justify-center text-white font-bold text-sm">
-                        ↑
-                      </div>
-                      <div>
-                        <div className="text-xs font-rajdhani font-bold text-white tracking-wide">Continue on NH3</div>
-                        <div className="text-[10px] font-mono text-cyan-400 font-semibold">In 12 km • Pass Turnoff</div>
-                      </div>
-                    </div>
-                    <span className="text-xs font-mono font-bold text-white bg-slate-800 px-2 py-0.5 rounded">12 km</span>
-                  </div>
-
-                  {/* Right Telemetry Column */}
-                  <div className="relative z-10 self-end bg-[#0f172a]/90 backdrop-blur-md border border-white/10 rounded-xl p-2.5 space-y-1.5 text-right shadow-lg">
-                    <div>
-                      <div className="text-[9px] font-mono uppercase text-white/50">Travel Time</div>
-                      <div className="font-rajdhani font-bold text-sm text-white">2 h 18 m</div>
-                    </div>
-                    <div className="border-t border-white/10 pt-1">
-                      <div className="text-[9px] font-mono uppercase text-white/50">Trip Dist</div>
-                      <div className="font-rajdhani font-bold text-sm text-[#FECD08]">146 km</div>
-                    </div>
-                    <div className="border-t border-white/10 pt-1">
-                      <div className="text-[9px] font-mono uppercase text-white/50">Elevation</div>
-                      <div className="font-rajdhani font-bold text-sm text-emerald-400">2,430 m</div>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
+            {/* CTA Button */}
+            <div className="pt-2">
+              <a
+                href="/category/navigation"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-sm sm:text-base uppercase tracking-wider transition-all duration-200 shadow-xl shadow-[#FECD08]/20 cursor-pointer group/btn"
+              >
+                <span>SHOP NAVIGATION</span>
+                <ArrowRight className="w-4 h-4 text-[#212121] group-hover/btn:translate-x-1 transition-transform" />
+              </a>
             </div>
 
           </div>
