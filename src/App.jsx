@@ -12,7 +12,7 @@ export default function App() {
   const [videoModalOpen, setVideoModalOpen] = useState(false)
 
   return (
-    <div className="h-screen h-[100dvh] w-screen overflow-hidden bg-[#212121] text-white flex flex-col justify-between font-sora selection:bg-[#FECD08] selection:text-[#212121] relative">
+    <div className="h-screen h-[100dvh] w-screen overflow-hidden text-white flex flex-col justify-between font-sora selection:bg-[#FECD08] selection:text-[#212121] relative bg-[#121212]">
       
       {/* 1. Floating Transparent Navigation */}
       <Navbar />
@@ -22,20 +22,20 @@ export default function App() {
          ========================================================================= */}
       <main className="relative flex-1 h-full w-full flex flex-col justify-between overflow-hidden pt-20 sm:pt-24 pb-4 sm:pb-6 2xl:pb-8">
         
-        {/* Background Image: hero-banner.webp */}
-        <div className="absolute inset-0 -z-10 bg-black overflow-hidden">
+        {/* Background Image: hero-banner.webp (Positioned at z-0, never hidden behind parent) */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img
             src={heroBg}
             alt="LBC MOTO Adventure Touring"
-            className="w-full h-full object-cover object-center scale-100 transition-transform duration-1000 ease-out"
+            className="w-full h-full object-cover object-center scale-100"
           />
-          {/* Directional Vignette Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#212121]/70 via-transparent to-black/50" />
+          {/* Subtle directional gradient so text on left is super readable while landscape & rider remain vivid */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/40" />
         </div>
 
-        {/* Hero Middle Content Area */}
-        <div className="w-full px-4 sm:px-8 xl:px-12 2xl:px-16 flex-1 flex flex-col justify-center my-auto min-h-0">
+        {/* Hero Middle Content Area (Positioned above background at z-10) */}
+        <div className="relative z-10 w-full px-4 sm:px-8 xl:px-12 2xl:px-16 flex-1 flex flex-col justify-center my-auto min-h-0">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             
             {/* Left Column: Bold Headline & Action Buttons */}
@@ -57,7 +57,7 @@ export default function App() {
               </h1>
 
               {/* Subheading */}
-              <p className="font-sora text-xs sm:text-sm md:text-base text-white/85 max-w-lg mt-3 sm:mt-5 leading-relaxed drop-shadow">
+              <p className="font-sora text-xs sm:text-sm md:text-base text-white/90 max-w-lg mt-3 sm:mt-5 leading-relaxed drop-shadow">
                 Gear up for every adventure with technology built for the way you ride.
               </p>
 
@@ -86,7 +86,7 @@ export default function App() {
 
             {/* Right Column: Handwritten Quote Floating in Sky */}
             <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-center items-start lg:items-end text-left lg:text-right">
-              <div className="font-script text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white/95 leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)] -rotate-3 select-none">
+              <div className="font-script text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] -rotate-3 select-none">
                 <div>Live by Compass</div>
                 <div className="lg:mr-6">Not by Time.</div>
               </div>
@@ -96,26 +96,26 @@ export default function App() {
         </div>
 
         {/* Bottom Pinned Controls: Scroll to Ride & GPS Reticle */}
-        <div className="w-full px-4 sm:px-8 xl:px-12 2xl:px-16 pt-2 flex items-end justify-between shrink-0">
+        <div className="relative z-10 w-full px-4 sm:px-8 xl:px-12 2xl:px-16 pt-2 flex items-end justify-between shrink-0">
           
           {/* Bottom Left: Mouse Scroll to Ride */}
-          <div className="flex items-center gap-3 text-white/80 select-none group cursor-pointer">
-            <div className="w-4.5 h-7 sm:w-5 sm:h-8 rounded-full border-2 border-white/40 group-hover:border-[#FECD08] transition-colors flex justify-center pt-1">
+          <div className="flex items-center gap-3 text-white/90 select-none group cursor-pointer">
+            <div className="w-4.5 h-7 sm:w-5 sm:h-8 rounded-full border-2 border-white/50 group-hover:border-[#FECD08] transition-colors flex justify-center pt-1">
               <div className="w-1 h-2 bg-[#FECD08] rounded-full animate-bounce" />
             </div>
-            <span className="font-rajdhani font-bold text-[11px] sm:text-xs tracking-widest uppercase text-white/70 group-hover:text-white transition-colors">
+            <span className="font-rajdhani font-bold text-[11px] sm:text-xs tracking-widest uppercase text-white/80 group-hover:text-white transition-colors">
               SCROLL TO RIDE
             </span>
           </div>
 
           {/* Bottom Right: GPS Coordinates HUD Reticle */}
-          <div className="flex items-center gap-3 bg-black/40 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/10 hover:border-[#FECD08]/40 transition-colors">
+          <div className="flex items-center gap-3 bg-black/50 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/15 hover:border-[#FECD08]/50 transition-colors">
             <div className="relative w-7 h-7 flex items-center justify-center">
               <Crosshair className="w-6 h-6 text-[#FECD08] animate-spin-slow stroke-[1.8]" />
             </div>
-            <div className="font-mono text-[11px] sm:text-xs text-white/90 leading-tight">
+            <div className="font-mono text-[11px] sm:text-xs text-white/95 leading-tight">
               <div className="font-bold tracking-wider">27.9881° N</div>
-              <div className="text-white/60 tracking-wider">86.9250° E</div>
+              <div className="text-white/70 tracking-wider">86.9250° E</div>
             </div>
           </div>
 
