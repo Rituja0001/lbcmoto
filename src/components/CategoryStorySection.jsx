@@ -5,44 +5,40 @@ export default function CategoryStorySection() {
   const categories = [
     {
       id: 'fog-lights',
-      tag: 'AFTER DARK',
       title: 'Auxiliary Lights / Fog Lights',
       desc: 'Cut through mist, fog, and night trails with extreme-lumens LED illumination.',
       icon: Moon,
       href: '/category/auxiliary-lights',
-      image: 'https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=900&q=80',
+      image: '/images/Auxiliary-Lights.webp',
     },
     {
       id: 'bags-covers',
-      tag: 'THE LONG HAUL',
       title: 'Motorcycle Bags & Covers',
       desc: 'All-weather ballistic panniers, saddlebags, and heavy-duty protective covers.',
       icon: Compass,
       href: '/category/bags-covers',
-      image: 'https://images.unsplash.com/photo-1558980664-769d59546b3d?auto=format&fit=crop&w=900&q=80',
+      image: '/images/Motorcycle-Bags.webp',
     },
     {
       id: 'charging-accessories',
-      tag: 'ALWAYS POWERED',
       title: 'Charging Accessories',
       desc: 'Vibration-damped fast Type-C & wireless docks with realtime voltage telemetry.',
       icon: Zap,
       href: '/category/charging-accessories',
-      image: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=900&q=80',
+      image: '/images/Charging-Accessories.webp',
     },
     {
       id: 'motorcycle-spares',
-      tag: 'PEAK PRECISION',
       title: 'Motorcycle Spares',
       desc: 'OEM-grade mechanical cables, performance brake pads, and track spares.',
       icon: Wrench,
       href: '/category/all-spares',
-      image: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=900&q=80',
+      image: '/images/Motorcycle-Spares.webp',
     },
   ]
 
   return (
-    <section id="categories-section" className="relative w-full py-20 lg:py-28 overflow-hidden select-none bg-[#121212]">
+    <section id="categories-section" className="relative w-full py-20 lg:py-10 overflow-hidden select-none bg-[#121212]">
       
       {/* Background Image: Cinematic Mountain Road at Dusk (z-0, perfectly layered) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -122,9 +118,9 @@ export default function CategoryStorySection() {
                 </div>
 
                 {/* Card Top Category Tag */}
-                <div className="absolute top-4 left-4 z-10 px-3 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/15 text-[11px] font-mono text-[#FECD08] font-bold tracking-wider uppercase">
+                {/* <div className="absolute top-4 left-4 z-10 px-3 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/15 text-[11px] font-mono text-[#FECD08] font-bold tracking-wider uppercase">
                   {cat.tag}
-                </div>
+                </div> */}
 
                 {/* Card Bottom Content Area */}
                 <div className="relative z-10 p-5 sm:p-6 flex flex-col justify-end">

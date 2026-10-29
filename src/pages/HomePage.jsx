@@ -1,5 +1,6 @@
 import Hero from '../components/Hero'
 import CategoryStorySection from '../components/CategoryStorySection'
+import TechFeatureBentoSection from '../components/TechFeatureBentoSection'
 import Footer from '../components/Footer'
 
 export default function HomePage() {
@@ -8,12 +9,14 @@ export default function HomePage() {
       {/* 1. Cinematic Fullscreen Hero */}
       <Hero />
 
-      {/* 2. 4 Categories Story Section (Matching Reference Design) */}
+      {/* 2. 01 / CHOOSE YOUR RIDE: 4 Categories Story Section */}
       <CategoryStorySection />
 
-      {/* 3. Footer */}
+      {/* 3. 02, 03, 04 / NAVIGATION, COMMUNICATION, LIGHTING (Exact Reference Match, Zero Gap) */}
+      <TechFeatureBentoSection />
+
+      {/* 4. Global Brand Footer */}
       <Footer />
     </div>
   )
 }
-
