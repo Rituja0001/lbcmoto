@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+@theme {
+  --font-rajdhani: 'Rajdhani', sans-serif;
+  --font-sora: 'Sora', sans-serif;
+
+  --color-brand-yellow: #FECD08;
+  --color-brand-dark: #212121;
+}
+
+:root {
+  font-family: var(--font-sora);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-rajdhani);
+}
