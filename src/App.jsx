@@ -1,23 +1,24 @@
 import { useState } from 'react'
 import {
-  Cpu,
+  ArrowRight,
+  Play,
+  Crosshair,
+  Gauge,
   ShieldCheck,
-  Activity,
   Wifi,
   ChevronRight,
-  Gauge,
+  Cpu,
+  Radio,
   SlidersHorizontal,
   Flame,
-  Radio,
-  ArrowUpRight,
-  Navigation,
-  Compass,
-  Headphones,
-  CheckCircle,
+  Activity,
+  X,
 } from 'lucide-react'
 import Navbar from './components/Navbar'
+import heroBg from './assets/images/hero-banner.jpg'
 
 export default function App() {
+  const [videoModalOpen, setVideoModalOpen] = useState(false)
   const [activeSpeedMode, setActiveSpeedMode] = useState('TRACK')
   const [telemetry, setTelemetry] = useState({
     speed: 168,
@@ -64,7 +65,7 @@ export default function App() {
 
   const featuredCollections = [
     {
-      title: 'Navigation & Tech',
+      title: 'Navigation & Radar',
       tag: 'FLAGSHIP ECOSYSTEM',
       desc: 'HUD displays, wireless Carplay units, and integrated radar systems.',
       count: '4 Devices',
@@ -89,56 +90,135 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#212121] text-white flex flex-col font-sora selection:bg-[#FECD08] selection:text-[#212121] relative overflow-x-hidden">
       
-      {/* Dynamic LBC MOTO Navigation Bar */}
+      {/* 1. Transparent Floating Header Navigation */}
       <Navbar />
 
-      {/* Background Tech Grid & Ambient Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-30 top-32" />
-      <div className="absolute top-28 right-10 w-[500px] h-[500px] bg-[#FECD08]/10 blur-[150px] rounded-full pointer-events-none -z-10" />
-      <div className="absolute top-[600px] -left-32 w-[400px] h-[400px] bg-[#FECD08]/5 blur-[140px] rounded-full pointer-events-none -z-10" />
+      {/* =========================================================================
+          2. EPIC CINEMATIC HERO SECTION (EXACT MATCH TO REFERENCE IMAGE)
+         ========================================================================= */}
+      <section className="relative min-h-screen w-full flex flex-col justify-between pt-28 pb-12 overflow-hidden">
+        
+        {/* Background Image Container with Cinematic Overlays */}
+        <div className="absolute inset-0 -z-10 bg-black">
+          <img
+            src={heroBg}
+            alt="LBC MOTO Adventure Touring"
+            className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out"
+          />
+          {/* Subtle directional vignette gradient so text on left is super crisp */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#212121] via-transparent to-black/60" />
+        </div>
 
-      {/* Hero Section */}
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-24 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left Column: Brand Hero */}
-          <div className="lg:col-span-7 text-left space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181818] border border-[#FECD08]/30 text-white text-xs font-semibold tracking-wider uppercase">
-              <span className="w-2 h-2 rounded-full bg-[#FECD08] animate-ping" />
-              <span className="text-[#FECD08] font-rajdhani font-bold text-sm">LBC MOTO 2026 LINEUP</span>
+        {/* Hero Main Content Grid */}
+        <div className="w-full px-4 sm:px-8 xl:px-12 2xl:px-16 flex-1 flex flex-col justify-center my-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Left Content Area: Typography & Call To Actions */}
+            <div className="lg:col-span-7 xl:col-span-8 text-left pt-8 sm:pt-14">
+              
+              {/* Badge: LBC MOTO */}
+              <div className="flex items-center gap-2 mb-4">
+                <span className="w-2.5 h-2.5 rounded-sm bg-[#FECD08] rotate-45 shadow-sm shadow-[#FECD08]/50" />
+                <span className="font-rajdhani font-black text-sm tracking-widest text-[#FECD08] uppercase">
+                  LBC MOTO
+                </span>
+              </div>
+
+              {/* Massive Bold Headline: YOUR RIDE. YOUR RULES. YOUR ROAD. */}
+              <h1 className="font-rajdhani font-black text-5xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] 2xl:text-[7.2rem] tracking-tight leading-[0.9] uppercase text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+                <span className="block">YOUR RIDE.</span>
+                <span className="block">YOUR RULES.</span>
+                <span className="block text-[#FECD08]">YOUR ROAD.</span>
+              </h1>
+
+              {/* Subheading */}
+              <p className="font-sora text-sm sm:text-base lg:text-lg text-white/85 max-w-xl mt-6 leading-relaxed drop-shadow-md">
+                Gear up for every adventure with technology built for the way you ride.
+              </p>
+
+              {/* CTAs: EXPLORE THE GEAR & DISCOVER THE JOURNEY */}
+              <div className="flex flex-wrap items-center gap-4 mt-8 sm:mt-10">
+                <a
+                  href="/shop"
+                  className="px-8 py-4 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-base uppercase tracking-wider flex items-center gap-2.5 shadow-xl shadow-[#FECD08]/25 transition-all duration-200 cursor-pointer group"
+                >
+                  <span>EXPLORE THE GEAR</span>
+                  <ArrowRight className="w-4 h-4 text-[#212121] group-hover:translate-x-1 transition-transform" />
+                </a>
+
+                <button
+                  onClick={() => setVideoModalOpen(true)}
+                  className="px-7 py-4 rounded-xl bg-black/40 hover:bg-black/60 border border-white/30 hover:border-white backdrop-blur-md text-white font-rajdhani font-bold text-base uppercase tracking-wider flex items-center gap-3 transition-all duration-200 cursor-pointer group"
+                >
+                  <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center text-[#212121] group-hover:scale-110 transition-transform">
+                    <Play className="w-3 h-3 fill-[#212121] text-[#212121] ml-0.5" />
+                  </div>
+                  <span>DISCOVER THE JOURNEY</span>
+                </button>
+              </div>
+
             </div>
 
-            <h1 className="font-rajdhani font-bold text-5xl sm:text-7xl lg:text-8xl leading-[0.92] tracking-tight uppercase text-white">
-              The Leader In <br />
-              <span className="text-[#FECD08]">Integrated</span> <br />
-              Riding Tech
-            </h1>
+            {/* Right Sky Area: Script Tagline Quote */}
+            <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-between items-start lg:items-end text-left lg:text-right pt-6 lg:pt-0">
+              <div className="font-script text-3xl sm:text-4xl lg:text-5xl text-white/95 leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] -rotate-3 select-none">
+                <div>Live by Compass</div>
+                <div className="lg:mr-6">Not by Time.</div>
+              </div>
+            </div>
 
-            <p className="font-sora text-base sm:text-lg text-white/75 max-w-xl leading-relaxed pt-1">
-              Engineered for motorcycle enthusiasts and long-haul tourers. Experience ultra-wideband HUD navigation, radar blindspot detection, and high-frequency bike diagnostics.
+          </div>
+        </div>
+
+        {/* Hero Bottom Bar: Scroll to Ride & GPS Reticle */}
+        <div className="w-full px-4 sm:px-8 xl:px-12 2xl:px-16 pt-12 sm:pt-16 flex items-end justify-between">
+          
+          {/* Bottom Left: Mouse Scroll to Ride */}
+          <div className="flex items-center gap-3.5 text-white/80 select-none group cursor-pointer">
+            <div className="w-5 h-8.5 rounded-full border-2 border-white/40 group-hover:border-[#FECD08] transition-colors flex justify-center pt-1.5">
+              <div className="w-1 h-2 bg-[#FECD08] rounded-full animate-bounce" />
+            </div>
+            <span className="font-rajdhani font-bold text-xs tracking-widest uppercase text-white/70 group-hover:text-white transition-colors">
+              SCROLL TO RIDE
+            </span>
+          </div>
+
+          {/* Bottom Right: GPS Coordinates HUD Reticle */}
+          <div className="flex items-center gap-3.5 bg-black/40 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/10 hover:border-[#FECD08]/40 transition-colors">
+            <div className="relative w-8 h-8 flex items-center justify-center">
+              <Crosshair className="w-7 h-7 text-[#FECD08] animate-spin-slow stroke-[1.8]" />
+            </div>
+            <div className="font-mono text-xs sm:text-sm text-white/90 leading-tight">
+              <div className="font-bold tracking-wider">27.9881° N</div>
+              <div className="text-white/60 tracking-wider">86.9250° E</div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* =========================================================================
+          3. FEATURED CATALOG OVERVIEW & COCKPIT TELEMETRY
+         ========================================================================= */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-24 w-full">
+        
+        {/* Cockpit Telemetry Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-28">
+          <div className="lg:col-span-6 space-y-6">
+            <span className="text-xs uppercase font-rajdhani font-bold tracking-widest text-[#FECD08]">
+              REAL-TIME ADVENTURE TELEMETRY
+            </span>
+            <h2 className="font-rajdhani font-bold text-4xl sm:text-5xl uppercase tracking-tight text-white leading-tight">
+              Connected Telemetry <br />
+              <span className="text-[#FECD08]">For Long-Haul Tourers</span>
+            </h2>
+            <p className="font-sora text-sm sm:text-base text-white/70 leading-relaxed">
+              Every turn, lean angle, and engine pulse transmitted directly to your helmet HUD and cloud dashboard with 0.8ms zero-latency transmission.
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-4">
-              <a
-                href="/category/navigation-tech"
-                className="px-7 py-4 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-bold text-lg uppercase tracking-wider flex items-center gap-2 shadow-xl shadow-[#FECD08]/25 transition-all duration-200 cursor-pointer"
-              >
-                <span>Shop Navigation & Radar</span>
-                <ChevronRight className="w-5 h-5 text-[#212121]" />
-              </a>
-
-              <a
-                href="/category/accessories"
-                className="px-7 py-4 rounded-xl border border-white/20 hover:border-[#FECD08] bg-[#181818]/80 hover:text-[#FECD08] text-white font-rajdhani font-bold text-lg uppercase tracking-wider transition-all duration-200 flex items-center gap-2 cursor-pointer"
-              >
-                <span>View Accessories</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-            </div>
-
-            {/* Quick Metrics */}
-            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
+            <div className="grid grid-cols-3 gap-6 pt-4 border-t border-white/10">
               <div>
                 <span className="font-rajdhani font-bold text-3xl sm:text-4xl text-white block">0.8 ms</span>
                 <span className="text-xs text-white/50 uppercase tracking-wider font-rajdhani">HUD Ultra Latency</span>
@@ -154,17 +234,8 @@ export default function App() {
             </div>
           </div>
 
-          {/* Right Column: Live Telemetry Instrument Cluster */}
-          <div className="lg:col-span-5">
-            <div className="relative rounded-3xl bg-[#181818]/90 border-2 border-white/10 p-6 sm:p-8 backdrop-blur-xl shadow-2xl overflow-hidden group hover:border-[#FECD08]/60 transition-all duration-500">
-              
-              {/* Corner Tech Accents */}
-              <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden pointer-events-none">
-                <div className="absolute top-2 right-2 w-8 h-[2px] bg-[#FECD08]" />
-                <div className="absolute top-2 right-2 w-[2px] h-8 bg-[#FECD08]" />
-              </div>
-
-              {/* Card Header */}
+          <div className="lg:col-span-6">
+            <div className="relative rounded-3xl bg-[#181818] border border-white/10 p-6 sm:p-8 backdrop-blur-xl shadow-2xl overflow-hidden group hover:border-[#FECD08]/60 transition-all duration-500">
               <div className="flex items-center justify-between pb-6 border-b border-white/10">
                 <div className="flex items-center gap-2.5">
                   <Activity className="w-5 h-5 text-[#FECD08] animate-pulse" />
@@ -180,8 +251,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Riding Mode Selector */}
-              <div className="mt-6 flex items-center justify-between bg-[#212121] p-1.5 rounded-xl border border-white/10">
+              <div className="mt-6 flex items-center justify-between bg-[#212121] p-1.5 rounded-xl">
                 {['STREET', 'SPORT', 'TRACK'].map((mode) => (
                   <button
                     key={mode}
@@ -202,8 +272,7 @@ export default function App() {
                 ))}
               </div>
 
-              {/* Central Speedometer */}
-              <div className="my-8 text-center bg-[#212121]/60 rounded-2xl p-6 border border-white/5 relative">
+              <div className="my-8 text-center bg-[#212121]/60 rounded-2xl p-6 border border-white/5">
                 <div className="text-xs uppercase tracking-widest text-white/40 font-rajdhani font-semibold">
                   Live Ground Velocity
                 </div>
@@ -214,8 +283,7 @@ export default function App() {
                   </span>
                 </div>
                 
-                {/* RPM Gradient Bar */}
-                <div className="w-full bg-[#181818] h-2.5 rounded-full overflow-hidden mt-3 border border-white/10">
+                <div className="w-full bg-[#181818] h-2.5 rounded-full overflow-hidden mt-3">
                   <div
                     className="h-full bg-gradient-to-r from-emerald-500 via-[#FECD08] to-red-500 transition-all duration-500 rounded-full"
                     style={{ width: `${(telemetry.rpm / 13000) * 100}%` }}
@@ -228,9 +296,8 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Lean & Temp Metrics */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-[#212121] border border-white/10">
+                <div className="p-4 rounded-xl bg-[#212121]">
                   <div className="flex items-center gap-2 text-white/50 text-xs font-rajdhani uppercase tracking-wider mb-1">
                     <SlidersHorizontal className="w-3.5 h-3.5 text-[#FECD08]" />
                     <span>Lean Angle</span>
@@ -240,7 +307,7 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#212121] border border-white/10">
+                <div className="p-4 rounded-xl bg-[#212121]">
                   <div className="flex items-center gap-2 text-white/50 text-xs font-rajdhani uppercase tracking-wider mb-1">
                     <Flame className="w-3.5 h-3.5 text-[#FECD08]" />
                     <span>Rotor Temp</span>
@@ -251,32 +318,30 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Mode Toggle Button */}
               <button
                 onClick={cycleMode}
-                className="mt-6 w-full py-3 rounded-xl bg-[#212121] hover:bg-white/10 border border-white/15 text-white font-rajdhani font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                className="mt-6 w-full py-3 rounded-xl bg-[#212121] hover:bg-white/10 text-white font-rajdhani font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer"
               >
                 <Cpu className="w-4 h-4 text-[#FECD08]" />
                 <span>Simulate Throttle Shift</span>
               </button>
             </div>
           </div>
-
         </div>
 
-        {/* Featured Product Categories Section */}
-        <section className="mt-28">
+        {/* Categories Section */}
+        <section className="mb-28">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-white/10">
             <div>
               <span className="text-xs uppercase font-rajdhani font-bold tracking-widest text-[#FECD08]">
                 Catalog Overview
               </span>
               <h2 className="font-rajdhani font-bold text-3xl sm:text-4xl uppercase tracking-tight text-white mt-1">
-                Explore LBC MOTO Categories
+                Explore LBC MOTO Gear
               </h2>
             </div>
             <p className="text-sm text-white/60 font-sora max-w-sm">
-              Explore the mega menus above or browse top gear categories below.
+              From head-up radar displays to ballistic luggage, browse top categories below.
             </p>
           </div>
 
@@ -321,7 +386,7 @@ export default function App() {
         </section>
 
         {/* Feature Highlights Grid */}
-        <section id="tech-highlights" className="mt-28">
+        <section id="tech-highlights">
           <div className="text-center max-w-2xl mx-auto space-y-3">
             <span className="text-xs uppercase font-rajdhani font-bold tracking-widest text-[#FECD08]">
               Engineered For Extremes
@@ -375,7 +440,7 @@ export default function App() {
             <div>
               <div className="font-rajdhani font-bold text-2xl text-white mb-2">LBC MOTO</div>
               <p className="font-sora text-white/50 text-xs leading-relaxed">
-                The Leader in Integrated Riding Tech. Pioneering motorcycle heads-up displays, collision radars, and rider telemetry systems.
+                The Leader in Integrated Riding Tech. Live by Compass, Not by Time.
               </p>
             </div>
             <div>
@@ -386,7 +451,7 @@ export default function App() {
                 <li><a href="/category/lbc-moto-navigation-radar" className="hover:text-white">LBC MOTO Radar</a></li>
                 <li><a href="/category/carpuride-navigation" className="hover:text-white">Carpuride Displays</a></li>
                 <li><a href="/category/aoocci-navigation" className="hover:text-white">Aoocci Smart HUDs</a></li>
-                <li><a href="/category/asmax-intercoms-chin-mounts" className="hover:text-white">ASMAX Mesh Intercoms</a></li>
+                <li><a href="/category/asmax-intercoms" className="hover:text-white">ASMAX Mesh Intercoms</a></li>
               </ul>
             </div>
             <div>
@@ -424,6 +489,33 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Video Modal (Optional preview) */}
+      {videoModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+          <div className="relative w-full max-w-4xl bg-[#181818] rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
+            <div className="p-4 flex items-center justify-between border-b border-white/10">
+              <span className="font-rajdhani font-bold text-lg text-[#FECD08] uppercase">
+                LBC MOTO | The Mountain Pass Expedition
+              </span>
+              <button
+                onClick={() => setVideoModalOpen(false)}
+                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:text-[#FECD08]"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="aspect-video bg-black flex items-center justify-center text-white/60">
+              <div className="text-center">
+                <Play className="w-16 h-16 text-[#FECD08] mx-auto mb-3 animate-pulse" />
+                <p className="font-rajdhani font-bold text-xl text-white">Live by Compass, Not by Time.</p>
+                <p className="font-sora text-xs text-white/50 mt-1">Expedition Video Ready for Embedding</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   )
 }
