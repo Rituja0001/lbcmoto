@@ -1,5 +1,7 @@
 import { ArrowRight, Navigation, Map, ShieldCheck, Route } from 'lucide-react'
 import aoocciNavBg from '../assets/images/AOOCCI-Navigation.webp'
+import lbcMotoNavBg from '../assets/images/LBC-MOTO-Navigation.webp'
+import carpurideNavBg from '../assets/images/CARPURIDE-Navigation.webp'
 
 export default function TechFeatureBentoSection() {
   return (
@@ -94,18 +96,18 @@ export default function TechFeatureBentoSection() {
       </div>
 
       {/* =========================================================================
-          BLOCK 03 & BLOCK 04 (BOTTOM 2-COLUMN SPLIT BANNERS)
+          BLOCK 03 & BLOCK 04 (BOTTOM 2-COLUMN SPLIT BANNERS WITH USER IMAGES)
          ========================================================================= */}
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
         
-        {/* BLOCK 03: COMMUNICATION */}
+        {/* BLOCK 03: LBC MOTO NAVIGATION (LBC-MOTO-Navigation.webp) */}
         <div className="relative min-h-[380px] lg:min-h-[440px] overflow-hidden p-6 sm:p-10 lg:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10 group">
           
-          {/* Background Image: Rider with Helmet Mesh Intercom Communicator */}
+          {/* Background Image: LBC-MOTO-Navigation.webp */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=80"
-              alt="Helmet Intercom Communication"
+              src={lbcMotoNavBg}
+              alt="LBC MOTO Navigation & Radar"
               className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-1000 ease-out"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/40" />
@@ -114,46 +116,46 @@ export default function TechFeatureBentoSection() {
 
           {/* Content */}
           <div className="relative z-10 space-y-3 text-left">
-            {/* Badge: 03 / COMMUNICATION */}
+            {/* Badge: 03 / LBC MOTO NAVIGATION */}
             <div className="flex items-center gap-2">
               <span className="font-rajdhani font-black text-xs sm:text-sm tracking-widest text-[#FECD08] uppercase">
-                03 / COMMUNICATION
+                03 / LBC MOTO NAVIGATION
               </span>
             </div>
 
-            {/* Title: THE BEST RIDES ARE BETTER TOGETHER */}
+            {/* Title */}
             <h3 className="font-rajdhani font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-white leading-[0.95] drop-shadow-md">
-              <span className="block">THE BEST RIDES</span>
-              <span className="block">ARE BETTER TOGETHER</span>
+              <span className="block">INTEGRATED RADAR</span>
+              <span className="block">& SMART NAVIGATION</span>
             </h3>
 
             {/* Subtitle */}
             <p className="font-sora text-xs sm:text-sm text-white/80 max-w-sm pt-1 drop-shadow">
-              Stay connected. Ride as one.
+              Blindspot radar collision alerts and real-time motorcycle HUD telemetry.
             </p>
           </div>
 
           {/* Button */}
           <div className="relative z-10 pt-6">
             <a
-              href="/category/communication"
+              href="/category/lbc-moto-navigation-radar"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 shadow-xl shadow-[#FECD08]/20 cursor-pointer group/btn"
             >
-              <span>SHOP INTERCOMS</span>
+              <span>SHOP LBC MOTO</span>
               <ArrowRight className="w-4 h-4 text-[#212121] group-hover/btn:translate-x-1 transition-transform" />
             </a>
           </div>
 
         </div>
 
-        {/* BLOCK 04: AUXILIARY LIGHTS */}
+        {/* BLOCK 04: CARPURIDE NAVIGATION (CARPURIDE-Navigation.webp) */}
         <div className="relative min-h-[380px] lg:min-h-[440px] overflow-hidden p-6 sm:p-10 lg:p-12 flex flex-col justify-between group">
           
-          {/* Background Image: Motorcycle with Powerful Auxiliary Fog Lights Glowing at Night */}
+          {/* Background Image: CARPURIDE-Navigation.webp */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src="https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=1200&q=80"
-              alt="Motorcycle Auxiliary Projector Lights"
+              src={carpurideNavBg}
+              alt="Carpuride Motorcycle Navigation Display"
               className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-1000 ease-out"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/30" />
@@ -162,32 +164,32 @@ export default function TechFeatureBentoSection() {
 
           {/* Content */}
           <div className="relative z-10 space-y-3 text-left">
-            {/* Badge: 04 / AUXILIARY LIGHTS */}
+            {/* Badge: 04 / CARPURIDE NAVIGATION */}
             <div className="flex items-center gap-2">
               <span className="font-rajdhani font-black text-xs sm:text-sm tracking-widest text-[#FECD08] uppercase">
-                04 / AUXILIARY LIGHTS
+                04 / CARPURIDE NAVIGATION
               </span>
             </div>
 
-            {/* Title: OWN THE ROAD AFTER DARK */}
+            {/* Title */}
             <h3 className="font-rajdhani font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-white leading-[0.95] drop-shadow-md">
-              <span className="block">OWN THE ROAD</span>
-              <span className="block">AFTER DARK</span>
+              <span className="block">WIRELESS CARPLAY</span>
+              <span className="block">& ANDROID AUTO</span>
             </h3>
 
             {/* Subtitle */}
             <p className="font-sora text-xs sm:text-sm text-white/80 max-w-sm pt-1 drop-shadow">
-              Powerful auxiliary lights for clearer, safer night rides.
+              High-brightness waterproof dual-Bluetooth cockpit touch display.
             </p>
           </div>
 
           {/* Button */}
           <div className="relative z-10 pt-6">
             <a
-              href="/category/auxiliary-lights"
+              href="/category/carpuride-navigation"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 shadow-xl shadow-[#FECD08]/20 cursor-pointer group/btn"
             >
-              <span>SHOP LIGHTS</span>
+              <span>SHOP CARPURIDE</span>
               <ArrowRight className="w-4 h-4 text-[#212121] group-hover/btn:translate-x-1 transition-transform" />
             </a>
           </div>
