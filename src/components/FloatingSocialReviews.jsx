@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { X, Star, ExternalLink } from 'lucide-react'
+import { X, Star, ChevronRight } from 'lucide-react'
 
 export default function FloatingSocialReviews() {
   const [isVisible, setIsVisible] = useState(true)
@@ -9,15 +9,19 @@ export default function FloatingSocialReviews() {
 
   const instagramLink = 'https://www.instagram.com/lbc.moto'
 
+  // Minimized tab docked to left screen edge
   if (!isVisible) {
     return (
       <button
         onClick={() => setIsVisible(true)}
-        aria-label="Show reviews and social badge"
-        className="fixed bottom-6 left-4 z-40 px-3 py-1.5 rounded-full bg-white/95 text-slate-900 shadow-xl border border-white/20 text-xs font-rajdhani font-bold flex items-center gap-1.5 hover:bg-[#FECD08] transition-all cursor-pointer group"
+        aria-label="Open reviews and social tab"
+        className="fixed left-0 top-1/2 -translate-y-1/2 z-40 bg-white/95 text-slate-900 shadow-2xl border-y border-r border-slate-200/90 rounded-r-xl py-3 px-1.5 flex flex-col items-center gap-2 hover:bg-[#FECD08] transition-all cursor-pointer group select-none"
       >
-        <Star className="w-3.5 h-3.5 fill-[#FECD08] text-[#FECD08] group-hover:fill-slate-900 group-hover:text-slate-900" />
-        <span>Reviews & Social</span>
+        <Star className="w-4 h-4 fill-[#FBBC05] text-[#FBBC05] group-hover:scale-110 transition-transform" />
+        <span className="font-rajdhani font-black text-[11px] tracking-wider uppercase [writing-mode:vertical-lr] rotate-180">
+          Reviews
+        </span>
+        <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-900 transition-colors" />
       </button>
     )
   }
@@ -25,30 +29,30 @@ export default function FloatingSocialReviews() {
   return (
     <aside
       aria-label="Customer Reviews and Social"
-      className="fixed bottom-6 left-4 z-40 flex flex-col gap-2.5 select-none animate-in fade-in slide-in-from-left-4 duration-300"
+      className="fixed left-0 top-1/2 -translate-y-1/2 z-40 select-none animate-in fade-in slide-in-from-left duration-300"
     >
-      {/* Container with Close Button */}
-      <div className="relative flex flex-col gap-2.5">
+      <div className="relative flex flex-col bg-white text-slate-900 rounded-r-2xl shadow-[4px_16px_35px_rgba(0,0,0,0.35)] border-y border-r border-slate-200/90 overflow-visible w-[88px] sm:w-[94px]">
         
-        {/* Tiny Dismiss/Close Button */}
+        {/* Floating Mini Close Button */}
         <button
           onClick={() => setIsVisible(false)}
           aria-label="Close review badge"
-          className="absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full bg-slate-900/90 hover:bg-red-600 text-white/80 hover:text-white flex items-center justify-center shadow-lg border border-white/20 transition-all cursor-pointer z-10"
+          title="Close badge"
+          className="absolute -top-2.5 -right-2.5 w-5 h-5 rounded-full bg-slate-900 hover:bg-red-600 text-white flex items-center justify-center shadow-lg border border-white/50 transition-all cursor-pointer z-20 group"
         >
-          <X className="w-3.5 h-3.5" />
+          <X className="w-3 h-3 group-hover:scale-110 transition-transform" />
         </button>
 
-        {/* 1. Google Reviews Card (Exact match to reference image) */}
+        {/* 1. Google Reviews Card (Pinned flush to left edge, exact match to reference) */}
         <a
           href={googleReviewLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-24 sm:w-28 bg-white/98 hover:bg-white text-slate-900 rounded-2xl p-3 flex flex-col items-center justify-center text-center shadow-[0_10px_25px_rgba(0,0,0,0.35)] border border-slate-200/80 hover:border-[#FECD08] hover:scale-105 transition-all duration-200 group cursor-pointer"
+          className="p-3 flex flex-col items-center justify-center text-center hover:bg-slate-50 transition-colors group/card border-b border-slate-100 cursor-pointer"
         >
-          {/* Authentic Google Multi-Color "G" Logo */}
-          <div className="w-8 h-8 flex items-center justify-center mb-1">
-            <svg className="w-7 h-7" viewBox="0 0 24 24">
+          {/* Authentic Google Multi-Color "G" */}
+          <div className="w-7 h-7 flex items-center justify-center mb-1 group-hover/card:scale-110 transition-transform">
+            <svg className="w-6 h-6" viewBox="0 0 24 24">
               <path
                 fill="#4285F4"
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -68,41 +72,47 @@ export default function FloatingSocialReviews() {
             </svg>
           </div>
 
-          <span className="font-sora text-[11px] font-medium text-slate-700 leading-tight block">
+          <span className="font-sora text-[10px] font-medium text-slate-600 leading-tight block">
             Google Reviews
           </span>
 
-          <div className="flex items-center gap-1 mt-1">
+          <div className="flex items-center justify-center gap-0.5 mt-1">
             <span className="font-rajdhani font-black text-2xl text-slate-900 leading-none">
               4.9
             </span>
-            <Star className="w-3.5 h-3.5 fill-[#FBBC05] text-[#FBBC05]" />
+          </div>
+
+          <div className="flex items-center gap-0.5 mt-0.5">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-2.5 h-2.5 fill-[#FBBC05] text-[#FBBC05]" />
+            ))}
           </div>
         </a>
 
-        {/* 2. Instagram Card (Matching Card 2 in Reference) */}
+        {/* 2. Instagram Followers Card (Displaying Follower Count) */}
         <a
           href={instagramLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-24 sm:w-28 bg-white/98 hover:bg-white text-slate-900 rounded-2xl p-3 flex flex-col items-center justify-center text-center shadow-[0_10px_25px_rgba(0,0,0,0.35)] border border-slate-200/80 hover:border-[#FECD08] hover:scale-105 transition-all duration-200 group cursor-pointer"
+          className="p-3 flex flex-col items-center justify-center text-center hover:bg-slate-50 transition-colors group/card rounded-br-2xl cursor-pointer"
         >
           {/* Authentic Gradient Instagram Camera Icon */}
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] flex items-center justify-center text-white mb-1 shadow-sm">
-            <svg
-              className="w-5 h-5 fill-current"
-              viewBox="0 0 24 24"
-            >
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] flex items-center justify-center text-white mb-1 shadow-sm group-hover/card:scale-110 transition-transform">
+            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
             </svg>
           </div>
 
-          <span className="font-sora text-[11px] font-medium text-slate-700 leading-tight block">
+          <span className="font-sora text-[10px] font-medium text-slate-600 leading-tight block">
             Instagram
           </span>
 
-          <span className="font-rajdhani font-bold text-sm text-[#bc1888] tracking-wider uppercase mt-1 block">
-            @lbc.moto
+          <div className="font-rajdhani font-black text-xl text-slate-900 leading-none mt-1">
+            14.8K
+          </div>
+
+          <span className="font-sora text-[9px] font-bold text-[#dc2743] uppercase tracking-wider mt-0.5 block">
+            Followers
           </span>
         </a>
 
