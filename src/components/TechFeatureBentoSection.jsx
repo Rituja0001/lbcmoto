@@ -1,6 +1,6 @@
 import { ArrowRight, Navigation, Map, ShieldCheck, Route } from 'lucide-react'
 import aoocciNavBg from '../assets/images/AOOCCI-Navigation.webp'
-import lbcMotoNavBg from '../assets/images/LBC-MOTO-Navigation.webp'
+import tshirtsBg from '../assets/images/T-shirts.webp'
 import carpurideNavBg from '../assets/images/CARPURIDE-Navigation.webp'
 
 export default function TechFeatureBentoSection() {
@@ -96,52 +96,52 @@ export default function TechFeatureBentoSection() {
       </div>
 
       {/* =========================================================================
-          BLOCK 03 & BLOCK 04 (BOTTOM 2-COLUMN SPLIT BANNERS WITH USER IMAGES)
+          BLOCK 03 & BLOCK 04 (BOTTOM 2-COLUMN SPLIT BANNERS)
          ========================================================================= */}
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
         
-        {/* BLOCK 03: LBC MOTO NAVIGATION (LBC-MOTO-Navigation.webp) */}
+        {/* BLOCK 03: CLOTHING & MERCHANDISE (T-shirts.webp) */}
         <div className="relative min-h-[380px] lg:min-h-[440px] overflow-hidden p-6 sm:p-10 lg:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10 group">
           
-          {/* Background Image: LBC-MOTO-Navigation.webp */}
+          {/* Background Image: T-shirts.webp */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src={lbcMotoNavBg}
-              alt="LBC MOTO Navigation & Radar"
+              src={tshirtsBg}
+              alt="LBC MOTO Riding T-Shirts & Apparel"
               className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-1000 ease-out"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/35" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
           </div>
 
           {/* Content */}
           <div className="relative z-10 space-y-3 text-left">
-            {/* Badge: 03 / LBC MOTO NAVIGATION */}
+            {/* Badge: 03 / CLOTHING & MERCHANDISE */}
             <div className="flex items-center gap-2">
               <span className="font-rajdhani font-black text-xs sm:text-sm tracking-widest text-[#FECD08] uppercase">
-                03 / LBC MOTO NAVIGATION
+                03 / CLOTHING & MERCHANDISE
               </span>
             </div>
 
             {/* Title */}
             <h3 className="font-rajdhani font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-white leading-[0.95] drop-shadow-md">
-              <span className="block">INTEGRATED RADAR</span>
-              <span className="block">& SMART NAVIGATION</span>
+              <span className="block">RIDER TEES &</span>
+              <span className="block">STREETWEAR</span>
             </h3>
 
             {/* Subtitle */}
             <p className="font-sora text-xs sm:text-sm text-white/80 max-w-sm pt-1 drop-shadow">
-              Blindspot radar collision alerts and real-time motorcycle HUD telemetry.
+              Premium heavyweight cotton biker graphics, oversized cuts, and breathable riding apparel.
             </p>
           </div>
 
           {/* Button */}
           <div className="relative z-10 pt-6">
             <a
-              href="/category/lbc-moto-navigation-radar"
+              href="/category/merchandise"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 shadow-xl shadow-[#FECD08]/20 cursor-pointer group/btn"
             >
-              <span>SHOP LBC MOTO</span>
+              <span>SHOP T-SHIRTS</span>
               <ArrowRight className="w-4 h-4 text-[#212121] group-hover/btn:translate-x-1 transition-transform" />
             </a>
           </div>
