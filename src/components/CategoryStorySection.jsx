@@ -84,10 +84,10 @@ export default function CategoryStorySection() {
             </p>
             <a
               href="/shop"
-              className="px-6 py-2.5 rounded-xl border border-white/25 hover:border-[#FECD08] bg-black/50 hover:bg-[#FECD08] backdrop-blur-md text-white hover:text-[#212121] font-rajdhani font-bold text-sm uppercase tracking-wider transition-all duration-200 flex items-center gap-2 cursor-pointer group shadow-lg"
+              className="px-6 py-2.5 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-sm uppercase tracking-wider transition-all duration-200 flex items-center gap-2 cursor-pointer group shadow-xl shadow-[#FECD08]/20"
             >
               <span>EXPLORE ALL PRODUCTS</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 text-[#212121] group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
 
@@ -142,10 +142,10 @@ export default function CategoryStorySection() {
                     {cat.desc}
                   </p>
 
-                  {/* Explore Action Button */}
-                  <div className="w-full py-2.5 px-4 rounded-xl border border-white/30 group-hover:border-[#FECD08] bg-black/60 group-hover:bg-[#FECD08] backdrop-blur-md text-white group-hover:text-[#212121] font-rajdhani font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 shadow-md">
+                  {/* Explore Action Button (Solid Yellow matching all other buttons) */}
+                  <div className="w-full py-3 px-4 rounded-xl bg-[#FECD08] group-hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 shadow-xl shadow-[#FECD08]/20">
                     <span>EXPLORE</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 text-[#212121] group-hover:translate-x-1 transition-transform" />
                   </div>
 
                 </div>
