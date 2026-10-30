@@ -1,9 +1,28 @@
-import { useState } from 'react'
-import { ArrowRight, Play, Crosshair, X } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { ArrowRight, Play, X } from 'lucide-react'
 import heroBg from '../assets/images/hero-banner.webp'
 
 export default function Hero() {
   const [videoModalOpen, setVideoModalOpen] = useState(false)
+  const [coords, setCoords] = useState({
+    lat: 27.9881,
+    lng: 86.9250,
+  })
+
+  // Live dynamic GPS coordinates simulation (subtle mountain touring movement)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCoords((prev) => {
+        let nextLat = +(prev.lat + (Math.random() * 0.0003 - 0.0001)).toFixed(4)
+        let nextLng = +(prev.lng + (Math.random() * 0.0004 - 0.0001)).toFixed(4)
+        if (nextLat > 28.0500 || nextLat < 27.9500) nextLat = 27.9881
+        if (nextLng > 87.0000 || nextLng < 86.8500) nextLng = 86.9250
+        return { lat: nextLat, lng: nextLng }
+      })
+    }, 600)
+
+    return () => clearInterval(interval)
+  }, [])
 
   const scrollToNext = () => {
     const el = document.getElementById('categories-section')
@@ -109,14 +128,28 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Bottom Right: GPS Coordinates HUD Reticle */}
-          <div className="flex items-center gap-3 bg-black/50 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/15 hover:border-[#FECD08]/50 transition-colors">
+          {/* Bottom Right: Live GPS Coordinates HUD Reticle */}
+          <div className="flex items-center gap-3 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/15 hover:border-[#FECD08]/50 transition-colors shadow-lg">
             <div className="relative w-7 h-7 flex items-center justify-center">
-              <Crosshair className="w-6 h-6 text-[#FECD08] animate-spin-slow stroke-[1.8]" />
+              <svg
+                className="w-6 h-6 text-[#FECD08] animate-spin-slow shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="8.5" />
+                <line x1="12" y1="2" x2="12" y2="5.5" />
+                <line x1="12" y1="18.5" x2="12" y2="22" />
+                <line x1="2" y1="12" x2="5.5" y2="12" />
+                <line x1="18.5" y1="12" x2="22" y2="12" />
+              </svg>
             </div>
-            <div className="font-mono text-[11px] sm:text-xs text-white/95 leading-tight">
-              <div className="font-bold tracking-wider">27.9881° N</div>
-              <div className="text-white/70 tracking-wider">86.9250° E</div>
+            <div className="font-mono tabular-nums text-[11px] sm:text-xs text-white/95 leading-tight select-none">
+              <div className="font-bold tracking-wider">{coords.lat.toFixed(4)}° N</div>
+              <div className="text-white/70 tracking-wider">{coords.lng.toFixed(4)}° E</div>
             </div>
           </div>
 
@@ -152,4 +185,3 @@ export default function Hero() {
     </>
   )
 }
-
