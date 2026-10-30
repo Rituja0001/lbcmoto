@@ -11,6 +11,9 @@ import {
 import { navigationData } from '../data/navigationData'
 import logoImg from '../assets/images/lbcmoto-logo.png'
 
+// Toggle to show/hide sub navigation (mega menu & dropdowns)
+const SHOW_SUB_NAV = false
+
 export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -41,11 +44,13 @@ export default function Navbar() {
   }, [])
 
   const handleMouseEnter = (itemId) => {
+    if (!SHOW_SUB_NAV) return
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
     setActiveDropdown(itemId)
   }
 
   const handleMouseLeave = () => {
+    if (!SHOW_SUB_NAV) return
     timeoutRef.current = setTimeout(() => {
       setActiveDropdown(null)
     }, 200)
@@ -93,7 +98,7 @@ export default function Navbar() {
             {/* Center: Clean Desktop Navigation Menu */}
             <nav className="hidden lg:flex items-center gap-6 xl:gap-8 2xl:gap-10">
               {navigationData.map((item) => {
-                const hasSubs = item.subcategories && item.subcategories.length > 0
+                const hasSubs = SHOW_SUB_NAV && item.subcategories && item.subcategories.length > 0
                 const isActive = activeDropdown === item.id
 
                 return (
@@ -174,9 +179,9 @@ export default function Navbar() {
         </div>
 
         {/* =========================================================================
-            DESKTOP MEGA MENU DROPDOWN PANEL (FULL WIDTH, LINE-FREE)
+            DESKTOP MEGA MENU DROPDOWN PANEL (HIDDEN WHEN SHOW_SUB_NAV IS FALSE)
            ========================================================================= */}
-        {activeDropdown && activeCategoryData && activeCategoryData.subcategories && (
+        {SHOW_SUB_NAV && activeDropdown && activeCategoryData && activeCategoryData.subcategories && (
           <div
             onMouseEnter={() => {
               if (timeoutRef.current) clearTimeout(timeoutRef.current)
@@ -291,7 +296,7 @@ export default function Navbar() {
 
             <div className="flex-1 overflow-y-auto p-4 space-y-1">
               {navigationData.map((item) => {
-                const hasSubs = item.subcategories && item.subcategories.length > 0
+                const hasSubs = SHOW_SUB_NAV && item.subcategories && item.subcategories.length > 0
                 const isExpanded = mobileExpandedCat === item.id
 
                 return (
