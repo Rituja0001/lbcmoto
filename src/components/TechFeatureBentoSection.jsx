@@ -1,7 +1,7 @@
 import { ArrowRight, Navigation, Map, ShieldCheck, Route } from 'lucide-react'
 import aoocciNavBg from '../assets/images/AOOCCI-Navigation.webp'
 import tshirtsBg from '../assets/images/T-shirts.webp'
-import carpurideNavBg from '../assets/images/CARPURIDE-Navigation.webp'
+import intercomsBg from '../assets/images/INTERCOMS.webp'
 
 export default function TechFeatureBentoSection() {
   return (
@@ -148,14 +148,14 @@ export default function TechFeatureBentoSection() {
 
         </div>
 
-        {/* BLOCK 04: CARPURIDE NAVIGATION (CARPURIDE-Navigation.webp) */}
+        {/* BLOCK 04: COMMUNICATION & INTERCOMS (INTERCOMS.webp) */}
         <div className="relative min-h-[380px] lg:min-h-[440px] overflow-hidden p-6 sm:p-10 lg:p-12 flex flex-col justify-between group">
           
-          {/* Background Image: CARPURIDE-Navigation.webp */}
+          {/* Background Image: INTERCOMS.webp */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src={carpurideNavBg}
-              alt="Carpuride Motorcycle Navigation Display"
+              src={intercomsBg}
+              alt="LBC MOTO Mesh Intercoms & Audio"
               className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-1000 ease-out"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/30" />
@@ -164,32 +164,32 @@ export default function TechFeatureBentoSection() {
 
           {/* Content */}
           <div className="relative z-10 space-y-3 text-left">
-            {/* Badge: 04 / CARPURIDE NAVIGATION */}
+            {/* Badge: 04 / COMMUNICATION */}
             <div className="flex items-center gap-2">
               <span className="font-rajdhani font-black text-xs sm:text-sm tracking-widest text-[#FECD08] uppercase">
-                04 / CARPURIDE NAVIGATION
+                04 / COMMUNICATION
               </span>
             </div>
 
             {/* Title */}
             <h3 className="font-rajdhani font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-white leading-[0.95] drop-shadow-md">
-              <span className="block">WIRELESS CARPLAY</span>
-              <span className="block">& ANDROID AUTO</span>
+              <span className="block">MESH INTERCOMS</span>
+              <span className="block">& HELMET AUDIO</span>
             </h3>
 
             {/* Subtitle */}
             <p className="font-sora text-xs sm:text-sm text-white/80 max-w-sm pt-1 drop-shadow">
-              High-brightness waterproof dual-Bluetooth cockpit touch display.
+              Ultra-wideband mesh group link, ENC noise cancellation, and high-velocity rider voice clarity.
             </p>
           </div>
 
           {/* Button */}
           <div className="relative z-10 pt-6">
             <a
-              href="/category/carpuride-navigation"
+              href="/category/asmax-intercoms-chin-mounts"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 shadow-xl shadow-[#FECD08]/20 cursor-pointer group/btn"
             >
-              <span>SHOP CARPURIDE</span>
+              <span>SHOP INTERCOMS</span>
               <ArrowRight className="w-4 h-4 text-[#212121] group-hover/btn:translate-x-1 transition-transform" />
             </a>
           </div>
