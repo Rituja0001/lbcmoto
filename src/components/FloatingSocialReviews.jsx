@@ -2,45 +2,48 @@ import { useState } from 'react'
 import { X, Star, ChevronRight } from 'lucide-react'
 
 export default function FloatingSocialReviews({ followerCount = '10.6K' }) {
-  const [isVisible, setIsVisible] = useState(true)
+  // By default CLOSED as requested (opens only on click)
+  const [isOpen, setIsOpen] = useState(false)
 
   const googleReviewLink =
     'https://www.google.com/search?hl=en-IN&gl=in&q=LBC+Moto,+Venkataswamy+Reddy+Building,+94/14,+Annasandrapalya+Main+Rd,+Annasandrapalya+Extension,+Vinayaka+Nagar,+HAL,+Bengaluru,+Karnataka+560017&ludocid=7579103371940783096&lsig=AB86z5Up_u-G7n9P3YTeqTTGehcB#lrd=0x3bae136b486aeec3:0x692e625c687ee3f8,1'
 
   const instagramLink = 'https://www.instagram.com/lbc.moto'
 
-  // Minimized tab docked to left screen edge (hidden on mobile to prevent blocking content)
-  if (!isVisible) {
+  // Minimized tab docked to left screen edge (Default Closed State)
+  if (!isOpen) {
     return (
       <button
-        onClick={() => setIsVisible(true)}
+        onClick={() => setIsOpen(true)}
         aria-label="Open reviews and social tab"
-        className="hidden md:flex fixed left-0 top-1/2 -translate-y-1/2 z-40 bg-white text-slate-950 shadow-2xl border-y border-r border-slate-300 rounded-r-xl py-3.5 px-2 flex-col items-center gap-2 hover:bg-[#FECD08] transition-all cursor-pointer group select-none"
+        title="View Google Reviews & Instagram"
+        className="fixed left-0 top-1/2 -translate-y-1/2 z-40 bg-white text-slate-950 shadow-2xl border-y border-r border-slate-300 rounded-r-xl py-3 px-1.5 sm:py-3.5 sm:px-2 flex flex-col items-center gap-1.5 sm:gap-2 hover:bg-[#FECD08] transition-all cursor-pointer group select-none"
       >
-        <Star className="w-4 h-4 fill-[#FBBC05] text-[#FBBC05] group-hover:scale-110 transition-transform" />
-        <span className="font-rajdhani font-black text-xs sm:text-[13px] tracking-widest uppercase [writing-mode:vertical-lr] rotate-180">
+        <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#FBBC05] text-[#FBBC05] group-hover:scale-110 transition-transform" />
+        <span className="font-rajdhani font-black text-[11px] sm:text-[13px] tracking-widest uppercase [writing-mode:vertical-lr] rotate-180">
           Reviews
         </span>
-        <ChevronRight className="w-4 h-4 text-slate-600 group-hover:text-slate-950 transition-colors" />
+        <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-600 group-hover:text-slate-950 transition-colors" />
       </button>
     )
   }
 
+  // Expanded panel (when user clicks the Reviews tab)
   return (
     <aside
       aria-label="Customer Reviews and Social"
-      className="hidden md:block fixed left-0 top-1/2 -translate-y-1/2 z-40 select-none animate-in fade-in slide-in-from-left duration-300"
+      className="fixed left-0 top-1/2 -translate-y-1/2 z-40 select-none animate-in fade-in slide-in-from-left duration-300"
     >
       <div className="relative flex flex-col bg-white text-slate-900 rounded-r-2xl shadow-[4px_16px_35px_rgba(0,0,0,0.35)] border-y border-r border-slate-200/90 overflow-visible w-[88px] sm:w-[94px]">
         
         {/* Floating Mini Close Button */}
         <button
-          onClick={() => setIsVisible(false)}
+          onClick={() => setIsOpen(false)}
           aria-label="Close review badge"
           title="Close badge"
-          className="absolute -top-2.5 -right-2.5 w-5 h-5 rounded-full bg-slate-900 hover:bg-red-600 text-white flex items-center justify-center shadow-lg border border-white/50 transition-all cursor-pointer z-20 group"
+          className="absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full bg-slate-900 hover:bg-red-600 text-white flex items-center justify-center shadow-lg border border-white/50 transition-all cursor-pointer z-20 group"
         >
-          <X className="w-3 h-3 group-hover:scale-110 transition-transform" />
+          <X className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
         </button>
 
         {/* 1. Google Reviews Card (Pinned flush to left edge, exact match to reference) */}
