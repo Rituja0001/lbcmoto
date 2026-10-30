@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { X, Star, ChevronRight } from 'lucide-react'
 
-export default function FloatingSocialReviews() {
+export default function FloatingSocialReviews({ followerCount = '10.6K' }) {
   const [isVisible, setIsVisible] = useState(true)
 
   const googleReviewLink =
@@ -9,19 +9,19 @@ export default function FloatingSocialReviews() {
 
   const instagramLink = 'https://www.instagram.com/lbc.moto'
 
-  // Minimized tab docked to left screen edge
+  // Minimized tab docked to left screen edge (hidden on mobile to prevent blocking content)
   if (!isVisible) {
     return (
       <button
         onClick={() => setIsVisible(true)}
         aria-label="Open reviews and social tab"
-        className="fixed left-0 top-1/2 -translate-y-1/2 z-40 bg-white/95 text-slate-900 shadow-2xl border-y border-r border-slate-200/90 rounded-r-xl py-3 px-1.5 flex flex-col items-center gap-2 hover:bg-[#FECD08] transition-all cursor-pointer group select-none"
+        className="hidden md:flex fixed left-0 top-1/2 -translate-y-1/2 z-40 bg-white text-slate-950 shadow-2xl border-y border-r border-slate-300 rounded-r-xl py-3.5 px-2 flex-col items-center gap-2 hover:bg-[#FECD08] transition-all cursor-pointer group select-none"
       >
         <Star className="w-4 h-4 fill-[#FBBC05] text-[#FBBC05] group-hover:scale-110 transition-transform" />
-        <span className="font-rajdhani font-black text-[11px] tracking-wider uppercase [writing-mode:vertical-lr] rotate-180">
+        <span className="font-rajdhani font-black text-xs sm:text-[13px] tracking-widest uppercase [writing-mode:vertical-lr] rotate-180">
           Reviews
         </span>
-        <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-900 transition-colors" />
+        <ChevronRight className="w-4 h-4 text-slate-600 group-hover:text-slate-950 transition-colors" />
       </button>
     )
   }
@@ -29,7 +29,7 @@ export default function FloatingSocialReviews() {
   return (
     <aside
       aria-label="Customer Reviews and Social"
-      className="fixed left-0 top-1/2 -translate-y-1/2 z-40 select-none animate-in fade-in slide-in-from-left duration-300"
+      className="hidden md:block fixed left-0 top-1/2 -translate-y-1/2 z-40 select-none animate-in fade-in slide-in-from-left duration-300"
     >
       <div className="relative flex flex-col bg-white text-slate-900 rounded-r-2xl shadow-[4px_16px_35px_rgba(0,0,0,0.35)] border-y border-r border-slate-200/90 overflow-visible w-[88px] sm:w-[94px]">
         
@@ -45,9 +45,8 @@ export default function FloatingSocialReviews() {
 
         {/* 1. Google Reviews Card (Pinned flush to left edge, exact match to reference) */}
         <a
-          href={googleReviewLink}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#"
+          onClick={(e) => e.preventDefault()}
           className="p-3 flex flex-col items-center justify-center text-center hover:bg-slate-50 transition-colors group/card border-b border-slate-100 cursor-pointer"
         >
           {/* Authentic Google Multi-Color "G" */}
@@ -72,7 +71,7 @@ export default function FloatingSocialReviews() {
             </svg>
           </div>
 
-          <span className="font-sora text-[10px] font-medium text-slate-600 leading-tight block">
+          <span className="font-sora text-[11px] font-bold text-slate-800 leading-tight block">
             Google Reviews
           </span>
 
@@ -91,9 +90,8 @@ export default function FloatingSocialReviews() {
 
         {/* 2. Instagram Followers Card (Displaying Follower Count) */}
         <a
-          href={instagramLink}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#"
+          onClick={(e) => e.preventDefault()}
           className="p-3 flex flex-col items-center justify-center text-center hover:bg-slate-50 transition-colors group/card rounded-br-2xl cursor-pointer"
         >
           {/* Authentic Gradient Instagram Camera Icon */}
@@ -103,15 +101,15 @@ export default function FloatingSocialReviews() {
             </svg>
           </div>
 
-          <span className="font-sora text-[10px] font-medium text-slate-600 leading-tight block">
+          <span className="font-sora text-[11px] font-bold text-slate-800 leading-tight block">
             Instagram
           </span>
 
-          <div className="font-rajdhani font-black text-xl text-slate-900 leading-none mt-1">
-            14.8K
+          <div className="font-rajdhani font-black text-2xl text-slate-900 leading-none mt-1">
+            {followerCount}
           </div>
 
-          <span className="font-sora text-[9px] font-bold text-[#dc2743] uppercase tracking-wider mt-0.5 block">
+          <span className="font-sora text-[10px] font-extrabold text-[#dc2743] uppercase tracking-wider mt-0.5 block">
             Followers
           </span>
         </a>

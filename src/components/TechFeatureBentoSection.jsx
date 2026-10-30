@@ -49,7 +49,8 @@ export default function TechFeatureBentoSection() {
             {/* CTA Button */}
             <div className="pt-2">
               <a
-                href="/category/navigation"
+                href="#"
+                onClick={(e) => e.preventDefault()}
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-sm sm:text-base uppercase tracking-wider transition-all duration-200 shadow-xl shadow-[#FECD08]/20 cursor-pointer group/btn"
               >
                 <span>SHOP NAVIGATION</span>
@@ -138,7 +139,8 @@ export default function TechFeatureBentoSection() {
           {/* Button */}
           <div className="relative z-10 pt-6">
             <a
-              href="/category/merchandise"
+              href="#"
+              onClick={(e) => e.preventDefault()}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 shadow-xl shadow-[#FECD08]/20 cursor-pointer group/btn"
             >
               <span>SHOP T-SHIRTS</span>
@@ -186,7 +188,8 @@ export default function TechFeatureBentoSection() {
           {/* Button */}
           <div className="relative z-10 pt-6">
             <a
-              href="/category/asmax-intercoms-chin-mounts"
+              href="#"
+              onClick={(e) => e.preventDefault()}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 shadow-xl shadow-[#FECD08]/20 cursor-pointer group/btn"
             >
               <span>SHOP INTERCOMS</span>

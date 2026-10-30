@@ -33,7 +33,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden pt-24 pb-8 sm:pb-10 select-none">
+      <section className="relative min-h-[580px] sm:min-h-[640px] md:min-h-screen w-full flex flex-col justify-between overflow-hidden pt-20 sm:pt-24 pb-4 sm:pb-10 select-none">
         
         {/* Background Image: hero-banner.webp */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -48,14 +48,14 @@ export default function Hero() {
         </div>
 
         {/* Hero Middle Content Area */}
-        <div className="relative z-10 w-full px-4 sm:px-8 xl:px-12 2xl:px-16 flex-1 flex flex-col justify-center my-auto min-h-0">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div className="relative z-10 w-full px-5 sm:px-8 xl:px-12 2xl:px-16 flex-1 flex flex-col justify-center my-auto min-h-0 py-4 sm:py-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-center">
             
             {/* Left Column: Bold Headline & Action Buttons */}
-            <div className="lg:col-span-7 xl:col-span-8 text-left pt-6 sm:pt-10">
+            <div className="lg:col-span-7 xl:col-span-8 text-left pt-2 sm:pt-10">
               
               {/* Top Mini Badge */}
-              <div className="flex items-center gap-2 mb-2 sm:mb-3">
+              <div className="flex items-center gap-2 mb-2">
                 <span className="w-2.5 h-2.5 rounded-sm bg-[#FECD08] rotate-45 shadow-sm shadow-[#FECD08]/50" />
                 <span className="font-rajdhani font-black text-xs sm:text-sm tracking-widest text-[#FECD08] uppercase">
                   LBC MOTO
@@ -63,34 +63,32 @@ export default function Hero() {
               </div>
 
               {/* Headline: YOUR RIDE. YOUR RULES. YOUR ROAD. */}
-              <h1 className="font-rajdhani font-black text-4xl sm:text-6xl md:text-7xl lg:text-[4.6rem] xl:text-[5.4rem] 2xl:text-[6.4rem] tracking-tight leading-[0.92] uppercase text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.85)]">
+              <h1 className="font-rajdhani font-black text-[2.25rem] sm:text-5xl md:text-6xl lg:text-[4.6rem] xl:text-[5.4rem] 2xl:text-[6.4rem] tracking-tight leading-[0.94] sm:leading-[0.92] uppercase text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.85)]">
                 <span className="block">YOUR RIDE.</span>
                 <span className="block">YOUR RULES.</span>
                 <span className="block text-[#FECD08]">YOUR ROAD.</span>
               </h1>
 
               {/* Subheading */}
-              <p className="font-sora text-xs sm:text-sm md:text-base text-white/90 max-w-lg mt-3 sm:mt-5 leading-relaxed drop-shadow">
+              <p className="font-sora text-xs sm:text-sm md:text-base text-white/90 max-w-lg mt-2.5 sm:mt-5 leading-relaxed drop-shadow">
                 Gear up for every adventure with technology built for the way you ride.
               </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-5 sm:mt-8">
-                <a
-                  href="#categories-section"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    scrollToNext()
-                  }}
-                  className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-sm sm:text-base uppercase tracking-wider flex items-center gap-2 shadow-xl shadow-[#FECD08]/25 transition-all duration-200 cursor-pointer group"
+              {/* Action Buttons: Stacked cleanly full-width on mobile, inline on sm+ */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 mt-5 sm:mt-8 max-w-md sm:max-w-none">
+                <button
+                  type="button"
+                  onClick={scrollToNext}
+                  className="w-full sm:w-auto px-6 py-3 sm:py-3.5 sm:px-7 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2 shadow-xl shadow-[#FECD08]/25 transition-all duration-200 cursor-pointer group"
                 >
                   <span>EXPLORE THE GEAR</span>
                   <ArrowRight className="w-4 h-4 text-[#212121] group-hover:translate-x-1 transition-transform" />
-                </a>
+                </button>
 
                 <button
+                  type="button"
                   onClick={() => setVideoModalOpen(true)}
-                  className="px-5 py-3 sm:px-6 sm:py-3.5 rounded-xl bg-black/40 hover:bg-black/60 border border-white/30 hover:border-white backdrop-blur-md text-white font-rajdhani font-bold text-sm sm:text-base uppercase tracking-wider flex items-center gap-2.5 transition-all duration-200 cursor-pointer group"
+                  className="w-full sm:w-auto px-5 py-3 sm:py-3.5 sm:px-6 rounded-xl bg-black/45 hover:bg-black/65 border border-white/30 hover:border-white backdrop-blur-md text-white font-rajdhani font-bold text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer group"
                 >
                   <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white flex items-center justify-center text-[#212121] group-hover:scale-110 transition-transform">
                     <Play className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-[#212121] text-[#212121] ml-0.5" />
@@ -101,9 +99,9 @@ export default function Hero() {
 
             </div>
 
-            {/* Right Column: Handwritten Quote Floating in Sky */}
-            <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-center items-start lg:items-end text-left lg:text-right">
-              <div className="font-script text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] -rotate-3 select-none">
+            {/* Right Column: Handwritten Quote Floating over Scenic Sky / Valley */}
+            <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-center items-end text-right mt-3 sm:mt-8 lg:mt-0 pr-1 sm:pr-0">
+              <div className="font-script text-xl sm:text-3xl md:text-4xl lg:text-5xl text-white/95 leading-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] -rotate-3 select-none">
                 <div>Live by Compass</div>
                 <div className="lg:mr-6">Not by Time.</div>
               </div>
@@ -113,7 +111,7 @@ export default function Hero() {
         </div>
 
         {/* Bottom Pinned Controls: Scroll to Ride & GPS Reticle */}
-        <div className="relative z-10 w-full px-4 sm:px-8 xl:px-12 2xl:px-16 pt-2 flex items-end justify-between shrink-0">
+        <div className="relative z-10 w-full px-5 sm:px-8 xl:px-12 2xl:px-16 pt-1 pb-1 sm:pt-2 flex items-center justify-between shrink-0">
           
           {/* Bottom Left: Mouse Scroll to Ride */}
           <div

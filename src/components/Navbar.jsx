@@ -74,7 +74,11 @@ export default function Navbar() {
           <div className="flex items-center justify-between gap-4">
             
             {/* Left: LBC MOTO Logo with Emblem */}
-            <a href="/" className="flex items-center shrink-0 group">
+            <a
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="flex items-center shrink-0 group"
+            >
               <div className="flex items-center gap-2">
                 <img
                   src={logoImg}
@@ -108,7 +112,8 @@ export default function Navbar() {
                     onMouseEnter={() => (hasSubs ? handleMouseEnter(item.id) : handleMouseEnter(null))}
                   >
                     <a
-                      href={item.href}
+                      href="#"
+                      onClick={(e) => e.preventDefault()}
                       className={`flex items-center gap-1 font-rajdhani font-medium text-sm xl:text-[15px] tracking-wide transition-colors duration-150 cursor-pointer ${
                         isActive
                           ? 'text-[#FECD08]'
@@ -145,17 +150,19 @@ export default function Navbar() {
               </div>
 
               {/* User / Account Icon */}
-              <a
-                href="#account"
+              <button
+                type="button"
+                onClick={(e) => e.preventDefault()}
                 aria-label="Account"
                 className="w-9 h-9 rounded-full flex items-center justify-center text-white/90 hover:text-[#FECD08] transition-colors cursor-pointer"
               >
                 <User className="w-5 h-5 stroke-[2]" />
-              </a>
+              </button>
 
               {/* Shopping Cart with Orange/Yellow Badge (Count: 0) */}
-              <a
-                href="#cart"
+              <button
+                type="button"
+                onClick={(e) => e.preventDefault()}
                 aria-label="Cart"
                 className="relative w-9 h-9 rounded-full flex items-center justify-center text-white/90 hover:text-[#FECD08] transition-colors cursor-pointer"
               >
@@ -163,7 +170,7 @@ export default function Navbar() {
                 <span className="absolute top-0.5 -right-0.5 w-4 h-4 rounded-full bg-[#FECD08] text-[#212121] text-[10px] font-bold font-rajdhani flex items-center justify-center shadow">
                   {cartCount}
                 </span>
-              </a>
+              </button>
 
               {/* Mobile Menu Hamburger */}
               <button
@@ -204,7 +211,8 @@ export default function Navbar() {
                 </div>
 
                 <a
-                  href={activeCategoryData.viewAllHref || activeCategoryData.href}
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
                   className="font-rajdhani font-bold text-sm tracking-wider uppercase text-[#FECD08] hover:text-white transition-colors flex items-center gap-1.5 group cursor-pointer"
                 >
                   <span>VIEW ALL</span>
@@ -225,7 +233,8 @@ export default function Navbar() {
                 {activeCategoryData.subcategories.map((sub, idx) => (
                   <a
                     key={idx}
-                    href={sub.href}
+                    href="#"
+                    onClick={(e) => e.preventDefault()}
                     className="group block rounded-2xl p-3.5 bg-[#222222] hover:bg-[#282828] transition-all duration-300 hover:shadow-xl hover:shadow-[#FECD08]/10 hover:-translate-y-1"
                   >
                     {/* Image Thumbnail Container */}
@@ -273,7 +282,14 @@ export default function Navbar() {
 
           <div className="fixed inset-y-0 left-0 w-full max-w-sm bg-[#181818] flex flex-col z-10 overflow-hidden shadow-2xl animate-in slide-in-from-left duration-300">
             <div className="p-5 flex items-center justify-between bg-[#141414]">
-              <a href="/" className="flex items-center gap-2.5">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault()
+                  setMobileMenuOpen(false)
+                }}
+                className="flex items-center gap-2.5"
+              >
                 <img
                   src={logoImg}
                   alt="LBC MOTO"
@@ -320,8 +336,11 @@ export default function Navbar() {
                             {item.subcategories.map((sub, sIdx) => (
                               <a
                                 key={sIdx}
-                                href={sub.href}
-                                onClick={() => setMobileMenuOpen(false)}
+                                href="#"
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  setMobileMenuOpen(false)
+                                }}
                                 className="block py-1.5 text-sm font-sora text-white/70 hover:text-[#FECD08] transition-colors"
                               >
                                 <span className="font-medium text-white/90 block">
@@ -337,8 +356,11 @@ export default function Navbar() {
                       </div>
                     ) : (
                       <a
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          setMobileMenuOpen(false)
+                        }}
                         className="block py-3 font-rajdhani font-bold text-lg uppercase tracking-wider text-white hover:text-[#FECD08] transition-colors"
                       >
                         {item.title}
