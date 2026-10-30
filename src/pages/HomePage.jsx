@@ -2,10 +2,11 @@ import Hero from '../components/Hero'
 import CategoryStorySection from '../components/CategoryStorySection'
 import TechFeatureBentoSection from '../components/TechFeatureBentoSection'
 import Footer from '../components/Footer'
+import FloatingSocialReviews from '../components/FloatingSocialReviews'
 
 export default function HomePage() {
   return (
-    <div className="w-full flex flex-col min-h-screen">
+    <div className="w-full flex flex-col min-h-screen relative">
       {/* 1. Cinematic Fullscreen Hero */}
       <Hero />
 
@@ -17,6 +18,9 @@ export default function HomePage() {
 
       {/* 4. Global Brand Footer */}
       <Footer />
+
+      {/* 5. Fixed Floating Google Review & Instagram Widget */}
+      <FloatingSocialReviews />
     </div>
   )
 }
