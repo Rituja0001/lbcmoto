@@ -226,8 +226,8 @@ export default function FeaturedProductsSection() {
 
         {/* Product Cards Container: 2-Row Grid OR Interactive Slider */}
         {viewMode === 'grid' ? (
-          /* 1. 2-Row Grid of 10 Products (5 columns x 2 rows on desktop) */
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          /* 1. Mobile-Optimized 2-Column Grid (5 columns on desktop) */
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6">
             {FEATURED_PRODUCTS.map((product) => (
               <ProductCard
                 key={product.id}
@@ -242,13 +242,13 @@ export default function FeaturedProductsSection() {
           <div className="relative">
             <div
               ref={sliderRef}
-              className="flex gap-6 overflow-x-auto scroll-smooth pb-4 no-scrollbar snap-x snap-mandatory"
+              className="flex gap-3 sm:gap-6 overflow-x-auto scroll-smooth pb-4 no-scrollbar snap-x snap-mandatory"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {FEATURED_PRODUCTS.map((product) => (
                 <div
                   key={product.id}
-                  className="w-[280px] sm:w-[300px] shrink-0 snap-start"
+                  className="w-[175px] sm:w-[280px] shrink-0 snap-start"
                 >
                   <ProductCard
                     product={product}
@@ -267,9 +267,9 @@ export default function FeaturedProductsSection() {
 
 function ProductCard({ product, isAdded, onAddToCart }) {
   return (
-    <div className="group relative flex flex-col justify-between bg-[#1C1C1C] rounded-2xl p-4 border border-zinc-800/90 shadow-xl hover:border-[#FECD08]/60 hover:shadow-[0_16px_36px_rgba(254,205,8,0.12)] hover:-translate-y-1.5 transition-all duration-300 h-full">
+    <div className="group relative flex flex-col justify-between bg-[#1C1C1C] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 border border-zinc-800/90 shadow-xl hover:border-[#FECD08]/60 hover:shadow-[0_16px_36px_rgba(254,205,8,0.12)] hover:-translate-y-1.5 transition-all duration-300 h-full">
       {/* Product Image Box */}
-      <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-black/60 mb-4 border border-zinc-800/80">
+      <div className="relative w-full aspect-[4/3] rounded-lg sm:rounded-xl overflow-hidden bg-black/60 mb-2.5 sm:mb-4 border border-zinc-800/80">
         <img
           src={product.image}
           alt={product.name}
@@ -277,10 +277,10 @@ function ProductCard({ product, isAdded, onAddToCart }) {
           className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-500"
         />
 
-        {/* Top Product Badge */}
+        {/* Top Product Badge (Bestseller, New, Radar Tech) */}
         {product.badge && (
           <span
-            className={`absolute top-2.5 left-2.5 font-rajdhani text-xs tracking-wider px-2.5 py-1 rounded shadow-lg uppercase ${product.badgeBg}`}
+            className={`absolute top-2 left-2 font-rajdhani text-[9px] sm:text-xs tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-lg uppercase ${product.badgeBg}`}
           >
             {product.badge}
           </span>
@@ -290,29 +290,29 @@ function ProductCard({ product, isAdded, onAddToCart }) {
       {/* Product Information */}
       <div className="flex flex-col flex-grow justify-between">
         <div>
-          <h3 className="font-rajdhani font-bold text-base sm:text-lg text-white group-hover:text-[#FECD08] transition-colors line-clamp-2 leading-snug min-h-[3rem]">
+          <h3 className="font-rajdhani font-bold text-xs sm:text-base md:text-lg text-white group-hover:text-[#FECD08] transition-colors line-clamp-2 leading-snug min-h-[2.4rem] sm:min-h-[3rem]">
             {product.name}
           </h3>
 
           {/* Star Rating & Review Count */}
-          <div className="flex items-center gap-2 mt-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2 mt-1.5 sm:mt-2.5">
             <div className="flex items-center text-[#FECD08]">
               {[...Array(product.rating)].map((_, i) => (
                 <Star
                   key={i}
-                  className="w-4 h-4 fill-[#FECD08] text-[#FECD08]"
+                  className="w-3 h-3 sm:w-4 sm:h-4 fill-[#FECD08] text-[#FECD08]"
                 />
               ))}
             </div>
-            <span className="font-sora text-xs sm:text-sm font-semibold text-zinc-400">
+            <span className="font-sora text-[10px] sm:text-xs font-semibold text-zinc-400">
               ({product.reviewsCount})
             </span>
           </div>
         </div>
 
-        {/* Price & Add to Cart Action */}
-        <div className="flex items-center justify-between mt-5 pt-3.5 border-t border-zinc-800">
-          <div className="font-rajdhani font-black text-2xl sm:text-[26px] text-[#FECD08] leading-none">
+        {/* Calm White Price & Add to Cart Action */}
+        <div className="flex items-center justify-between mt-3 sm:mt-5 pt-2.5 sm:pt-3.5 border-t border-zinc-800">
+          <div className="font-rajdhani font-black text-base sm:text-2xl text-white tracking-tight leading-none">
             ₹ {product.price.toLocaleString('en-IN')}
           </div>
 
@@ -320,7 +320,7 @@ function ProductCard({ product, isAdded, onAddToCart }) {
             type="button"
             onClick={() => onAddToCart(product.id)}
             aria-label={`Add ${product.name} to cart`}
-            className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md ${
+            className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md ${
               isAdded
                 ? 'bg-emerald-500 text-slate-950 font-bold'
                 : 'bg-[#FECD08] hover:bg-white text-slate-950'
@@ -328,9 +328,9 @@ function ProductCard({ product, isAdded, onAddToCart }) {
             title={isAdded ? 'Added to Cart' : 'Add to Cart'}
           >
             {isAdded ? (
-              <Check className="w-5 h-5 stroke-[3]" />
+              <Check className="w-4 h-4 sm:w-5 sm:h-5 stroke-[3]" />
             ) : (
-              <ShoppingCart className="w-5 h-5" />
+              <ShoppingCart className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
             )}
           </button>
         </div>

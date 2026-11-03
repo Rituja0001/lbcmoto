@@ -310,6 +310,43 @@ export default function Navbar() {
               </button>
             </div>
 
+            {/* Mobile In-Drawer Search Bar */}
+            <div className="p-4 bg-[#141414] border-b border-white/10">
+              <div className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-white/10 border border-white/20 focus-within:border-[#FECD08] transition-colors">
+                <Search className="w-4 h-4 text-[#FECD08] shrink-0" />
+                <input
+                  type="text"
+                  placeholder="Search GPS, intercoms, aux lights..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="bg-transparent text-xs text-white placeholder-white/50 focus:outline-none w-full font-sora"
+                />
+              </div>
+
+              {/* Quick Category Chips for Mobile Shoppers */}
+              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-2.5">
+                {[
+                  { label: 'Navigation', href: '#categories-section' },
+                  { label: 'Intercoms', href: '#categories-section' },
+                  { label: 'Aux Lights', href: '#categories-section' },
+                  { label: 'Brands', href: '#featured-products' }
+                ].map((chip, cIdx) => (
+                  <button
+                    key={cIdx}
+                    type="button"
+                    onClick={() => {
+                      setMobileMenuOpen(false)
+                      const el = document.querySelector(chip.href)
+                      if (el) el.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                    className="shrink-0 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-[#FECD08] text-[10px] font-rajdhani font-bold uppercase text-white/90 hover:text-black border border-white/10 transition-colors"
+                  >
+                    {chip.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div className="flex-1 overflow-y-auto p-4 space-y-1">
               {navigationData.map((item) => {
                 const hasSubs = SHOW_SUB_NAV && item.subcategories && item.subcategories.length > 0
