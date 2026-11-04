@@ -25,7 +25,7 @@ export default function Hero() {
   }, [])
 
   const scrollToNext = () => {
-    const el = document.getElementById('categories-section')
+    const el = document.getElementById('navigation-flyer') || document.getElementById('categories-section')
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' })
     }

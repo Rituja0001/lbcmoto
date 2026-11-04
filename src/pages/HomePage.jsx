@@ -1,4 +1,5 @@
 import Hero from '../components/Hero'
+import NavigationBannerSection from '../components/NavigationBannerSection'
 import CategoryStorySection from '../components/CategoryStorySection'
 import BrandScrollerSection from '../components/BrandScrollerSection'
 import TechFeatureBentoSection from '../components/TechFeatureBentoSection'
@@ -15,28 +16,31 @@ export default function HomePage() {
       {/* 1. Cinematic Fullscreen Hero */}
       <Hero />
 
-      {/* 2. 01 / CHOOSE YOUR RIDE: 4 Categories Story Section (Navigation, Intercoms, Aux Lights, Accessories) */}
+      {/* 2. Flagship Navigation Flyer (FIRST thing seen on scroll down: LBC MOTO • CARPURIDE • AOOCCI) */}
+      <NavigationBannerSection />
+
+      {/* 3. 01 / CHOOSE YOUR RIDE: 4 Categories Story Section (Navigation, Intercoms, Aux Lights, Accessories) */}
       <CategoryStorySection />
 
-      {/* 3. Official & Authorised Brands Infinite Marquee Scroller */}
+      {/* 4. Official & Authorised Brands Infinite Marquee Scroller */}
       <BrandScrollerSection />
 
-      {/* 4. 02, 03, 04 / NAVIGATION, COMMUNICATION, AUX LIGHTING (Exact Priority Match) */}
+      {/* 5. Communication (Mesh Intercoms) & Auxiliary Lighting Feature Blocks */}
       <TechFeatureBentoSection />
 
-      {/* 5. 05 / FEATURED PRODUCTS: GEAR UP FOR WHAT'S NEXT (Mobile 2-Col & White Price Tags) */}
+      {/* 6. 05 / FEATURED PRODUCTS: GEAR UP FOR WHAT'S NEXT (Mobile 2-Col & White Price Tags) */}
       <FeaturedProductsSection />
 
-      {/* 6. 06 / BUILD YOUR RIDE & 07 / LBC MOTO COMMUNITY */}
+      {/* 7. 06 / BUILD YOUR RIDE & 07 / LBC MOTO COMMUNITY */}
       <RideBuilderAndCommunitySection />
 
-      {/* 7. 08 / OUR PHILOSOPHY: LIVE BY COMPASS. NOT BY TIME. */}
+      {/* 8. 08 / OUR PHILOSOPHY: LIVE BY COMPASS. NOT BY TIME. */}
       <PhilosophySection />
 
-      {/* 8. Global Brand Footer */}
+      {/* 9. Global Brand Footer */}
       <Footer />
 
-      {/* 9. Fixed Floating Google Review & Instagram Widget (Left Edge Docked, Closed by Default) */}
+      {/* 10. Fixed Floating Google Review & Instagram Widget (Left Edge Docked, Closed by Default) */}
       <FloatingSocialReviews />
 
       {/* WhatsApp float is hidden as requested */}
