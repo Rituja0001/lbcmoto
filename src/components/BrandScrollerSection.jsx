@@ -210,7 +210,7 @@ export default function BrandScrollerSection() {
               key={`${brand.id}-${idx}`}
               type="button"
               onClick={() => handleBrandClick(brand)}
-              className="group/card flex items-center justify-center w-[170px] sm:w-[200px] lg:w-[220px] h-[72px] sm:h-[84px] px-4 sm:px-6 rounded-2xl bg-white/90 hover:bg-white backdrop-blur-xl border border-white/60 hover:border-[#FECD08] shadow-[0_10px_30px_rgba(0,0,0,0.45),inset_0_1px_2px_rgba(255,255,255,0.9)] hover:shadow-[0_14px_40px_rgba(254,205,8,0.3)] transition-all duration-300 shrink-0 cursor-pointer hover:-translate-y-1.5"
+              className="group/card relative flex items-center justify-center w-[170px] sm:w-[200px] lg:w-[220px] h-[72px] sm:h-[84px] px-4 sm:px-6 rounded-2xl bg-white/95 hover:bg-white backdrop-blur-xl border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.45),0_0_0_1.5px_rgba(255,255,255,1)] hover:-translate-y-1 transition-all duration-300 shrink-0 cursor-pointer"
               title={brand.name}
             >
               {/* Crisp Black Brand Logo Wordmark */}
