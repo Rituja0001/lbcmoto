@@ -65,7 +65,7 @@ export default function NavigationBannerSection() {
   return (
     <section
       id="navigation-flyer"
-      className="relative w-full bg-[#080A0F] border-b border-white/10 py-12 sm:py-16 lg:py-20 overflow-hidden"
+      className="relative w-full bg-[#080A0F] border-b border-white/10 pt-10 sm:pt-14 pb-5 sm:pb-7 overflow-hidden"
     >
       {/* Subtle background ambient lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-72 bg-[#FECD08]/5 blur-[120px] pointer-events-none rounded-full" />
@@ -73,7 +73,7 @@ export default function NavigationBannerSection() {
       <div className="relative z-10 w-full max-w-[1536px] mx-auto px-4 sm:px-8 xl:px-12 2xl:px-16">
         
         {/* Section Header: Minimal & Punchy */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-3 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-[#FECD08] animate-pulse" />
@@ -179,8 +179,8 @@ export default function NavigationBannerSection() {
           ))}
         </div>
 
-        {/* Bottom Feature Strip: Trust & Specs */}
-        <div className="mt-8 sm:mt-12 pt-6 border-t border-white/10">
+        {/* Bottom Feature Strip: Trust & Specs (Compact padding) */}
+        <div className="mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-white/10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-sora text-white/80">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#FECD08] shrink-0">

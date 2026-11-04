@@ -43,7 +43,7 @@ export default function CategoryStorySection() {
   ]
 
   return (
-    <section id="categories-section" className="relative w-full py-20 lg:py-10 overflow-hidden select-none bg-[#121212]">
+    <section id="categories-section" className="relative w-full pt-6 sm:pt-8 pb-12 sm:pb-16 lg:pt-8 lg:pb-12 overflow-hidden select-none bg-[#121212]">
       
       {/* Background Image: Cinematic Mountain Road at Dusk (z-0, perfectly layered) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -67,7 +67,7 @@ export default function CategoryStorySection() {
         {/* =========================================================================
             TOP SECTION HEADER (MATCHING REFERENCE IMAGE)
            ========================================================================= */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-12">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 sm:pb-10">
           
           {/* Left Title Area */}
           <div className="space-y-2">
