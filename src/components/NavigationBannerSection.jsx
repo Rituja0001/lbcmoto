@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   ArrowRight,
   Navigation,
@@ -6,8 +7,38 @@ import {
   Route
 } from 'lucide-react'
 import heroBg from '../assets/images/hero-banner.webp'
+import lbcNavImg from '../assets/images/LBC-MOTO.webp'
+import carpurideNavImg from '../assets/images/Carpuride.webp'
+import aoocciNavImg from '../assets/images/Aoocci.webp'
+
+// The 3 Flagship Navigation Brands (Full Cover Images with Tailored Focus)
+const NAV_BRANDS = [
+  {
+    id: 'lbc-moto',
+    name: 'LBC MOTO',
+    image: lbcNavImg,
+    imgObjectPos: 'object-center',
+    accentColor: '#FECD08'
+  },
+  {
+    id: 'carpuride',
+    name: 'CARPURIDE',
+    image: carpurideNavImg,
+    imgObjectPos: 'object-[52%_42%]',
+    accentColor: '#00E5FF'
+  },
+  {
+    id: 'aoocci',
+    name: 'AOOCCI',
+    image: aoocciNavImg,
+    imgObjectPos: 'object-[62%_35%]',
+    accentColor: '#00FF88'
+  }
+]
 
 export default function NavigationBannerSection() {
+  const [hoveredBrand, setHoveredBrand] = useState(null)
+
   const handleShopClick = () => {
     const el = document.getElementById('featured-products')
     if (el) {
@@ -21,153 +52,131 @@ export default function NavigationBannerSection() {
       className="relative w-full bg-[#050608] border-b border-white/10 select-none overflow-hidden"
     >
       {/* =========================================================================
-          DESKTOP VERSION (>= lg): EXACT MATCH TO CLIENT SKETCH
-          Left Dark Landscape + 3 Angled Parallelograms (Yellow, Cyan, Green)
+          DESKTOP VERSION (>= lg): DYNAMIC CROSS SLICES WITH SOLID BLACK DOCKED BASE
+          Clear Unobstructed Image on Top + Solid Black Docked Name & CTA at Bottom
          ========================================================================= */}
-      <div className="hidden lg:block relative w-full h-[360px] xl:h-[400px] 2xl:h-[440px] overflow-hidden bg-black">
+      <div className="hidden lg:flex w-full h-[460px] xl:h-[500px] 2xl:h-[540px] relative overflow-hidden bg-black">
         
-        {/* Left Cinematic Mountain Road Background (Pure scenic road, ZERO mirrors) */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <img
-            src={heroBg}
-            alt="Mountain Road Adventure"
-            className="w-full h-full object-cover object-left opacity-45"
-          />
-          {/* Gradients ensuring left headline text is razor sharp */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent w-[55%]" />
-          <div className="absolute inset-0 bg-black/30" />
+        {/* Left Side: Dark Scenic Mountain Road (~35% width, comfortable spacing, zero mirrors) */}
+        <div className="relative w-[36%] xl:w-[33%] shrink-0 h-full flex flex-col justify-center pl-8 xl:pl-16 pr-6 z-10 overflow-hidden bg-black">
+          {/* Background Scenic Road */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <img
+              src={heroBg}
+              alt="Mountain Road Adventure"
+              className="w-full h-full object-cover object-left opacity-45"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent w-[85%]" />
+            <div className="absolute inset-0 bg-black/40" />
+          </div>
+
+          {/* Left Headline Area */}
+          <div className="relative z-10 my-auto">
+            <h2 className="font-rajdhani font-black text-3xl sm:text-4xl xl:text-5xl 2xl:text-[54px] uppercase tracking-tight text-white leading-[0.98] drop-shadow-lg max-w-sm">
+              NEVER LOSE <br />
+              YOUR WAY
+            </h2>
+
+            <p className="font-sora text-xs xl:text-sm text-zinc-300 mt-4 leading-relaxed max-w-xs xl:max-w-sm drop-shadow">
+              Go further with advanced motorcycle GPS and wireless CarPlay/Android Auto navigation built for real-world riders.
+            </p>
+          </div>
         </div>
 
-        {/* Left Headline Area (~35% width) */}
-        <div className="relative z-10 w-[35%] xl:w-[33%] h-full pl-8 xl:pl-14 2xl:pl-20 pr-4 flex flex-col justify-center">
-          {/* Badge matching client sketch */}
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="font-rajdhani font-bold text-xs xl:text-sm tracking-[0.2em] text-[#FECD08] uppercase">
-              02 / NAVIGATION (PRIORITY 01)
-            </span>
-          </div>
+        {/* Right Side: 3 Cross Slices with Clear Upper Image + Solid Black Docked Bottom */}
+        <div className="relative flex-1 h-full flex overflow-hidden -ml-[100px] z-20">
+          {NAV_BRANDS.map((brand, index) => {
+            const isHovered = hoveredBrand === brand.id
+            const isLast = index === NAV_BRANDS.length - 1
 
-          {/* Headline matching client sketch */}
-          <h2 className="font-rajdhani font-black text-4xl xl:text-5xl 2xl:text-[56px] uppercase tracking-tight text-white leading-[0.95] drop-shadow-lg">
-            NEVER LOSE <br />
-            YOUR WAY
-          </h2>
+            // 100px diagonal slant: dynamic cross slash
+            const clipPathStyle = isLast
+              ? 'polygon(100px 0, 100% 0, 100% 100%, 0 100%)'
+              : 'polygon(100px 0, 100% 0, calc(100% - 100px) 100%, 0 100%)'
 
-          {/* Subtitle matching client sketch */}
-          <p className="font-sora text-xs xl:text-sm text-zinc-300 mt-4 leading-relaxed max-w-sm">
-            Go further with advanced motorcycle GPS and wireless CarPlay/Android Auto navigation built for real-world riders.
-          </p>
-        </div>
+            return (
+              <div
+                key={brand.id}
+                onMouseEnter={() => setHoveredBrand(brand.id)}
+                onMouseLeave={() => setHoveredBrand(null)}
+                onClick={handleShopClick}
+                style={{
+                  clipPath: clipPathStyle,
+                  marginLeft: index === 0 ? '0px' : '-100px',
+                  zIndex: isHovered ? 30 : index + 10
+                }}
+                className={`relative flex-1 h-full flex flex-col justify-between transition-all duration-500 ease-out cursor-pointer group overflow-hidden bg-[#0A0C10] ${
+                  isHovered ? 'flex-[1.2]' : 'flex-1'
+                } shadow-[-20px_0_40px_rgba(0,0,0,0.85)] border-r border-white/5`}
+              >
+                {/* 1. Upper Product Image Area: Clean, Unobstructed Full View */}
+                <div className="relative w-full flex-1 overflow-hidden bg-black">
+                  <img
+                    src={brand.image}
+                    alt={`${brand.name} Motorcycle Navigation Display`}
+                    className={`w-full h-full object-cover ${brand.imgObjectPos} group-hover:scale-108 transition-transform duration-700 brightness-95 group-hover:brightness-105`}
+                  />
 
-        {/* Right Side: 3 SVG Angled Diagonal Panels (Yellow, Cyan, Green) */}
-        <div className="absolute top-0 right-0 h-full w-[67%] xl:w-[69%] z-20 pointer-events-none">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 1000 500"
-            preserveAspectRatio="none"
-          >
-            {/* Panel 1: Yellow (LBC) */}
-            <polygon
-              points="145,0 440,0 295,500 0,500"
-              fill="#FFD000"
-            />
-            {/* Panel 2: Cyan (CARPURIDE) */}
-            <polygon
-              points="435,0 725,0 580,500 290,500"
-              fill="#0099CC"
-            />
-            {/* Panel 3: Green (AOOCCI) */}
-            <polygon
-              points="720,0 1000,0 1000,500 575,500"
-              fill="#00B050"
-            />
-          </svg>
-        </div>
+                  {/* Gentle vignette around image edges */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 pointer-events-none" />
 
-        {/* Interactive Click & Content Layer Over the 3 Angled Panels */}
-        <div className="absolute top-0 right-0 h-full w-[67%] xl:w-[69%] z-30 flex">
-          
-          {/* Panel 1: LBC */}
-          <div
-            onClick={handleShopClick}
-            className="relative flex-1 h-full flex flex-col items-center justify-center cursor-pointer group select-none pr-6 xl:pr-10"
-          >
-            <h3 className="font-rajdhani font-black text-4xl xl:text-5xl 2xl:text-6xl text-black uppercase tracking-wider transition-transform duration-300 group-hover:scale-105">
-              LBC
-            </h3>
-            <button
-              type="button"
-              className="mt-6 px-6 py-2.5 rounded-full bg-black hover:bg-zinc-900 text-white font-rajdhani font-black text-xs xl:text-sm tracking-widest uppercase flex items-center gap-2.5 shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer"
-            >
-              <span>SHOP NOW</span>
-              <div className="w-5 h-5 rounded-full bg-white text-black flex items-center justify-center font-bold">
-                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                  {/* Subtle color tint on hover */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-500 pointer-events-none"
+                    style={{ backgroundColor: brand.accentColor }}
+                  />
+                </div>
+
+                {/* Angled Glowing Cross Divider Edge */}
+                <div
+                  className="absolute inset-y-0 left-0 w-[3px] opacity-70 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-[0_0_15px_rgba(254,205,8,0.5)] z-20"
+                  style={{ backgroundColor: brand.accentColor }}
+                />
+
+                {/* 2. Lower Grounded Black Dock for Name & CTA (Properly Anchored) */}
+                <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/95 to-black/85 border-t border-white/10 pt-4 pb-7 xl:pb-9 px-6 flex flex-col items-center text-center select-none shadow-[0_-15px_30px_rgba(0,0,0,0.9)]">
+                  
+                  {/* Brand Name */}
+                  <h3 className="font-rajdhani font-black text-2xl xl:text-3xl 2xl:text-4xl text-white uppercase tracking-wider drop-shadow-md mb-3 leading-none group-hover:text-[#FECD08] transition-colors">
+                    {brand.name}
+                  </h3>
+
+                  {/* Standard Website Yellow CTA Button */}
+                  <button
+                    type="button"
+                    onClick={handleShopClick}
+                    className="px-6 py-2.5 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-xs xl:text-sm tracking-wider uppercase flex items-center gap-2 shadow-xl shadow-[#FECD08]/25 transition-all duration-200 group-hover:scale-105 cursor-pointer"
+                  >
+                    <span>EXPLORE</span>
+                    <ArrowRight className="w-4 h-4 text-[#212121] group-hover:translate-x-1 transition-transform" />
+                  </button>
+
+                </div>
+
               </div>
-            </button>
-          </div>
-
-          {/* Panel 2: CARPURIDE */}
-          <div
-            onClick={handleShopClick}
-            className="relative flex-1 h-full flex flex-col items-center justify-center cursor-pointer group select-none px-4"
-          >
-            <h3 className="font-rajdhani font-black text-3xl xl:text-4xl 2xl:text-5xl text-black uppercase tracking-wider transition-transform duration-300 group-hover:scale-105">
-              CARPURIDE
-            </h3>
-            <button
-              type="button"
-              className="mt-6 px-6 py-2.5 rounded-full bg-black hover:bg-zinc-900 text-white font-rajdhani font-black text-xs xl:text-sm tracking-widest uppercase flex items-center gap-2.5 shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer"
-            >
-              <span>SHOP NOW</span>
-              <div className="w-5 h-5 rounded-full bg-white text-black flex items-center justify-center font-bold">
-                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-              </div>
-            </button>
-          </div>
-
-          {/* Panel 3: AOOCCI */}
-          <div
-            onClick={handleShopClick}
-            className="relative flex-1 h-full flex flex-col items-center justify-center cursor-pointer group select-none pl-6 xl:pl-8 pr-4"
-          >
-            <h3 className="font-rajdhani font-black text-3xl xl:text-4xl 2xl:text-5xl text-black uppercase tracking-wider transition-transform duration-300 group-hover:scale-105">
-              AOOCCI
-            </h3>
-            <button
-              type="button"
-              className="mt-6 px-6 py-2.5 rounded-full bg-black hover:bg-zinc-900 text-white font-rajdhani font-black text-xs xl:text-sm tracking-widest uppercase flex items-center gap-2.5 shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer"
-            >
-              <span>SHOP NOW</span>
-              <div className="w-5 h-5 rounded-full bg-white text-black flex items-center justify-center font-bold">
-                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-              </div>
-            </button>
-          </div>
-
+            )
+          })}
         </div>
 
       </div>
 
       {/* =========================================================================
-          MOBILE & TABLET VERSION (< lg): 100% RESPONSIVE, ZERO OUT-OF-SYNC
+          MOBILE & TABLET VERSION (< lg): 100% RESPONSIVE DOCKED CARDS
          ========================================================================= */}
       <div className="lg:hidden w-full px-4 sm:px-6 py-8 relative overflow-hidden bg-black">
-        {/* Mobile Background Image (Pure scenic road, ZERO mirrors) */}
+        {/* Mobile Background Image (Scenic mountain road, ZERO mirrors) */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img
             src={heroBg}
             alt="Scenic Mountain Road"
             className="w-full h-full object-cover object-center opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/85 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/95 via-black/85 to-black" />
         </div>
 
         <div className="relative z-10">
-          {/* Mobile Header matching client mock */}
+          {/* Mobile Header (No badge) */}
           <div className="mb-6">
-            <span className="font-rajdhani font-bold text-xs tracking-[0.2em] text-[#FECD08] uppercase block mb-2">
-              02 / NAVIGATION (PRIORITY 01)
-            </span>
             <h2 className="font-rajdhani font-black text-3xl sm:text-4xl uppercase tracking-tight text-white leading-tight">
               NEVER LOSE YOUR WAY
             </h2>
@@ -176,87 +185,48 @@ export default function NavigationBannerSection() {
             </p>
           </div>
 
-          {/* 3 Mobile Cards matching exact colors & typography */}
-          <div className="space-y-3.5">
-            
-            {/* Mobile Card 1: LBC (Yellow) */}
-            <div
-              onClick={handleShopClick}
-              className="w-full rounded-2xl bg-[#FFD000] p-5 flex items-center justify-between gap-4 shadow-xl cursor-pointer active:scale-[0.98] transition-transform"
-            >
-              <div>
-                <span className="text-[10px] font-rajdhani font-black uppercase tracking-wider text-black/70 block mb-0.5">
-                  FLAGSHIP COCKPIT
-                </span>
-                <h3 className="font-rajdhani font-black text-2xl sm:text-3xl text-black uppercase tracking-wider leading-none">
-                  LBC
-                </h3>
-              </div>
-              <button
-                type="button"
-                className="px-4 py-2 rounded-full bg-black text-white font-rajdhani font-black text-xs tracking-wider uppercase flex items-center gap-2 shadow-md shrink-0"
+          {/* 3 Mobile Cards with Black Docked Bottom */}
+          <div className="space-y-4">
+            {NAV_BRANDS.map((brand) => (
+              <div
+                key={brand.id}
+                onClick={handleShopClick}
+                className="relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl cursor-pointer group active:scale-[0.98] transition-transform bg-black flex flex-col"
               >
-                <span>SHOP NOW</span>
-                <div className="w-4 h-4 rounded-full bg-white text-black flex items-center justify-center font-bold">
-                  <ArrowRight className="w-2.5 h-2.5" />
+                {/* Upper Product Image */}
+                <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
+                  <img
+                    src={brand.image}
+                    alt={`${brand.name} Display`}
+                    className="w-full h-full object-cover object-center brightness-95 group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
                 </div>
-              </button>
-            </div>
 
-            {/* Mobile Card 2: CARPURIDE (Cyan) */}
-            <div
-              onClick={handleShopClick}
-              className="w-full rounded-2xl bg-[#0099CC] p-5 flex items-center justify-between gap-4 shadow-xl cursor-pointer active:scale-[0.98] transition-transform"
-            >
-              <div>
-                <span className="text-[10px] font-rajdhani font-black uppercase tracking-wider text-black/70 block mb-0.5">
-                  WIRELESS CARPLAY
-                </span>
-                <h3 className="font-rajdhani font-black text-2xl sm:text-3xl text-black uppercase tracking-wider leading-none">
-                  CARPURIDE
-                </h3>
+                {/* Grounded Black Bottom Dock */}
+                <div className="relative z-10 p-4 sm:p-5 flex items-center justify-between gap-3 bg-gradient-to-t from-black via-black/95 to-black/80 border-t border-white/10">
+                  <h3 className="font-rajdhani font-black text-2xl sm:text-3xl uppercase tracking-wider text-white leading-none drop-shadow">
+                    {brand.name}
+                  </h3>
+
+                  <button
+                    type="button"
+                    onClick={handleShopClick}
+                    className="px-5 py-2.5 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-xl shadow-[#FECD08]/20 transition-all"
+                  >
+                    <span>EXPLORE</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#212121]" />
+                  </button>
+                </div>
               </div>
-              <button
-                type="button"
-                className="px-4 py-2 rounded-full bg-black text-white font-rajdhani font-black text-xs tracking-wider uppercase flex items-center gap-2 shadow-md shrink-0"
-              >
-                <span>SHOP NOW</span>
-                <div className="w-4 h-4 rounded-full bg-white text-black flex items-center justify-center font-bold">
-                  <ArrowRight className="w-2.5 h-2.5" />
-                </div>
-              </button>
-            </div>
-
-            {/* Mobile Card 3: AOOCCI (Green) */}
-            <div
-              onClick={handleShopClick}
-              className="w-full rounded-2xl bg-[#00B050] p-5 flex items-center justify-between gap-4 shadow-xl cursor-pointer active:scale-[0.98] transition-transform"
-            >
-              <div>
-                <span className="text-[10px] font-rajdhani font-black uppercase tracking-wider text-black/70 block mb-0.5">
-                  DUAL 4K HUD
-                </span>
-                <h3 className="font-rajdhani font-black text-2xl sm:text-3xl text-black uppercase tracking-wider leading-none">
-                  AOOCCI
-                </h3>
-              </div>
-              <button
-                type="button"
-                className="px-4 py-2 rounded-full bg-black text-white font-rajdhani font-black text-xs tracking-wider uppercase flex items-center gap-2 shadow-md shrink-0"
-              >
-                <span>SHOP NOW</span>
-                <div className="w-4 h-4 rounded-full bg-white text-black flex items-center justify-center font-bold">
-                  <ArrowRight className="w-2.5 h-2.5" />
-                </div>
-              </button>
-            </div>
-
+            ))}
           </div>
+
         </div>
       </div>
 
       {/* =========================================================================
-          BOTTOM FEATURE STRIP (EXACT MATCH TO CLIENT SKETCH)
+          BOTTOM FEATURE STRIP (FULL-WIDTH TRUST BAR)
           Turn-by-Turn GPS | Offline Maps Ready | IPX7 Weatherproof | Dynamic Route Planning
          ========================================================================= */}
       <div className="relative z-30 w-full px-4 sm:px-8 xl:px-12 2xl:px-16 py-3 border-t border-white/10 bg-black/90 backdrop-blur-md">
