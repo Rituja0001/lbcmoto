@@ -1,60 +1,63 @@
+import { useState } from 'react'
 import {
   ArrowRight,
   Navigation,
-  Smartphone,
+  MapPin,
   ShieldCheck,
-  Video,
-  CheckCircle2,
-  Cpu
+  Route,
+  ExternalLink
 } from 'lucide-react'
 import aoocciNavImg from '../assets/images/AOOCCI-Navigation.webp'
 import carpurideNavImg from '../assets/images/CARPURIDE-Navigation.webp'
 import lbcNavImg from '../assets/images/LBC-MOTO-Navigation.webp'
+import duskBg from '../assets/images/cinematic-mountain-road-dusk.webp'
 
-// The 3 Flagship Navigation Brands requested by client
+// The 3 Flagship Navigation Brands with client-requested colors & website styling
 const NAV_BRANDS = [
   {
     id: 'lbc-moto',
     name: 'LBC MOTO',
-    badge: 'FLAGSHIP COCKPIT',
-    badgeStyle: 'bg-[#FECD08] text-slate-950 font-black',
-    title: 'BM6 & S5 PRO Displays',
-    highlight: 'Integrated TPMS & Dual Blind-Spot Radar',
-    features: ['6.0" Sunlight IPS', 'Realtime Tire Pressure (TPMS)', 'Dual BSD Radar Sensor'],
+    shortName: 'LBC',
+    tagline: 'Signature BM6 & S5 Pro Cockpit Screens',
+    specs: 'TPMS & Blind Spot Radar',
+    // Client sketch: Yellow
+    panelBg: 'bg-[#FECD08]',
+    textColor: 'text-slate-950',
+    accentColor: '#FECD08',
     image: lbcNavImg,
-    btnLabel: 'EXPLORE LBC MOTO',
-    accentBorder: 'hover:border-[#FECD08]/80',
-    accentGlow: 'hover:shadow-[0_10px_35px_rgba(254,205,8,0.18)]'
+    badge: 'FLAGSHIP'
   },
   {
     id: 'carpuride',
     name: 'CARPURIDE',
-    badge: 'OFFICIAL WIRELESS',
-    badgeStyle: 'bg-white text-slate-950 font-black',
-    title: 'W502 & W702 Pro Series',
-    highlight: 'Wireless Apple CarPlay & Android Auto',
-    features: ['Wireless Apple CarPlay', 'Wireless Android Auto Link', 'IP67 Waterproof & Shockproof'],
+    shortName: 'CARPURIDE',
+    tagline: 'W502 & W702 Wireless CarPlay Series',
+    specs: 'Apple CarPlay & Android Auto',
+    // Client sketch: Cyan / Ocean Blue
+    panelBg: 'bg-[#0284C7]',
+    textColor: 'text-white',
+    accentColor: '#0284C7',
     image: carpurideNavImg,
-    btnLabel: 'EXPLORE CARPURIDE',
-    accentBorder: 'hover:border-cyan-400/80',
-    accentGlow: 'hover:shadow-[0_10px_35px_rgba(34,211,238,0.16)]'
+    badge: 'OFFICIAL'
   },
   {
     id: 'aoocci',
     name: 'AOOCCI',
-    badge: 'DUAL 4K HUD',
-    badgeStyle: 'bg-[#FECD08] text-slate-950 font-black',
-    title: 'Dual 4K Recording Dashcam HUD',
-    highlight: 'Front & Rear Sony 4K Cameras',
-    features: ['Front & Rear Sony 4K Video', 'Turn-by-Turn GPS HUD', 'High-Speed Wi-Fi App Transfer'],
+    shortName: 'AOOCCI',
+    tagline: 'Dual 4K Recording Smart HUD Dashcam',
+    specs: 'Front & Rear Sony 4K HUD',
+    // Client sketch: Green
+    panelBg: 'bg-[#10B981]',
+    textColor: 'text-slate-950',
+    accentColor: '#10B981',
     image: aoocciNavImg,
-    btnLabel: 'EXPLORE AOOCCI',
-    accentBorder: 'hover:border-emerald-400/80',
-    accentGlow: 'hover:shadow-[0_10px_35px_rgba(52,211,153,0.16)]'
+    badge: '4K TECH'
   }
 ]
 
 export default function NavigationBannerSection() {
+  const [hoveredBrand, setHoveredBrand] = useState(null)
+
   const handleShopClick = () => {
     const el = document.getElementById('featured-products')
     if (el) {
@@ -65,166 +68,273 @@ export default function NavigationBannerSection() {
   return (
     <section
       id="navigation-flyer"
-      className="relative w-full bg-[#080A0F] border-b border-white/10 pt-10 sm:pt-14 pb-5 sm:pb-7 overflow-hidden"
+      className="relative w-full bg-[#07090D] border-b border-white/10 select-none overflow-hidden"
     >
-      {/* Subtle background ambient lighting */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-72 bg-[#FECD08]/5 blur-[120px] pointer-events-none rounded-full" />
-
-      <div className="relative z-10 w-full max-w-[1536px] mx-auto px-4 sm:px-8 xl:px-12 2xl:px-16">
+      {/* =========================================================================
+          DESKTOP VERSION (>= lg): EXACT CLIENT ANGLED/DIAGONAL 3-BRAND FLYER
+         ========================================================================= */}
+      <div className="hidden lg:flex relative w-full min-h-[460px] xl:min-h-[500px]">
         
-        {/* Section Header: Minimal & Punchy */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-3 backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-[#FECD08] animate-pulse" />
-              <span className="font-rajdhani font-black text-xs sm:text-sm tracking-[0.2em] text-[#FECD08] uppercase">
-                MOTORCYCLE SMART SCREENS & NAVIGATION
-              </span>
-            </div>
-            
-            <h2 className="font-rajdhani font-black text-3xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-none">
-              NEVER LOSE <span className="text-[#FECD08]">YOUR WAY</span>
-            </h2>
-
-            <p className="font-sora text-sm sm:text-base text-zinc-400 mt-2 max-w-2xl">
-              Official destination for <strong className="text-white font-semibold">LBC MOTO</strong>,{' '}
-              <strong className="text-white font-semibold">CARPURIDE</strong>, and{' '}
-              <strong className="text-white font-semibold">AOOCCI</strong> motorcycle cockpit displays.
-            </p>
+        {/* Left Side: Dark Hero Headline with Cinematic Mountain Backdrop (~38% width) */}
+        <div className="relative w-[38%] xl:w-[36%] shrink-0 flex flex-col justify-between p-8 xl:p-12 z-10 overflow-hidden bg-black">
+          {/* Background image & dark gradient */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <img
+              src={duskBg}
+              alt="Motorcycle Navigation Background"
+              className="w-full h-full object-cover object-left opacity-35"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/85 to-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#07090D] via-transparent to-black/70" />
           </div>
 
-          <button
-            type="button"
-            onClick={handleShopClick}
-            className="self-start md:self-end px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 hover:border-[#FECD08]/50 text-white hover:text-[#FECD08] font-rajdhani font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-200 flex items-center gap-2 cursor-pointer shrink-0"
-          >
-            <span>VIEW ALL NAVIGATION PRODUCTS</span>
-            <ArrowRight className="w-4 h-4 text-[#FECD08]" />
-          </button>
+          {/* Left Content Area */}
+          <div className="relative z-10 my-auto pr-4">
+            {/* Header Badge matching client mock */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md mb-4">
+              <span className="w-2 h-2 rounded-full bg-[#FECD08] animate-pulse" />
+              <span className="font-rajdhani font-black text-xs tracking-[0.2em] text-[#FECD08] uppercase">
+                02 / NAVIGATION (PRIORITY 01)
+              </span>
+            </div>
+
+            {/* Headline matching client mock */}
+            <h2 className="font-rajdhani font-black text-4xl xl:text-5xl 2xl:text-6xl uppercase tracking-tight text-white leading-[0.95] drop-shadow-lg">
+              NEVER LOSE <br />
+              YOUR WAY
+            </h2>
+
+            {/* Subtitle matching client mock */}
+            <p className="font-sora text-sm xl:text-base text-zinc-300 mt-4 leading-relaxed max-w-sm">
+              Go further with advanced motorcycle GPS and wireless CarPlay/Android Auto navigation built for real-world riders.
+            </p>
+
+            {/* Micro Quick Link */}
+            <div className="mt-6 flex items-center gap-3">
+              <button
+                type="button"
+                onClick={handleShopClick}
+                className="inline-flex items-center gap-2 text-xs font-rajdhani font-bold uppercase tracking-wider text-[#FECD08] hover:text-white transition-colors cursor-pointer group/link"
+              >
+                <span>EXPLORE ALL BRANDS</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* =========================================================================
-            THE 3 VISUAL BRAND CARDS (SIDE-BY-SIDE / MOBILE-RESPONSIVE)
-            Visually distinct, high image contrast, clear brand association
-           ========================================================================= */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {/* Right Side: 3 Angled / Slanted Brand Slices (~62% width) */}
+        <div className="relative flex-1 flex overflow-hidden -ml-12 xl:-ml-16 z-20">
+          {NAV_BRANDS.map((brand, index) => {
+            const isHovered = hoveredBrand === brand.id
+
+            return (
+              <div
+                key={brand.id}
+                onMouseEnter={() => setHoveredBrand(brand.id)}
+                onMouseLeave={() => setHoveredBrand(null)}
+                onClick={handleShopClick}
+                style={{
+                  clipPath: 'polygon(18% 0, 100% 0, 82% 100%, 0 100%)',
+                  marginLeft: index === 0 ? '-3%' : '-7%',
+                  zIndex: isHovered ? 30 : index + 10
+                }}
+                className={`relative flex-1 transition-all duration-500 ease-out cursor-pointer group overflow-hidden ${
+                  brand.panelBg
+                } ${isHovered ? 'flex-[1.25]' : 'flex-1'} shadow-[-15px_0_35px_rgba(0,0,0,0.5)]`}
+              >
+                {/* Subtle Hardware Product Image Overlay inside the slice */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-25 group-hover:opacity-40 transition-opacity duration-500">
+                  <img
+                    src={brand.image}
+                    alt={`${brand.name} Navigation`}
+                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                </div>
+
+                {/* Angled highlight shine edge */}
+                <div className="absolute inset-y-0 left-0 w-[2px] bg-white/30 pointer-events-none" />
+
+                {/* Brand Content (Counter-balanced so text remains crisp and centered) */}
+                <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-6 xl:p-8 text-center">
+                  
+                  {/* Top Badge */}
+                  <span className="text-[10px] xl:text-xs font-rajdhani font-black tracking-widest uppercase px-2.5 py-0.5 rounded-full bg-black/25 text-white/95 mb-3 backdrop-blur-sm">
+                    {brand.badge}
+                  </span>
+
+                  {/* Big Brand Typography matching client sketch */}
+                  <h3
+                    className={`font-rajdhani font-black text-3xl xl:text-4xl 2xl:text-5xl uppercase tracking-wider ${
+                      brand.textColor
+                    } drop-shadow-sm group-hover:scale-105 transition-transform duration-300 leading-none`}
+                  >
+                    {brand.name}
+                  </h3>
+
+                  {/* Subtitle / Model Tag */}
+                  <p
+                    className={`font-sora text-xs xl:text-sm font-semibold mt-2 max-w-[200px] line-clamp-1 opacity-90 ${
+                      brand.textColor
+                    }`}
+                  >
+                    {brand.specs}
+                  </p>
+
+                  {/* Pill SHOP NOW Button matching client sketch */}
+                  <div className="mt-6">
+                    <button
+                      type="button"
+                      className="px-6 py-2.5 rounded-full bg-black hover:bg-slate-900 text-white font-rajdhani font-black text-xs xl:text-sm tracking-widest uppercase flex items-center gap-2.5 transition-all duration-300 shadow-xl group-hover:scale-105 group-hover:shadow-2xl cursor-pointer"
+                    >
+                      <span>SHOP NOW</span>
+                      <div className="w-5 h-5 rounded-full bg-white text-black flex items-center justify-center">
+                        <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                      </div>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+      </div>
+
+      {/* =========================================================================
+          MOBILE & TABLET VERSION (< lg): 100% RESPONSIVE, STACKED & TOUCH-OPTIMIZED
+         ========================================================================= */}
+      <div className="lg:hidden w-full px-4 sm:px-6 py-10">
+        
+        {/* Mobile Header */}
+        <div className="mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md mb-3">
+            <span className="w-2 h-2 rounded-full bg-[#FECD08] animate-pulse" />
+            <span className="font-rajdhani font-black text-[11px] sm:text-xs tracking-[0.2em] text-[#FECD08] uppercase">
+              02 / NAVIGATION (PRIORITY 01)
+            </span>
+          </div>
+
+          <h2 className="font-rajdhani font-black text-3xl sm:text-4xl uppercase tracking-tight text-white leading-tight">
+            NEVER LOSE YOUR WAY
+          </h2>
+
+          <p className="font-sora text-xs sm:text-sm text-zinc-400 mt-2 leading-relaxed">
+            Go further with advanced motorcycle GPS and wireless CarPlay/Android Auto navigation built for real-world riders.
+          </p>
+        </div>
+
+        {/* 3 Responsive Mobile Cards (Stacked, zero cramming, high touch usability) */}
+        <div className="space-y-4">
           {NAV_BRANDS.map((brand) => (
             <div
               key={brand.id}
-              className={`group relative rounded-2xl overflow-hidden bg-[#10141D] border border-white/10 ${brand.accentBorder} ${brand.accentGlow} transition-all duration-300 flex flex-col`}
+              onClick={handleShopClick}
+              className={`relative rounded-2xl overflow-hidden p-5 transition-all duration-300 cursor-pointer shadow-lg active:scale-[0.98] ${
+                brand.panelBg
+              }`}
             >
-              {/* Product Hardware Image Container: Bright & Prominent */}
-              <div className="relative w-full aspect-[16/11] overflow-hidden bg-black/80">
+              {/* Product Background preview */}
+              <div className="absolute right-0 top-0 bottom-0 w-1/2 pointer-events-none opacity-20 overflow-hidden">
                 <img
                   src={brand.image}
-                  alt={`${brand.name} Motorcycle Navigation Display`}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  alt={`${brand.name} Display`}
+                  className="w-full h-full object-cover object-center"
                 />
-
-                {/* Subtle bottom shadow on image so text below has high contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#10141D] via-transparent to-transparent pointer-events-none" />
-
-                {/* Floating Brand Name Pill (Top Left) */}
-                <div className="absolute top-3.5 left-3.5 z-10 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 shadow-xl">
-                  <span className="w-2 h-2 rounded-full bg-[#FECD08]" />
-                  <span className="font-rajdhani font-black text-sm tracking-wider text-white uppercase">
-                    {brand.name}
-                  </span>
-                </div>
-
-                {/* Floating Badge (Top Right) */}
-                <div
-                  className={`absolute top-3.5 right-3.5 z-10 px-2.5 py-1 rounded-md font-rajdhani text-[10px] tracking-widest uppercase shadow-xl ${brand.badgeStyle}`}
-                >
-                  {brand.badge}
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
               </div>
 
-              {/* Card Body: Clean, readable, low cognitive load */}
-              <div className="p-5 sm:p-6 flex-1 flex flex-col">
-                {/* Product Title */}
-                <h3 className="font-rajdhani font-black text-xl sm:text-2xl text-white uppercase tracking-wide group-hover:text-[#FECD08] transition-colors leading-tight mb-1">
-                  {brand.title}
-                </h3>
-
-                {/* Highlight line */}
-                <p className="font-sora text-xs sm:text-sm text-zinc-300 font-medium mb-3">
-                  {brand.highlight}
-                </p>
-
-                {/* Feature Chips */}
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {brand.features.map((feat, idx) => (
-                    <span
-                      key={idx}
-                      className="inline-flex items-center gap-1.5 text-[11px] font-sora font-medium px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-zinc-300"
-                    >
-                      <CheckCircle2 className="w-3 h-3 text-[#FECD08] shrink-0" />
-                      <span>{feat}</span>
-                    </span>
-                  ))}
+              {/* Mobile Card Content */}
+              <div className="relative z-10 flex items-center justify-between gap-4">
+                <div>
+                  <span className="text-[10px] font-rajdhani font-black tracking-widest uppercase px-2 py-0.5 rounded bg-black/25 text-white inline-block mb-1">
+                    {brand.badge}
+                  </span>
+                  <h3
+                    className={`font-rajdhani font-black text-2xl sm:text-3xl uppercase tracking-wider leading-none ${
+                      brand.textColor
+                    }`}
+                  >
+                    {brand.name}
+                  </h3>
+                  <p
+                    className={`font-sora text-xs font-medium mt-1 line-clamp-1 ${
+                      brand.textColor
+                    } opacity-90`}
+                  >
+                    {brand.tagline}
+                  </p>
                 </div>
 
-                {/* Card CTA Button */}
+                {/* Mobile Shop Now Pill Button */}
                 <button
                   type="button"
-                  onClick={handleShopClick}
-                  className="w-full mt-auto py-3 px-4 rounded-xl bg-white/5 group-hover:bg-[#FECD08] text-white group-hover:text-slate-950 font-rajdhani font-black text-sm tracking-wider uppercase transition-all duration-200 border border-white/15 group-hover:border-[#FECD08] flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                  className="shrink-0 px-4 py-2 rounded-full bg-black text-white font-rajdhani font-black text-xs tracking-wider uppercase flex items-center gap-1.5 shadow-md"
                 >
-                  <span>{brand.btnLabel}</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <span>SHOP</span>
+                  <div className="w-4 h-4 rounded-full bg-white text-black flex items-center justify-center">
+                    <ArrowRight className="w-2.5 h-2.5" />
+                  </div>
                 </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom Feature Strip: Trust & Specs (Compact padding) */}
-        <div className="mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-white/10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-sora text-white/80">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#FECD08] shrink-0">
-                <Navigation className="w-4 h-4" />
-              </div>
-              <div>
-                <div className="font-semibold text-white">Turn-by-Turn GPS</div>
-                <div className="text-[10px] text-zinc-400">Offline & Online Maps</div>
-              </div>
-            </div>
+      </div>
 
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#FECD08] shrink-0">
-                <Smartphone className="w-4 h-4" />
-              </div>
-              <div>
-                <div className="font-semibold text-white">CarPlay & Android Auto</div>
-                <div className="text-[10px] text-zinc-400">Wireless Auto Connect</div>
-              </div>
+      {/* =========================================================================
+          BOTTOM FEATURE STRIP (MATCHING CLIENT SKETCH)
+          Turn-by-Turn GPS | Offline Maps Ready | IPX7 Weatherproof | Dynamic Route Planning
+         ========================================================================= */}
+      <div className="relative z-30 w-full px-4 sm:px-8 xl:px-12 2xl:px-16 py-3.5 border-t border-white/10 bg-black/90 backdrop-blur-md">
+        <div className="max-w-[1536px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-xs font-sora text-white/80">
+          
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#FECD08] shrink-0">
+              <Navigation className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
-
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#FECD08] shrink-0">
-                <ShieldCheck className="w-4 h-4" />
-              </div>
-              <div>
-                <div className="font-semibold text-white">IP67 Weatherproof</div>
-                <div className="text-[10px] text-zinc-400">Vibration-Damped Mounts</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#FECD08] shrink-0">
-                <Cpu className="w-4 h-4" />
-              </div>
-              <div>
-                <div className="font-semibold text-white">Dual 4K & Radar Telemetry</div>
-                <div className="text-[10px] text-zinc-400">Realtime Cockpit HUD</div>
-              </div>
+            <div>
+              <div className="font-semibold text-white text-xs">Turn-by-Turn GPS</div>
+              <div className="text-[10px] text-zinc-400 hidden sm:block">Realtime Cockpit HUD</div>
             </div>
           </div>
-        </div>
 
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#FECD08] shrink-0">
+              <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            </div>
+            <div>
+              <div className="font-semibold text-white text-xs">Offline Maps Ready</div>
+              <div className="text-[10px] text-zinc-400 hidden sm:block">CarPlay & Android Auto</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#FECD08] shrink-0">
+              <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            </div>
+            <div>
+              <div className="font-semibold text-white text-xs">IPX7 Weatherproof</div>
+              <div className="text-[10px] text-zinc-400 hidden sm:block">Vibration-Damped Mounts</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#FECD08] shrink-0">
+              <Route className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            </div>
+            <div>
+              <div className="font-semibold text-white text-xs">Dynamic Route Planning</div>
+              <div className="text-[10px] text-zinc-400 hidden sm:block">Dual 4K & Radar Telemetry</div>
+            </div>
+          </div>
+
+        </div>
       </div>
+
     </section>
   )
 }
