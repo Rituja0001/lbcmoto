@@ -154,7 +154,7 @@ const BRANDS = [
   }
 ]
 
-export default function BrandScrollerSection() {
+export default function BrandScrollerSection({ showHeader = true, py }) {
   const [selectedBrand, setSelectedBrand] = useState(null)
 
   const handleBrandClick = (brand) => {
@@ -168,31 +168,35 @@ export default function BrandScrollerSection() {
   // Double the array for seamless infinite marquee loop (50% translation)
   const marqueeBrands = [...BRANDS, ...BRANDS]
 
+  const pyClasses = py || (showHeader ? 'py-10 sm:py-14' : 'py-6 sm:py-8')
+
   return (
-    <section className="w-full bg-[#0C0E12] border-y border-white/10 py-10 sm:py-14 overflow-hidden select-none relative shadow-[inset_0_20px_40px_rgba(0,0,0,0.6),inset_0_-20px_40px_rgba(0,0,0,0.6)]">
+    <section className={`w-full bg-[#0C0E12] border-y border-white/10 ${pyClasses} overflow-hidden select-none relative shadow-[inset_0_20px_40px_rgba(0,0,0,0.6),inset_0_-20px_40px_rgba(0,0,0,0.6)]`}>
       {/* Dynamic Background Ambience */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-80 h-80 bg-[#FECD08]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-80 bg-[#FECD08]/5 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Section Header (Clean & Minimalist) */}
-      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 xl:px-12 mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-        <div>
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#FECD08] shadow-[0_0_8px_#FECD08]" />
-            <span className="font-rajdhani font-black text-xs sm:text-sm tracking-[0.2em] text-[#FECD08] uppercase">
-              OFFICIAL PARTNERS & AUTHORISED BRANDS
-            </span>
+      {showHeader && (
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-8 xl:px-12 mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <div className="flex items-center gap-2 mb-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#FECD08] shadow-[0_0_8px_#FECD08]" />
+              <span className="font-rajdhani font-black text-xs sm:text-sm tracking-[0.2em] text-[#FECD08] uppercase">
+                OFFICIAL PARTNERS & AUTHORISED BRANDS
+              </span>
+            </div>
+            <h2 className="font-rajdhani font-black text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight text-white leading-tight">
+              ENGINEERED WITH THE <span className="text-[#FECD08]">BEST IN MOTO</span>
+            </h2>
           </div>
-          <h2 className="font-rajdhani font-black text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight text-white leading-tight">
-            ENGINEERED WITH THE <span className="text-[#FECD08]">BEST IN MOTO</span>
-          </h2>
-        </div>
 
-        <div className="flex items-center gap-2 text-xs font-sora text-zinc-400">
-          <Sparkles className="w-3.5 h-3.5 text-[#FECD08]" />
-          <span>Tap any brand to view gear</span>
+          <div className="flex items-center gap-2 text-xs font-sora text-zinc-400">
+            <Sparkles className="w-3.5 h-3.5 text-[#FECD08]" />
+            <span>Tap any brand to view gear</span>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Infinite Seamless Scrolling Track with Rich Deep End Shadows */}
       <div className="relative w-full overflow-hidden py-3">

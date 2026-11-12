@@ -81,9 +81,29 @@ export default function Footer() {
               />
             </a>
             
-            <p className="font-sora text-xs sm:text-[13px] text-zinc-400 leading-relaxed max-w-xs mb-6 font-normal">
+            <p className="font-sora text-xs sm:text-[13px] text-zinc-400 leading-relaxed max-w-xs mb-4 font-normal">
               Premium motorcycle gear, navigation systems and accessories for those who live by compass, not by time.
             </p>
+
+            {/* Direct Official Contact Quick Access */}
+            <div className="space-y-1.5 mb-5 text-xs text-zinc-400 font-sora">
+              <a
+                href="mailto:support@lbcmotoshop.in"
+                className="flex items-center gap-2 hover:text-[#FECD08] transition-colors group"
+              >
+                <span className="text-zinc-500 text-[11px] uppercase tracking-wider font-rajdhani font-bold">Email:</span>
+                <span className="text-zinc-300 group-hover:text-[#FECD08] transition-colors">support@lbcmotoshop.in</span>
+              </a>
+              <a
+                href="https://wa.me/919113267548"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-[#FECD08] transition-colors group"
+              >
+                <span className="text-zinc-500 text-[11px] uppercase tracking-wider font-rajdhani font-bold">WhatsApp:</span>
+                <span className="text-zinc-300 group-hover:text-[#FECD08] transition-colors font-medium">+91-9113267548</span>
+              </a>
+            </div>
 
             {/* Social Icons Row (Instagram, Facebook, YouTube, Web) */}
             <div className="flex items-center gap-3">
@@ -142,33 +162,85 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 font-sora text-xs text-zinc-400">
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
-                  Navigation
+                <a
+                  href="#collection"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#collection'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="hover:text-[#FECD08] transition-colors cursor-pointer flex items-center justify-between"
+                >
+                  <span>Navigation & Radar</span>
+                  <span className="text-[10px] font-rajdhani font-black px-1.5 py-0.2 rounded bg-[#FECD08] text-black">
+                    COLLECTION
+                  </span>
                 </a>
               </li>
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
+                <a
+                  href="#categories"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#categories'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="hover:text-[#FECD08] transition-colors cursor-pointer"
+                >
                   Communication
                 </a>
               </li>
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
+                <a
+                  href="#categories"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#categories'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="hover:text-[#FECD08] transition-colors cursor-pointer"
+                >
                   Lighting
                 </a>
               </li>
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
+                <a
+                  href="#categories"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#categories'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="hover:text-[#FECD08] transition-colors cursor-pointer"
+                >
                   Accessories
                 </a>
               </li>
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
+                <a
+                  href="#categories"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#categories'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="hover:text-[#FECD08] transition-colors cursor-pointer"
+                >
                   Apparel
                 </a>
               </li>
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
-                  All Products
+                <a
+                  href="#categories"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#categories'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="text-white hover:text-[#FECD08] font-bold transition-colors cursor-pointer flex items-center gap-1.5"
+                >
+                  <span>All Products</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FECD08]" />
                 </a>
               </li>
             </ul>
@@ -181,33 +253,82 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 font-sora text-xs text-zinc-400">
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
+                <a
+                  href="#track-order"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#contact'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="hover:text-[#FECD08] transition-colors cursor-pointer"
+                >
                   Track Order
                 </a>
               </li>
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
-                  Shipping Policy
+                <a
+                  href="#privacy-policy"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#privacy-policy'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="hover:text-[#FECD08] transition-colors cursor-pointer"
+                >
+                  Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
-                  Returns & Exchanges
+                <a
+                  href="#terms-and-conditions"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#terms-and-conditions'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="hover:text-[#FECD08] transition-colors cursor-pointer"
+                >
+                  Terms & Conditions
                 </a>
               </li>
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
-                  Warranty
+                <a
+                  href="#refund-policy"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#refund-policy'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="hover:text-[#FECD08] transition-colors cursor-pointer"
+                >
+                  Refund & Shipping Policy
                 </a>
               </li>
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
+                <a
+                  href="#faq"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#contact'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="hover:text-[#FECD08] transition-colors cursor-pointer"
+                >
                   FAQs
                 </a>
               </li>
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
-                  Contact Us
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#contact'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="hover:text-[#FECD08] transition-colors cursor-pointer flex items-center gap-1.5"
+                >
+                  <span>Contact Us</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FECD08]" />
                 </a>
               </li>
             </ul>
@@ -220,8 +341,17 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 font-sora text-xs text-zinc-400">
               <li>
-                <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors cursor-pointer">
-                  About LBC Moto
+                <a
+                  href="#about"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.hash = '#about'
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="hover:text-[#FECD08] transition-colors cursor-pointer flex items-center gap-1.5"
+                >
+                  <span>About LBC Moto</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FECD08]" />
                 </a>
               </li>
               <li>
@@ -283,12 +413,52 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* 3. Bottom Bar (Exact match: Copyright + Brand Tagline) */}
+      {/* 3. Bottom Bar (Copyright + Legal Policy Links + Tagline) */}
       <div className="w-full border-t border-white/10">
-        <div className="max-w-[1536px] mx-auto px-4 sm:px-8 xl:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500 font-sora">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-8 xl:px-12 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-sora">
           <div>
             &copy; 2026 LBC Moto. All rights reserved.
           </div>
+
+          {/* Quick Legal Links */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-zinc-400">
+            <a
+              href="#privacy-policy"
+              onClick={(e) => {
+                e.preventDefault()
+                window.location.hash = '#privacy-policy'
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className="hover:text-[#FECD08] transition-colors cursor-pointer"
+            >
+              Privacy Policy
+            </a>
+            <span className="text-zinc-700">•</span>
+            <a
+              href="#terms-and-conditions"
+              onClick={(e) => {
+                e.preventDefault()
+                window.location.hash = '#terms-and-conditions'
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className="hover:text-[#FECD08] transition-colors cursor-pointer"
+            >
+              Terms & Conditions
+            </a>
+            <span className="text-zinc-700">•</span>
+            <a
+              href="#refund-policy"
+              onClick={(e) => {
+                e.preventDefault()
+                window.location.hash = '#refund-policy'
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className="hover:text-[#FECD08] transition-colors cursor-pointer"
+            >
+              Refund & Shipping Policy
+            </a>
+          </div>
+
           <div className="text-zinc-400 font-medium">
             Live by Compass. Not by Time.
           </div>

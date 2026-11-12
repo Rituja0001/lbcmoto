@@ -13,6 +13,10 @@
   font-family: var(--font-sora);
 }
 
+body, input, button, select, textarea {
+  font-family: var(--font-sora);
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-rajdhani);
 }

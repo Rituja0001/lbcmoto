@@ -32,7 +32,7 @@ const NAV_BRANDS = [
     name: 'AOOCCI',
     image: aoocciNavImg,
     imgObjectPos: 'object-[62%_35%]',
-    accentColor: '#00FF88'
+    accentColor: '#FECD08'
   }
 ]
 

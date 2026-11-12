@@ -10,7 +10,7 @@ import Footer from '../components/Footer'
 import FloatingSocialReviews from '../components/FloatingSocialReviews'
 import FloatingWhatsApp from '../components/FloatingWhatsApp'
 
-export default function HomePage() {
+export default function HomePage({ onNavigateCategories, onSelectProduct }) {
   return (
     <div className="w-full flex flex-col min-h-screen relative">
       {/* 1. Cinematic Fullscreen Hero */}
@@ -20,7 +20,7 @@ export default function HomePage() {
       <NavigationBannerSection />
 
       {/* 3. 01 / CHOOSE YOUR RIDE: 4 Categories Story Section (Navigation, Intercoms, Aux Lights, Accessories) */}
-      <CategoryStorySection />
+      <CategoryStorySection onNavigateCategories={onNavigateCategories} />
 
       {/* 4. Official & Authorised Brands Infinite Marquee Scroller */}
       <BrandScrollerSection />
@@ -29,7 +29,10 @@ export default function HomePage() {
       <TechFeatureBentoSection />
 
       {/* 6. 05 / FEATURED PRODUCTS: GEAR UP FOR WHAT'S NEXT (Mobile 2-Col & White Price Tags) */}
-      <FeaturedProductsSection />
+      <FeaturedProductsSection
+        onSelectProduct={onSelectProduct}
+        onNavigateCategories={onNavigateCategories}
+      />
 
       {/* 7. 06 / BUILD YOUR RIDE & 07 / LBC MOTO COMMUNITY */}
       <RideBuilderAndCommunitySection />

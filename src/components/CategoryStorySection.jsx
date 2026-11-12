@@ -1,7 +1,7 @@
 import { ArrowRight, Navigation, Radio, Zap, Compass } from 'lucide-react'
 import duskBg from '../assets/images/cinematic-mountain-road-dusk.webp'
 
-export default function CategoryStorySection() {
+export default function CategoryStorySection({ onNavigateCategories }) {
   // Ordered strictly by client priority: 1. Navigation, 2. Intercoms, 3. Aux Lights, 4. Accessories
   const categories = [
     {
@@ -41,6 +41,15 @@ export default function CategoryStorySection() {
       badge: 'PRIORITY 04'
     },
   ]
+
+  const handleCategoriesClick = (e) => {
+    e.preventDefault()
+    if (onNavigateCategories) {
+      onNavigateCategories()
+    } else {
+      window.location.hash = '#categories'
+    }
+  }
 
   return (
     <section id="categories-section" className="relative w-full pt-6 sm:pt-8 pb-12 sm:pb-16 lg:pt-8 lg:pb-12 overflow-hidden select-none bg-[#121212]">
@@ -88,11 +97,11 @@ export default function CategoryStorySection() {
               Different roads. Different challenges. Find the gear that fits your journey.
             </p>
             <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
+              href="#categories"
+              onClick={handleCategoriesClick}
               className="px-6 py-2.5 rounded-xl bg-[#FECD08] hover:bg-[#e5b807] text-[#212121] font-rajdhani font-black text-sm uppercase tracking-wider transition-all duration-200 flex items-center gap-2 cursor-pointer group shadow-xl shadow-[#FECD08]/20"
             >
-              <span>EXPLORE ALL PRODUCTS</span>
+              <span>EXPLORE ALL 15 CATEGORIES</span>
               <ArrowRight className="w-4 h-4 text-[#212121] group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
@@ -108,8 +117,8 @@ export default function CategoryStorySection() {
             return (
               <a
                 key={cat.id}
-                href="#"
-                onClick={(e) => e.preventDefault()}
+                href="#categories"
+                onClick={handleCategoriesClick}
                 className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[3/4] lg:aspect-[9/13] border border-white/15 hover:border-[#FECD08] transition-all duration-500 shadow-2xl hover:shadow-[#FECD08]/20 hover:-translate-y-1.5 flex flex-col justify-end bg-black"
               >
                 {/* Full Card Background Image */}

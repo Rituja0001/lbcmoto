@@ -9,6 +9,7 @@ import {
   LayoutGrid,
   SlidersHorizontal
 } from 'lucide-react'
+import { useCart } from '../context/CartContext'
 
 const FEATURED_PRODUCTS = [
   {
@@ -94,7 +95,7 @@ const FEATURED_PRODUCTS = [
     rating: 5,
     reviewsCount: 91,
     badge: 'RADAR TECH',
-    badgeBg: 'bg-emerald-500 text-slate-950 font-black',
+    badgeBg: 'bg-[#FECD08] text-slate-950 font-black',
     image: '/images/products/b3-elite-dashcam.webp'
   },
   {
@@ -108,15 +109,18 @@ const FEATURED_PRODUCTS = [
   }
 ]
 
-export default function FeaturedProductsSection() {
+export default function FeaturedProductsSection({ onSelectProduct, onNavigateCategories }) {
   const [viewMode, setViewMode] = useState('grid') // 'grid' (2 rows) or 'slider'
   const [addedItems, setAddedItems] = useState({})
   const sliderRef = useRef(null)
 
-  const handleAddToCart = (productId) => {
-    setAddedItems((prev) => ({ ...prev, [productId]: true }))
+  const { addToCart } = useCart()
+
+  const handleAddToCart = (product) => {
+    addToCart(product, 1)
+    setAddedItems((prev) => ({ ...prev, [product.id]: true }))
     setTimeout(() => {
-      setAddedItems((prev) => ({ ...prev, [productId]: false }))
+      setAddedItems((prev) => ({ ...prev, [product.id]: false }))
     }, 2000)
   }
 
@@ -216,6 +220,7 @@ export default function FeaturedProductsSection() {
             {/* View All Products CTA */}
             <button
               type="button"
+              onClick={onNavigateCategories}
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-[#FECD08] bg-[#FECD08] hover:bg-transparent text-slate-950 hover:text-[#FECD08] font-rajdhani font-black text-xs sm:text-sm uppercase tracking-widest transition-all duration-200 shadow-md group cursor-pointer"
             >
               <span>VIEW ALL</span>
@@ -234,6 +239,7 @@ export default function FeaturedProductsSection() {
                 product={product}
                 isAdded={!!addedItems[product.id]}
                 onAddToCart={handleAddToCart}
+                onSelectProduct={onSelectProduct}
               />
             ))}
           </div>
@@ -254,6 +260,7 @@ export default function FeaturedProductsSection() {
                     product={product}
                     isAdded={!!addedItems[product.id]}
                     onAddToCart={handleAddToCart}
+                    onSelectProduct={onSelectProduct}
                   />
                 </div>
               ))}
@@ -265,9 +272,14 @@ export default function FeaturedProductsSection() {
   )
 }
 
-function ProductCard({ product, isAdded, onAddToCart }) {
+function ProductCard({ product, isAdded, onAddToCart, onSelectProduct }) {
   return (
-    <div className="group relative flex flex-col justify-between bg-[#1C1C1C] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 border border-zinc-800/90 shadow-xl hover:border-[#FECD08]/60 hover:shadow-[0_16px_36px_rgba(254,205,8,0.12)] hover:-translate-y-1.5 transition-all duration-300 h-full">
+    <div
+      onClick={() => {
+        if (onSelectProduct) onSelectProduct(product.id)
+      }}
+      className="group relative flex flex-col justify-between bg-[#1C1C1C] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 border border-zinc-800/90 shadow-xl hover:border-[#FECD08]/60 hover:shadow-[0_16px_36px_rgba(254,205,8,0.12)] hover:-translate-y-1.5 transition-all duration-300 h-full cursor-pointer"
+    >
       {/* Product Image Box */}
       <div className="relative w-full aspect-[4/3] rounded-lg sm:rounded-xl overflow-hidden bg-black/60 mb-2.5 sm:mb-4 border border-zinc-800/80">
         <img
@@ -318,11 +330,14 @@ function ProductCard({ product, isAdded, onAddToCart }) {
 
           <button
             type="button"
-            onClick={() => onAddToCart(product.id)}
+            onClick={(e) => {
+              e.stopPropagation()
+              onAddToCart(product)
+            }}
             aria-label={`Add ${product.name} to cart`}
             className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md ${
               isAdded
-                ? 'bg-emerald-500 text-slate-950 font-bold'
+                ? 'bg-white text-slate-950 font-bold shadow-md shadow-white/20'
                 : 'bg-[#FECD08] hover:bg-white text-slate-950'
             }`}
             title={isAdded ? 'Added to Cart' : 'Add to Cart'}
