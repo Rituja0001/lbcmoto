@@ -29,6 +29,7 @@ export default function CollectionPage({
   const [selectedModel, setSelectedModel] = useState('All Models')
   const [inStockOnly, setInStockOnly] = useState(false)
   const [wishlist, setWishlist] = useState({})
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   
   // Accordion toggle states
   const [sortOpen, setSortOpen] = useState(true)
@@ -171,7 +172,7 @@ export default function CollectionPage({
               LEFT COLUMN: FILTERS & SORT BY ACCORDIONS (3 Cols on Desktop)
               Fixed space between Box 1 and Box 2 with mb-6 and space-y-6!
              ----------------------------------------------------------------------- */}
-          <aside className="lg:col-span-3 w-full sticky lg:top-28 space-y-6">
+          <aside className="hidden lg:block lg:col-span-3 w-full sticky lg:top-28 space-y-6">
             
             {/* Box 1: Sort By Accordion with explicit mb-6 to guarantee separation */}
             <div className="w-full rounded-2xl bg-[#10141D] border border-white/10 p-4 sm:p-5 shadow-xl mb-6">
@@ -327,6 +328,25 @@ export default function CollectionPage({
               Fully responsive across all mobile screens (2 columns on mobile, 3 on desktop)
              ----------------------------------------------------------------------- */}
           <section className="lg:col-span-9 flex flex-col gap-6 w-full">
+            
+            {/* Mobile Filter & Sort Trigger Bar (Only on mobile/tablet screens so products are immediately visible) */}
+            <div className="lg:hidden flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#10141D] border border-white/10 shadow-lg">
+              <button
+                type="button"
+                onClick={() => setMobileFiltersOpen(true)}
+                className="flex items-center gap-2 py-2 px-3.5 rounded-xl bg-[#FECD08]/10 border border-[#FECD08]/40 text-xs font-rajdhani font-bold uppercase tracking-wider text-[#FECD08] hover:bg-[#FECD08] hover:text-black transition-all cursor-pointer"
+              >
+                <SlidersHorizontal className="w-3.5 h-3.5" />
+                <span>FILTER & SORT</span>
+                {hasActiveFilters && (
+                  <span className="w-2 h-2 rounded-full bg-[#FECD08]" />
+                )}
+              </button>
+
+              <div className="text-xs font-sora text-zinc-400">
+                <strong className="text-white">{filteredProducts.length}</strong> Products Available
+              </div>
+            </div>
             
             {/* Top Stats & Active Filter Tags Bar */}
             <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-sora text-zinc-400 pb-2 border-b border-white/10">
@@ -549,6 +569,154 @@ export default function CollectionPage({
         </div>
 
       </main>
+
+      {/* =========================================================================
+          MOBILE SLIDE-UP FILTER & SORT DRAWER (CLEAN & NON-INTRUSIVE)
+         ========================================================================= */}
+      {mobileFiltersOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden flex flex-col justify-end">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity"
+            onClick={() => setMobileFiltersOpen(false)}
+          />
+
+          {/* Drawer Sheet */}
+          <div className="relative z-10 w-full max-h-[85vh] bg-[#0E121A] border-t border-white/20 rounded-t-3xl p-5 overflow-y-auto shadow-2xl flex flex-col animate-in slide-in-from-bottom-5 duration-300">
+            {/* Drawer Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-white/10">
+              <div className="flex items-center gap-2 font-rajdhani font-black text-lg uppercase text-white">
+                <SlidersHorizontal className="w-4 h-4 text-[#FECD08]" />
+                <span>Filter & Sort Cockpit Units</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setMobileFiltersOpen(false)}
+                className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Drawer Body */}
+            <div className="py-4 space-y-5">
+              {/* Sort By Section */}
+              <div>
+                <span className="text-xs font-rajdhani font-black uppercase text-[#FECD08] tracking-wider block mb-2">
+                  Sort By
+                </span>
+                <div className="grid grid-cols-2 gap-2 text-xs font-sora">
+                  {[
+                    { id: 'featured', label: 'Featured' },
+                    { id: 'price-low', label: 'Price: Low-High' },
+                    { id: 'price-high', label: 'Price: High-Low' },
+                    { id: 'rating', label: 'Top Rated' }
+                  ].map((opt) => (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      onClick={() => setSortBy(opt.id)}
+                      className={`px-3 py-2 rounded-xl text-left transition-colors flex items-center justify-between ${
+                        sortBy === opt.id
+                          ? 'bg-[#FECD08] text-slate-950 font-bold'
+                          : 'bg-white/5 text-zinc-300 border border-white/5'
+                      }`}
+                    >
+                      <span>{opt.label}</span>
+                      {sortBy === opt.id && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Type Filter */}
+              <div className="pt-3 border-t border-white/10">
+                <span className="text-xs font-rajdhani font-black uppercase text-[#FECD08] tracking-wider block mb-2">
+                  Category / Series
+                </span>
+                <div className="flex flex-wrap gap-2 text-xs font-sora">
+                  {COLLECTION_FILTERS.types.map((type) => {
+                    const isSel = selectedType === type
+                    return (
+                      <button
+                        key={type}
+                        type="button"
+                        onClick={() => setSelectedType(type)}
+                        className={`px-3 py-1.5 rounded-xl transition-colors ${
+                          isSel
+                            ? 'bg-[#FECD08] text-slate-950 font-bold'
+                            : 'bg-white/5 text-zinc-300 border border-white/5 hover:bg-white/10'
+                        }`}
+                      >
+                        {type}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Model Filter */}
+              <div className="pt-3 border-t border-white/10">
+                <span className="text-xs font-rajdhani font-black uppercase text-[#FECD08] tracking-wider block mb-2">
+                  Hardware Model
+                </span>
+                <div className="flex flex-wrap gap-2 text-xs font-sora">
+                  {COLLECTION_FILTERS.models.map((mod) => {
+                    const isSel = selectedModel === mod
+                    return (
+                      <button
+                        key={mod}
+                        type="button"
+                        onClick={() => setSelectedModel(mod)}
+                        className={`px-3 py-1.5 rounded-xl transition-colors ${
+                          isSel
+                            ? 'bg-[#FECD08] text-slate-950 font-bold'
+                            : 'bg-white/5 text-zinc-300 border border-white/5 hover:bg-white/10'
+                        }`}
+                      >
+                        {mod}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* In Stock Only Switch */}
+              <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                <span className="text-xs font-rajdhani font-bold uppercase text-white">
+                  Show In Stock Units Only
+                </span>
+                <input
+                  type="checkbox"
+                  checked={inStockOnly}
+                  onChange={(e) => setInStockOnly(e.target.checked)}
+                  className="w-5 h-5 accent-[#FECD08] cursor-pointer rounded"
+                />
+              </div>
+            </div>
+
+            {/* Drawer Footer Actions */}
+            <div className="pt-4 border-t border-white/10 flex items-center gap-3">
+              {hasActiveFilters && (
+                <button
+                  type="button"
+                  onClick={resetFilters}
+                  className="py-3 px-4 rounded-xl bg-white/5 border border-white/15 text-xs font-rajdhani font-bold uppercase text-zinc-300"
+                >
+                  Reset
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={() => setMobileFiltersOpen(false)}
+                className="flex-1 py-3 px-6 rounded-xl bg-[#FECD08] text-slate-950 font-rajdhani font-black text-sm uppercase tracking-wider shadow-lg shadow-[#FECD08]/20"
+              >
+                View {filteredProducts.length} Products
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Global Brand Footer */}
       <Footer />
