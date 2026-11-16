@@ -65,7 +65,7 @@ export default function TermsConditionsPage({
             </h1>
 
             <p className="font-sora text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-2xl font-normal">
-              Official store terms, intellectual property rules and usage agreements governing your experience at LBC Moto Store (<span className="text-white font-medium">www.lbcmotoshop.in</span>).
+              Official store terms, intellectual property rules and usage agreements governing your experience at LBC Moto Store (<span className="text-white font-medium">www.lbcmoto.com</span>).
             </p>
           </div>
 
@@ -94,7 +94,7 @@ export default function TermsConditionsPage({
             </div>
 
             <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sora">
-              This Agreement governs your use of the website and the <strong className="text-white">www.lbcmotoshop.in</strong> (Henceforth referred to as <strong className="text-[#FECD08]">LBC Moto Store</strong>) service. The Service permits customers that have an appropriate relationship either with: (i) institutions of higher learning, fraternal organizations, honor societies and other collegiate groups (collectively, "Institutions"), (ii) corporations and small businesses; (iii) elementary and secondary schools; or (iv) other organizations, to design and purchase custom merchandise properly describing that relationship.
+              This Agreement governs your use of the website and the <strong className="text-white">www.lbcmoto.com</strong> (Henceforth referred to as <strong className="text-[#FECD08]">LBC Moto Store</strong>) service. The Service permits customers that have an appropriate relationship either with: (i) institutions of higher learning, fraternal organizations, honor societies and other collegiate groups (collectively, "Institutions"), (ii) corporations and small businesses; (iii) elementary and secondary schools; or (iv) other organizations, to design and purchase custom merchandise properly describing that relationship.
             </p>
 
             <div className="p-4 rounded-xl bg-[#FECD08]/10 border border-[#FECD08]/30 flex items-start gap-3">

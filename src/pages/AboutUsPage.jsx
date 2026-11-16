@@ -54,7 +54,7 @@ export default function AboutUsPage({
     {
       icon: ShieldCheck,
       title: 'TRUST & AUTHENTICITY',
-      desc: '100% genuine authorized products with 1-Year official brand replacement warranty on all electronics.'
+      desc: '100% genuine authorized products with 1-Year manufacturing defect repair warranty & 2nd-year paid repair.'
     },
     {
       icon: Users,
@@ -79,11 +79,11 @@ export default function AboutUsPage({
     },
     {
       q: 'Do you offer warranty and after-sales service in India?',
-      a: 'Every electronic unit purchased from LBC Moto includes a 1-Year Official Brand Replacement Warranty against manufacturing defects. If you ever need support, our Bangalore technician team handles claims and troubleshooting directly without overseas shipping delays.'
+      a: 'Every electronic unit purchased from LBC Moto includes a 1-Year warranty covering product repairs for any manufacturing defects. In addition, an extended 1-year paid product repair option is also available. If any manufacturing defect is identified upon arrival, the product will be replaced.'
     },
     {
       q: 'Can I visit your office or test fit equipment on my motorcycle?',
-      a: 'Yes, our Registered Office and Technical Experience Center is located at No 30, 3rd Main, 6th Cross, LBS Nagar, Bangalore, 560017. You are welcome to visit by prior WhatsApp appointment (+91-9113267548) for trial fittings and cockpit advice.'
+      a: 'Yes, our Registered Office and Technical Experience Center is located at Venkataswamy Reddy Building, 94/14, Annasandrapalya Main Rd, Annasandrapalya Extension, Vinayaka Nagar, HAL,, Bengaluru, Karnataka, 560017, India. You are welcome to visit by prior WhatsApp appointment (+91-9113267548) for trial fittings and cockpit advice.'
     },
     {
       q: 'How fast do you ship across India?',
@@ -406,7 +406,7 @@ export default function AboutUsPage({
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#FECD08] shrink-0" />
-                  <span>1-Year replacement warranty on all electronics without overseas shipping</span>
+                  <span>1-Year warranty repair for manufacturing defects + additional 1-year paid repair</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#FECD08] shrink-0" />

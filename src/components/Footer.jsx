@@ -88,11 +88,11 @@ export default function Footer() {
             {/* Direct Official Contact Quick Access */}
             <div className="space-y-1.5 mb-5 text-xs text-zinc-400 font-sora">
               <a
-                href="mailto:support@lbcmotoshop.in"
+                href="mailto:support@lbcmoto.com"
                 className="flex items-center gap-2 hover:text-[#FECD08] transition-colors group"
               >
                 <span className="text-zinc-500 text-[11px] uppercase tracking-wider font-rajdhani font-bold">Email:</span>
-                <span className="text-zinc-300 group-hover:text-[#FECD08] transition-colors">support@lbcmotoshop.in</span>
+                <span className="text-zinc-300 group-hover:text-[#FECD08] transition-colors">support@lbcmoto.com</span>
               </a>
               <a
                 href="https://wa.me/919113267548"

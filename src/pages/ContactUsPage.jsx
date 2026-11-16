@@ -65,8 +65,8 @@ export default function ContactUsPage({ onNavigateHome, onNavigateCategories }) 
       a: 'Yes! We provide step-by-step video installation guides, color-coded wiring harnesses, and direct WhatsApp video-call technical support with our Bangalore technician team (+91-9113267548).'
     },
     {
-      q: 'What is the official warranty and return policy on electronics?',
-      a: 'All navigation units, intercoms, and dashcams carry a 1-Year Official Brand Replacement Warranty against manufacturing defects. We also provide a 7-day hassle-free replacement window upon delivery inspection.'
+      q: 'What is the official warranty, repair and return policy?',
+      a: 'We do not have a return policy. Products will be replaced if any manufacturing defects are found upon arrival. During the 1-year warranty period, products will be repaired for manufacturing defects. For subsequent ownership, an additional 1-year paid product repair service is also available.'
     },
     {
       q: 'How quickly are orders dispatched across India?',
@@ -156,7 +156,7 @@ export default function ContactUsPage({ onNavigateHome, onNavigateCategories }) 
 
             {/* Card 1: Email Us! (Exact info from client image) */}
             <a
-              href="mailto:support@lbcmotoshop.in"
+              href="mailto:support@lbcmoto.com"
               className="group p-5 rounded-2xl bg-[#10141D] border border-white/10 hover:border-[#FECD08] transition-all duration-300 shadow-xl flex items-start gap-4 cursor-pointer hover:-translate-y-1"
             >
               <div className="w-12 h-12 rounded-xl bg-[#FECD08]/10 border border-[#FECD08]/30 text-[#FECD08] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
@@ -172,10 +172,10 @@ export default function ContactUsPage({ onNavigateHome, onNavigateCategories }) 
                   </span>
                 </div>
                 <div className="font-sora text-sm sm:text-base font-semibold text-[#FECD08] mt-1 break-all">
-                  support@lbcmotoshop.in
+                  support@lbcmoto.com
                 </div>
                 <p className="font-sora text-xs text-zinc-400 mt-1 leading-relaxed">
-                  General inquiries, order status, warranty claims and corporate partnerships.
+                  General inquiries, order status, warranty & repair support and corporate partnerships.
                 </p>
               </div>
             </a>
@@ -227,7 +227,7 @@ export default function ContactUsPage({ onNavigateHome, onNavigateCategories }) 
                   </span>
                 </div>
                 <div className="font-sora text-xs sm:text-sm text-zinc-200 mt-1.5 leading-relaxed font-medium">
-                  No 30, 3rd Main, 6th Cross, LBS Nagar, Bangalore, 560017, India
+                  Venkataswamy Reddy Building, 94/14, Annasandrapalya Main Rd, Annasandrapalya Extension, Vinayaka Nagar, HAL,, Bengaluru, Karnataka, 560017, India
                 </div>
                 <p className="font-sora text-[11px] text-zinc-400 mt-2">
                   Technical Inspection & Experience Center. Prior appointment recommended for bike trial fittings.
@@ -392,8 +392,8 @@ export default function ContactUsPage({ onNavigateHome, onNavigateCategories }) 
                       <option value="Order Tracking & Dispatch" className="bg-[#10141D] text-white">
                         Order Tracking & Dispatch Updates
                       </option>
-                      <option value="Warranty & Product Returns" className="bg-[#10141D] text-white">
-                        Warranty Claims & Product Returns
+                      <option value="Warranty, Repair & Arrival Defects" className="bg-[#10141D] text-white">
+                        Warranty, Repair & Arrival Defects
                       </option>
                       <option value="Dealership & Bulk Tour Orders" className="bg-[#10141D] text-white">
                         Dealership, Workshop & Bulk Tour Orders
